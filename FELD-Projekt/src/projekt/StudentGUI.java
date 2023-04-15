@@ -17,7 +17,11 @@ import java.awt.Font;
  
 public class StudentGUI extends JPanel {
     private boolean DEBUG = false;
-    private String anmeldename = "e.frech";
+    private String anmeldename;
+    
+    public void setAnmeldename (String anmeldename) {
+    	this.anmeldename = anmeldename;
+    }
  
     public StudentGUI() {
  

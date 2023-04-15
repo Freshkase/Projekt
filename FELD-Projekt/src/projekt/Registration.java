@@ -21,8 +21,6 @@ public class Registration {
 	private JFrame frame;
 	private JTextField textField;
 	private JPasswordField passwordField;
-	private String passwort;
-	private String name;
 	/**
 	 * Launch the application.
 	 */
@@ -75,30 +73,18 @@ public class Registration {
 		JLabel lblNewLabel = new JLabel("Anmeldung");
 		lblNewLabel.setFont(new Font("Arial Black", Font.PLAIN, 11));
 		
+		
 		textField = new JTextField();
-		textField.addActionListener(new ActionListener() {
-			private String name;
-
-			public void actionPerformed(ActionEvent e) {
-				this.name = textField.getText();
-			}
-		});
 		textField.setColumns(10);
 		passwordField = new JPasswordField();
-		passwordField.addActionListener(new ActionListener() {
-			private String passwort;
-
-			public void actionPerformed(ActionEvent e) {
-				 this.passwort = passwordField.getText();
-			}
-		});
+		passwordField.setColumns(10);
 		
 		JLabel lblNewLabel_1 = new JLabel("Anmeldename:");
 		lblNewLabel_1.setFont(new Font("Arial", Font.PLAIN, 11));
 		
 		JLabel lblNewLabel_2 = new JLabel("Kennwort:");
 		
-		JButton btnNewButton = new JButton("Registrierung");
+		JButton btnNewButton = new JButton("Registrieren");
 		btnNewButton.setFont(new Font("Arial Black", Font.BOLD, 11));
 		btnNewButton.setEnabled(false);
 		btnNewButton.setForeground(Color.WHITE);
@@ -111,20 +97,25 @@ public class Registration {
 		btnAnmelden.setBackground(new Color(0, 128, 255));
 		btnAnmelden.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("gu");
-				frame.dispose();
-				StudentGUI student = new StudentGUI();
 				
 				DatenabrufStudent db = new DatenabrufStudent();
 		        ArrayList<Student> ausgabe = db.ausgeben();
 		        
+		        String name = textField.getText();
+		        String passwort = passwordField.getText();
 		        for (int i = 0; i < ausgabe.size(); i++) {
 		        	if(name.equals(ausgabe.get(i).getAnmeldename())) {
 		        		if (ausgabe.get(i).getKennwort().equals(passwort)) {
-			        		student.main(null);
+		        			StudentGUI student = new StudentGUI();
+		        			student.main(null);
+			        		frame.dispose();
+			        		student.setAnmeldename(name);
 			        	}
 		        	} else {
-		        		System.out.println(name);
+		        		textField.setText(null);
+		        		passwordField.setText(null);
+		        		lblNewLabel.setText("Falsche Eingabe!");
+		        		lblNewLabel.setForeground(Color.RED);
 		        	}
 		        	
 		        }
@@ -178,4 +169,5 @@ public class Registration {
 		panel.setLayout(gl_panel);
 		frame.getContentPane().setLayout(groupLayout);
 	}
+	
 }
