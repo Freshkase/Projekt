@@ -123,6 +123,8 @@ public class Registration {
 		        		if (ausgabe.get(i).getKennwort().equals(passwort)) {
 			        		student.main(null);
 			        	}
+		        	} else {
+		        		System.out.println(name);
 		        	}
 		        	
 		        }
