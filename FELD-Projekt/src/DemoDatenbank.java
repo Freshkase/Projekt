@@ -18,19 +18,19 @@ public class DemoDatenbank {
 		
 		
 		
-		try 
-		{
+		try {
 			Class.forName(driver);
-			conn=DriverManager
-					.getConnection(url+dbName,username,password);
+			
+			conn = DriverManager.getConnection(url+dbName,username,password);
 			System.out.println("Connected to the database");
+			
 			Statement anweisung = conn.createStatement();
 			ResultSet rs = anweisung.executeQuery("SELECT Professoren_ID, Nachname, Vorname, E_Mail, Anmeldename, Kennwort FROM professoren");
 			
 			System.out.printf("%-15s %-15s %-10s %-40s %-20s %-10s", "Professoren-ID", "Nachname", "Vorname", "E-Mail", "Anmeldename", "Kennwort");
 			System.out.println();
+			
 			while (rs.next()) {
-				
 				System.out.printf("%-15s %-15s %-10s %-40s %-20s %-10s", rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),rs.getString(6));
 				System.out.println();
 			}
@@ -40,8 +40,8 @@ public class DemoDatenbank {
 			
 			System.out.printf("%-15s %-15s %-15s %-15s", "Student", "E-Mail", "Unternehmen", "Betreuer");
 			System.out.println();
+			
 			while (rs2.next()) {
-				
 				if (rs2.getString(5)==null) {
 				System.out.printf("%-30s %-15s %-15s %-15s", rs2.getString(1) + ", " + rs2.getString(2), rs2.getString(3), rs2.getString(4), "auswaehlen");
 				} else {
@@ -49,11 +49,11 @@ public class DemoDatenbank {
 				}
 				System.out.println();
 			}
+			
 			conn.close();
 			System.out.println("Disconnected from database");
 			
 		
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
