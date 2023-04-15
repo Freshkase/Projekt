@@ -31,8 +31,10 @@ public class DemoDatenbank {
 			System.out.println();
 			
 			while (rs.next()) {
+				if(rs.getInt(1) != 0) {
 				System.out.printf("%-15s %-15s %-10s %-40s %-20s %-10s", rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),rs.getString(6));
 				System.out.println();
+				}
 			}
 			
 			System.out.println();
