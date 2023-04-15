@@ -21,7 +21,8 @@ public class Registration {
 	private JFrame frame;
 	private JTextField textField;
 	private JPasswordField passwordField;
-
+	private String passwort;
+	private String name;
 	/**
 	 * Launch the application.
 	 */
@@ -75,7 +76,22 @@ public class Registration {
 		lblNewLabel.setFont(new Font("Arial Black", Font.PLAIN, 11));
 		
 		textField = new JTextField();
+		textField.addActionListener(new ActionListener() {
+			private String name;
+
+			public void actionPerformed(ActionEvent e) {
+				this.name = textField.getText();
+			}
+		});
 		textField.setColumns(10);
+		passwordField = new JPasswordField();
+		passwordField.addActionListener(new ActionListener() {
+			private String passwort;
+
+			public void actionPerformed(ActionEvent e) {
+				 this.passwort = passwordField.getText();
+			}
+		});
 		
 		JLabel lblNewLabel_1 = new JLabel("Anmeldename:");
 		lblNewLabel_1.setFont(new Font("Arial", Font.PLAIN, 11));
@@ -101,9 +117,7 @@ public class Registration {
 				
 				DatenabrufStudent db = new DatenabrufStudent();
 		        ArrayList<Student> ausgabe = db.ausgeben();
-		        String passwort = "hallo";
-		        String name = "test";
-		        int tmp = 0;
+		        
 		        for (int i = 0; i < ausgabe.size(); i++) {
 		        	if(name.equals(ausgabe.get(i).getAnmeldename())) {
 		        		if (ausgabe.get(i).getKennwort().equals(passwort)) {
@@ -116,7 +130,7 @@ public class Registration {
 			}
 		});
 		
-		passwordField = new JPasswordField();
+		
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
