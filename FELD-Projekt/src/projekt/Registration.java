@@ -80,7 +80,7 @@ public class Registration {
 		
 		JLabel lblNewLabel_2 = new JLabel("Kennwort:");
 		
-		JButton btnNewButton = new JButton("Sign in");
+		JButton btnNewButton = new JButton("Registrieren");
 		btnNewButton.setFont(new Font("Arial Black", Font.BOLD, 11));
 		btnNewButton.setEnabled(false);
 		btnNewButton.setForeground(Color.WHITE);
