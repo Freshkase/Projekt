@@ -40,7 +40,7 @@ public class DemoDatenbank {
 			System.out.println();
 			ResultSet rs2 = anweisung.executeQuery("Select studenten.Nachname, studenten.Vorname, studenten.E_Mail, studenten.Name_Unternehmen, professoren.Nachname, professoren.Vorname from professoren,studenten where studenten.Professoren_ID=professoren.Professoren_ID");
 			
-			System.out.printf("%-15s %-15s %-15s %-15s", "Student", "E-Mail", "Unternehmen", "Betreuer");
+			System.out.printf("%-30s %-15s %-15s %-15s", "Student", "E-Mail", "Unternehmen", "Betreuer");
 			System.out.println();
 			
 			while (rs2.next()) {
