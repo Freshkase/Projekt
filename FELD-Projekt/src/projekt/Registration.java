@@ -12,6 +12,8 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
 import java.awt.Color;
 import javax.swing.*;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Registration {
 
@@ -50,22 +52,23 @@ public class Registration {
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		JPanel panel = new JPanel();
+		JPanel panel_1 = new JPanel();
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(panel, GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE)
+					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 435, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap())
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(panel, GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
-					.addContainerGap())
+					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 260, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(176, Short.MAX_VALUE))
 		);
+		
+		JPanel panel = new JPanel();
+		panel_1.add(panel);
 		
 		JLabel lblNewLabel = new JLabel("Anmeldung");
 		lblNewLabel.setFont(new Font("Arial Black", Font.PLAIN, 11));
@@ -85,10 +88,17 @@ public class Registration {
 		btnNewButton.setBackground(new Color(0, 128, 255));
 		
 		JButton btnAnmelden = new JButton("Anmelden");
+		
 		btnAnmelden.setForeground(UIManager.getColor("Button.background"));
 		btnAnmelden.setFont(new Font("Arial Black", Font.BOLD, 11));
-		btnAnmelden.setEnabled(false);
 		btnAnmelden.setBackground(new Color(0, 128, 255));
+		btnAnmelden.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("gu");
+				frame.remove(panel);
+				
+			}
+		});
 		
 		passwordField = new JPasswordField();
 		GroupLayout gl_panel = new GroupLayout(panel);
