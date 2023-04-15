@@ -15,7 +15,7 @@ public class Student {
 	private Professor prof;
 	
 	
-	public Student(String anmeldename, String nachname, String vorname, int matrikelnummer, String email, String unternehmen, String bericht, String tätigkeitsnachweis, String vortrag, Professor prof) {
+	public Student(String anmeldename, String nachname, String vorname, int matrikelnummer, String email, String unternehmen, String bericht, String tätigkeitsnachweis, String vortrag, Professor prof, String kennwort) {
 		super();
 		this.nachname = nachname;
 		this.vorname = vorname;
@@ -27,6 +27,7 @@ public class Student {
 		this.tätigkeitsnachweis = tätigkeitsnachweis;
 		this.vortrag = vortrag;
 		this.prof = prof;
+		this.kennwort = kennwort;
 	}
 
 	@Override
