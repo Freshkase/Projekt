@@ -95,7 +95,9 @@ public class Registration {
 		btnAnmelden.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("gu");
-				frame.remove(panel);
+				frame.dispose();
+				StudentGUI student = new StudentGUI();
+				student.main(null);
 				
 			}
 		});

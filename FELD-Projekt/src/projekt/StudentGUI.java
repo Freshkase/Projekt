@@ -205,7 +205,7 @@ public class StudentGUI extends JPanel {
      * this method should be invoked from the
      * event-dispatching thread.
      */
-    private static void createAndShowGUI() {
+    public static void createAndShowGUI() {
         //Create and set up the window.
         JFrame frame = new JFrame("Studentenverwaltung");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
