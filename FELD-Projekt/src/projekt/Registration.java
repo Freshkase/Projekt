@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import java.awt.Color;
 import javax.swing.*;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class Registration {
@@ -97,7 +98,20 @@ public class Registration {
 				System.out.println("gu");
 				frame.dispose();
 				StudentGUI student = new StudentGUI();
-				student.main(null);
+				
+				DatenabrufStudent db = new DatenabrufStudent();
+		        ArrayList<Student> ausgabe = db.ausgeben();
+		        String passwort = "hallo";
+		        String name = "test";
+		        int tmp = 0;
+		        for (int i = 0; i < ausgabe.size(); i++) {
+		        	if(name.equals(ausgabe.get(i).getAnmeldename())) {
+		        		if (ausgabe.get(i).getKennwort().equals(passwort)) {
+			        		student.main(null);
+			        	}
+		        	}
+		        	
+		        }
 				
 			}
 		});
