@@ -8,10 +8,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Registrierung extends JFrame {
-	private JPasswordField passwordField;
+	private JPasswordField passwort;
 
     public Registrierung() {
-        // Setzt den Titel des Fensters
+       
         setTitle("Registrierungsformular");
         
         JScrollPane scrollPane_1 = new JScrollPane();
@@ -19,7 +19,7 @@ public class Registrierung extends JFrame {
         scrollPane_1.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane_1.setBorder(null);
 
-        // Erstellt das Group Layout und fügt die Komponenten hinzu
+      
         GroupLayout layout = new GroupLayout(getContentPane());
         layout.setHorizontalGroup(
         	layout.createParallelGroup(Alignment.LEADING)
@@ -36,52 +36,51 @@ public class Registrierung extends JFrame {
         
         JPanel panel = new JPanel();
         scrollPane_1.setViewportView(panel);
-        JTextField nameTextField = new JTextField(20);
+        JTextField anmeldename = new JTextField(20);
         
-                // Erstellt die Komponenten für das Formular
+               
                 JLabel nameLabel = new JLabel("Anmeldename:");
         
                 JLabel matrikelnummerLabel = new JLabel("Kennwort:");
-        JTextField matrikelnummerTextField = new JTextField(10);
-        JTextField emailTextField = new JTextField(20);
+        JTextField email = new JTextField(10);
+        JTextField name = new JTextField(20);
         
                 JLabel emailLabel = new JLabel("Name, Vorname:");
-        JTextField benutzernameTextField = new JTextField(20);
+        JTextField matrikelnummer = new JTextField(20);
         
                 JLabel benutzernameLabel = new JLabel("Matrikelnummer");
         
                 JLabel passwortLabel = new JLabel("E-Mail");
         
                 JLabel unternehmenLabel = new JLabel("Unternehmen:");
-        JTextField unternehmenTextField = new JTextField(20);
+        JTextField unternehmen = new JTextField(20);
         
                 JLabel beschreibungLabel = new JLabel("Beschreibung:");
-        
-                // Erstellt den Registrierungs-Button
-                JButton registrierenButton = new JButton("Registrieren");
-                registrierenButton.addActionListener(new ActionListener() {
-
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						Registration.main(null);
-						dispose();
-						
-					}
-                	
-                });
-                registrierenButton.setFont(new Font("Tahoma", Font.BOLD, 11));
-                registrierenButton.setBackground(new Color(0, 128, 255));
-
-                
-                       
-                 
         
         JScrollPane scrollPane = new JScrollPane();
         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         
         JLabel lblhftstuttgartde = new JLabel("@hft-stuttgart.de");
-        
-        passwordField = new JPasswordField(20);
+        JTextArea beschreibungTextArea = new JTextArea(5, 20);
+        beschreibungTextArea.setFont(new Font("Tahoma", Font.PLAIN, 11));
+        scrollPane.setViewportView(beschreibungTextArea);
+        passwort = new JPasswordField(20);
+        JButton registrierenButton = new JButton("Registrieren");
+        registrierenButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				DatenabrufStudent student = new DatenabrufStudent();
+				String [] namen = name.getText().split(",");
+				student.einlesen(Integer.parseInt(matrikelnummer.getText()), namen[0], namen[1], email.getText(), anmeldename.getText(), passwort.getText(), beschreibungTextArea.getText(), unternehmen.getText());
+				Registration.main(null);
+				dispose();
+				
+			}
+        	
+        });
+        registrierenButton.setFont(new Font("Tahoma", Font.BOLD, 11));
+        registrierenButton.setBackground(new Color(0, 128, 255));
         GroupLayout gl_panel = new GroupLayout(panel);
         gl_panel.setHorizontalGroup(
         	gl_panel.createParallelGroup(Alignment.LEADING)
@@ -90,22 +89,22 @@ public class Registrierung extends JFrame {
         			.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
         				.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 354, GroupLayout.PREFERRED_SIZE)
         				.addComponent(beschreibungLabel)
-        				.addComponent(unternehmenTextField, GroupLayout.PREFERRED_SIZE, 247, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(unternehmen, GroupLayout.PREFERRED_SIZE, 247, GroupLayout.PREFERRED_SIZE)
         				.addComponent(unternehmenLabel)
         				.addComponent(passwortLabel)
-        				.addComponent(benutzernameTextField, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(matrikelnummer, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)
         				.addComponent(benutzernameLabel)
         				.addComponent(emailLabel)
-        				.addComponent(passwordField, GroupLayout.PREFERRED_SIZE, 179, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(passwort, GroupLayout.PREFERRED_SIZE, 179, GroupLayout.PREFERRED_SIZE)
         				.addComponent(matrikelnummerLabel)
         				.addComponent(nameLabel)
-        				.addComponent(nameTextField, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(anmeldename, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE)
         				.addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
         					.addGroup(gl_panel.createSequentialGroup()
-        						.addComponent(matrikelnummerTextField, GroupLayout.PREFERRED_SIZE, 144, GroupLayout.PREFERRED_SIZE)
+        						.addComponent(email, GroupLayout.PREFERRED_SIZE, 144, GroupLayout.PREFERRED_SIZE)
         						.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         						.addComponent(lblhftstuttgartde))
-        					.addComponent(emailTextField, GroupLayout.PREFERRED_SIZE, 229, GroupLayout.PREFERRED_SIZE)))
+        					.addComponent(name, GroupLayout.PREFERRED_SIZE, 229, GroupLayout.PREFERRED_SIZE)))
         			.addGap(18749))
         		.addGroup(gl_panel.createSequentialGroup()
         			.addGap(272)
@@ -118,29 +117,29 @@ public class Registrierung extends JFrame {
         			.addContainerGap()
         			.addComponent(nameLabel)
         			.addPreferredGap(ComponentPlacement.RELATED)
-        			.addComponent(nameTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        			.addComponent(anmeldename, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
         			.addPreferredGap(ComponentPlacement.RELATED)
         			.addComponent(matrikelnummerLabel)
         			.addGap(4)
-        			.addComponent(passwordField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        			.addComponent(passwort, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
         			.addPreferredGap(ComponentPlacement.RELATED)
         			.addComponent(emailLabel)
         			.addPreferredGap(ComponentPlacement.RELATED)
-        			.addComponent(emailTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        			.addComponent(name, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
         			.addPreferredGap(ComponentPlacement.RELATED)
         			.addComponent(benutzernameLabel)
         			.addPreferredGap(ComponentPlacement.RELATED)
-        			.addComponent(benutzernameTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        			.addComponent(matrikelnummer, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
         			.addPreferredGap(ComponentPlacement.RELATED)
         			.addComponent(passwortLabel)
         			.addPreferredGap(ComponentPlacement.RELATED)
         			.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-        				.addComponent(matrikelnummerTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(email, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
         				.addComponent(lblhftstuttgartde))
         			.addPreferredGap(ComponentPlacement.RELATED)
         			.addComponent(unternehmenLabel)
         			.addPreferredGap(ComponentPlacement.RELATED)
-        			.addComponent(unternehmenTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        			.addComponent(unternehmen, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
         			.addPreferredGap(ComponentPlacement.RELATED)
         			.addComponent(beschreibungLabel)
         			.addPreferredGap(ComponentPlacement.RELATED)
@@ -149,9 +148,7 @@ public class Registrierung extends JFrame {
         			.addComponent(registrierenButton)
         			.addGap(46))
         );
-        JTextArea beschreibungTextArea = new JTextArea(5, 20);
-        beschreibungTextArea.setFont(new Font("Tahoma", Font.PLAIN, 11));
-        scrollPane.setViewportView(beschreibungTextArea);
+       
         panel.setLayout(gl_panel);
         
         JLabel lblNewLabel = new JLabel("Registrierung");

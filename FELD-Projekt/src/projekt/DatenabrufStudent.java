@@ -43,6 +43,9 @@ public class DatenabrufStudent {
 		return ausgabe;
 
 	}
+	public void einlesen(int matrikelnummer, String nachname, String vorname, String email, String anmeldename,String passwort, String stellenbeschreibung, String nameunternehmen) {
+		
+	}
 	
 
 }
