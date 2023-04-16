@@ -110,6 +110,7 @@ public class Registrierung extends JFrame {
         		db.einlesen(nummer.getText(), nachname.getText(), vorname.getText(), email, mail.getText(), kennwort.getText(), unternehmenname.getText(), firmenanschrift.getText(), url.getText(), mailunternehmen.getText(), firmenbetreuer.getText(), telefon.getText(), abteilung.getText(), beginn.getText(), ende.getText(), themenbereich.getText(), beschreibung.getText());
         		Anmeldung anmeldung = new Anmeldung();
     			anmeldung.main(null);
+    			dispose();
         	}
         });
         
