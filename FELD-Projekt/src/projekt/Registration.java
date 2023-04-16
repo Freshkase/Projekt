@@ -86,8 +86,6 @@ public class Registration {
 		
 		JButton btnNewButton = new JButton("Registrieren");
 		btnNewButton.setFont(new Font("Arial Black", Font.BOLD, 11));
-		btnNewButton.setEnabled(false);
-		btnNewButton.setForeground(Color.WHITE);
 		btnNewButton.setBackground(new Color(0, 128, 255));
 		
 		JButton btnAnmelden = new JButton("Anmelden");
