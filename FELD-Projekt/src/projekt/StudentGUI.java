@@ -17,14 +17,13 @@ import java.awt.Font;
  
 public class StudentGUI extends JPanel {
     private boolean DEBUG = false;
-    private String anmeldename;
-    
-    public void setAnmeldename (String anmeldename) {
+    private static String anmeldename;
+
+ 
+    public StudentGUI(String anmeldename) {
+ 
     	this.anmeldename = anmeldename;
-    }
- 
-    public StudentGUI() {
- 
+    	
         DatenabrufStudent db = new DatenabrufStudent();
         ArrayList<Student> ausgabe = db.ausgeben();
         
@@ -44,13 +43,13 @@ public class StudentGUI extends JPanel {
         String ausgabeNachweis = "Nein";
         String ausgabeVortrag = "Nein";
         
-        if (ausgabe.get(tmp).getBericht()!=null) {
+        if (ausgabe.get(tmp).getBericht()=="nein") {
         	ausgabeBericht = "Ja";
         }
-        if (ausgabe.get(tmp).getTätigkeitsnachweis()!=null) {
+        if (ausgabe.get(tmp).getTätigkeitsnachweis()=="nein") {
         	ausgabeNachweis = "Ja";
         }
-        if (ausgabe.get(tmp).getVortrag()!=null) {
+        if (ausgabe.get(tmp).getVortrag()=="nein") {
         	ausgabeVortrag = "Ja";
         }
         Object [][] data = new Object [1][3];
@@ -211,11 +210,11 @@ public class StudentGUI extends JPanel {
      */
     public static void createAndShowGUI() {
         //Create and set up the window.
-        JFrame frame = new JFrame("Studentenverwaltung");
+        JFrame frame = new JFrame("FELD-Student");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
  
         //Create and set up the content pane.
-        StudentGUI newContentPane = new StudentGUI();
+        StudentGUI newContentPane = new StudentGUI(anmeldename);
         newContentPane.setOpaque(true); //content panes must be opaque
         frame.setContentPane(newContentPane);
  

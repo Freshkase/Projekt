@@ -16,7 +16,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
-public class Registration {
+public class Anmeldung {
 
 	private JFrame frame;
 	private JTextField textField;
@@ -28,7 +28,7 @@ public class Registration {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Registration window = new Registration();
+					Anmeldung window = new Anmeldung();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -40,7 +40,7 @@ public class Registration {
 	/**
 	 * Create the application.
 	 */
-	public Registration() {
+	public Anmeldung() {
 		initialize();
 	}
 
@@ -48,7 +48,7 @@ public class Registration {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
+		frame = new JFrame("FELD");
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -106,10 +106,10 @@ public class Registration {
 		        for (int i = 0; i < ausgabe.size(); i++) {
 		        	if(name.equals(ausgabe.get(i).getAnmeldename())) {
 		        		if (ausgabe.get(i).getKennwort().equals(passwort)) {
-		        			StudentGUI student = new StudentGUI();
+		        			StudentGUI student = new StudentGUI(name);
 		        			student.main(null);
 			        		frame.dispose();
-			        		student.setAnmeldename(name);
+			        		
 			        	}
 		        	} else {
 		        		textField.setText(null);

@@ -44,5 +44,37 @@ public class DatenabrufStudent {
 
 	}
 	
+	public ArrayList<Student> einlesen(String mtrn, String nachname, String vorname, String mail, String anmeldename, String kennwort, String unternehmen, String firmenanschrift, String url, String emailu, String betreuer, String telefon, String abteilung, String beginn, String ende, String themenbereich, String stelle) {
+
+		Connection conn = null;
+
+		String url2 = "jdbc:mysql://3.69.96.96:3306/";
+		String dbName = "db1";
+		String driver = "com.mysql.cj.jdbc.Driver";
+		String username = "db1";
+		String password = "!db1.wip23?";
+
+		ArrayList<Student> ausgabe = new ArrayList<>();
+		try {
+			Class.forName(driver);
+
+			conn = DriverManager.getConnection(url2 + dbName, username, password);
+
+			Statement anweisung = conn.createStatement();
+			String uebergabe = "INSERT INTO STUDENTEN (Matrikelnummer, Nachname, Vorname, E_Mail, Anmeldename, Kennwort, Name_Unternehmen, Firmenanschrift, URL_Unternehmen, E_Mail_Unternehmen, Firmenbetreuer, Telefonnummer_Unternehmen, Abteilung, Beginn_BPS, Ende_BPS, Themenbereich_BPS, Stellenbeschreibung, Professoren_ID, Bericht, Tätigkeitsnachweis, BPS_Vortrag ) VALUES (" + mtrn + ", '" + nachname + "', '" + vorname + "', '" + mail + "', '" + anmeldename + "', '" + kennwort + "', '" + unternehmen + "', '" + firmenanschrift + "', '" + url + "', '" + emailu + "', '" + betreuer + "', '" + telefon + "', '" + abteilung + "', '" + beginn + "', '" + ende + "', '" + themenbereich + "', '" + stelle + "', '0', 'nein', 'nein', 'nein')";
+			anweisung.executeUpdate(uebergabe);
+			
+			
+			conn.close();
+			
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return ausgabe;
+
+	}
+	
 
 }
