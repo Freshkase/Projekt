@@ -4,10 +4,13 @@ import java.awt.*;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-public class Test extends JFrame {
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class Registrierung extends JFrame {
 	private JPasswordField passwordField;
 
-    public Test() {
+    public Registrierung() {
         // Setzt den Titel des Fensters
         setTitle("Registrierungsformular");
         
@@ -56,12 +59,22 @@ public class Test extends JFrame {
         
                 // Erstellt den Registrierungs-Button
                 JButton registrierenButton = new JButton("Registrieren");
+                registrierenButton.addActionListener(new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						Registration.main(null);
+						dispose();
+						
+					}
+                	
+                });
+                registrierenButton.setFont(new Font("Tahoma", Font.BOLD, 11));
+                registrierenButton.setBackground(new Color(0, 128, 255));
+
                 
-                        // Fügt einen ActionListener zum Registrierungs-Button hinzu
-                        registrierenButton.addActionListener(e -> {
-                            // Hier könnten Sie die Benutzerdaten speichern oder validieren
-                            JOptionPane.showMessageDialog(this, "Sie haben sich erfolgreich registriert!");
-                        });
+                       
+                 
         
         JScrollPane scrollPane = new JScrollPane();
         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -71,32 +84,33 @@ public class Test extends JFrame {
         passwordField = new JPasswordField(20);
         GroupLayout gl_panel = new GroupLayout(panel);
         gl_panel.setHorizontalGroup(
-        	gl_panel.createParallelGroup(Alignment.TRAILING)
-        		.addGroup(gl_panel.createSequentialGroup()
-        			.addGap(283)
-        			.addComponent(registrierenButton)
-        			.addContainerGap(16645, Short.MAX_VALUE))
+        	gl_panel.createParallelGroup(Alignment.LEADING)
         		.addGroup(gl_panel.createSequentialGroup()
         			.addContainerGap(30, Short.MAX_VALUE)
         			.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+        				.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 354, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(beschreibungLabel)
+        				.addComponent(unternehmenTextField, GroupLayout.PREFERRED_SIZE, 247, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(unternehmenLabel)
         				.addComponent(passwortLabel)
         				.addComponent(benutzernameTextField, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)
         				.addComponent(benutzernameLabel)
-        				.addComponent(emailTextField, GroupLayout.PREFERRED_SIZE, 229, GroupLayout.PREFERRED_SIZE)
         				.addComponent(emailLabel)
+        				.addComponent(passwordField, GroupLayout.PREFERRED_SIZE, 179, GroupLayout.PREFERRED_SIZE)
         				.addComponent(matrikelnummerLabel)
         				.addComponent(nameLabel)
         				.addComponent(nameTextField, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(passwordField, GroupLayout.PREFERRED_SIZE, 179, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(unternehmenLabel)
-        				.addGroup(gl_panel.createSequentialGroup()
-        					.addComponent(matrikelnummerTextField, GroupLayout.PREFERRED_SIZE, 144, GroupLayout.PREFERRED_SIZE)
-        					.addPreferredGap(ComponentPlacement.RELATED)
-        					.addComponent(lblhftstuttgartde))
-        				.addComponent(unternehmenTextField, GroupLayout.PREFERRED_SIZE, 247, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(beschreibungLabel)
-        				.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 354, GroupLayout.PREFERRED_SIZE))
+        				.addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
+        					.addGroup(gl_panel.createSequentialGroup()
+        						.addComponent(matrikelnummerTextField, GroupLayout.PREFERRED_SIZE, 144, GroupLayout.PREFERRED_SIZE)
+        						.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        						.addComponent(lblhftstuttgartde))
+        					.addComponent(emailTextField, GroupLayout.PREFERRED_SIZE, 229, GroupLayout.PREFERRED_SIZE)))
         			.addGap(18749))
+        		.addGroup(gl_panel.createSequentialGroup()
+        			.addGap(272)
+        			.addComponent(registrierenButton)
+        			.addContainerGap(18770, Short.MAX_VALUE))
         );
         gl_panel.setVerticalGroup(
         	gl_panel.createParallelGroup(Alignment.LEADING)
@@ -105,9 +119,9 @@ public class Test extends JFrame {
         			.addComponent(nameLabel)
         			.addPreferredGap(ComponentPlacement.RELATED)
         			.addComponent(nameTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        			.addPreferredGap(ComponentPlacement.UNRELATED)
+        			.addPreferredGap(ComponentPlacement.RELATED)
         			.addComponent(matrikelnummerLabel)
-        			.addGap(11)
+        			.addGap(4)
         			.addComponent(passwordField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
         			.addPreferredGap(ComponentPlacement.RELATED)
         			.addComponent(emailLabel)
@@ -115,32 +129,32 @@ public class Test extends JFrame {
         			.addComponent(emailTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
         			.addPreferredGap(ComponentPlacement.RELATED)
         			.addComponent(benutzernameLabel)
-        			.addPreferredGap(ComponentPlacement.UNRELATED)
+        			.addPreferredGap(ComponentPlacement.RELATED)
         			.addComponent(benutzernameTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
         			.addPreferredGap(ComponentPlacement.RELATED)
         			.addComponent(passwortLabel)
-        			.addPreferredGap(ComponentPlacement.UNRELATED)
+        			.addPreferredGap(ComponentPlacement.RELATED)
         			.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
         				.addComponent(matrikelnummerTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
         				.addComponent(lblhftstuttgartde))
-        			.addPreferredGap(ComponentPlacement.UNRELATED)
+        			.addPreferredGap(ComponentPlacement.RELATED)
         			.addComponent(unternehmenLabel)
         			.addPreferredGap(ComponentPlacement.RELATED)
         			.addComponent(unternehmenTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        			.addPreferredGap(ComponentPlacement.UNRELATED)
+        			.addPreferredGap(ComponentPlacement.RELATED)
         			.addComponent(beschreibungLabel)
         			.addPreferredGap(ComponentPlacement.RELATED)
         			.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE)
-        			.addGap(25)
+        			.addGap(35)
         			.addComponent(registrierenButton)
-        			.addGap(24))
+        			.addGap(46))
         );
         JTextArea beschreibungTextArea = new JTextArea(5, 20);
         beschreibungTextArea.setFont(new Font("Tahoma", Font.PLAIN, 11));
         scrollPane.setViewportView(beschreibungTextArea);
         panel.setLayout(gl_panel);
         
-        JLabel lblNewLabel = new JLabel("Registeriung");
+        JLabel lblNewLabel = new JLabel("Registrierung");
         lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
         scrollPane_1.setColumnHeaderView(lblNewLabel);
         getContentPane().setLayout(layout);
@@ -148,7 +162,7 @@ public class Test extends JFrame {
         layout.setAutoCreateGaps(true);
         layout.setAutoCreateContainerGaps(true);
 
-        // Setzt die Größe und sichtbarkeit des Fensters
+        
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
 
@@ -156,7 +170,6 @@ public class Test extends JFrame {
     }
 
     public static void main(String[] args) {
-        // Erstellt eine neue Instanz des Registrierungsformulars
-        new Test();
+        new Registrierung();
     }
 }
