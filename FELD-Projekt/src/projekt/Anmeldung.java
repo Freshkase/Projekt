@@ -85,6 +85,14 @@ public class Anmeldung {
 		JLabel lblNewLabel_2 = new JLabel("Kennwort:");
 		
 		JButton btnNewButton = new JButton("Registrieren");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Registrierung registrieren = new Registrierung();
+				registrieren.setVisible(true);;
+				frame.dispose();
+			}
+		});
+		
 		btnNewButton.setFont(new Font("Arial Black", Font.BOLD, 11));
 		btnNewButton.setEnabled(false);
 		btnNewButton.setForeground(Color.WHITE);
