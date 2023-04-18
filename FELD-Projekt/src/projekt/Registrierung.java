@@ -27,6 +27,7 @@ public class Registrierung extends JFrame {
 	private JTextField ende;
 
     public Registrierung() throws HeadlessException {
+    	setTitle("FELD");
         final JPanel panel = new JPanel();
         panel.setBackground(new Color(254, 255, 255));
 
@@ -150,6 +151,7 @@ public class Registrierung extends JFrame {
         mailunternehmen.setColumns(10);
         
         beginn = new JTextField();
+        beginn.setText("JJJJ-MM-TT");
         beginn.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
         beginn.setColumns(10);
         
@@ -158,6 +160,7 @@ public class Registrierung extends JFrame {
         themenbereich.setColumns(10);
         
         ende = new JTextField();
+        ende.setText("JJJJ-MM-TT");
         ende.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
         ende.setColumns(10);
         
@@ -342,8 +345,8 @@ public class Registrierung extends JFrame {
         			.addGap(12)
         			.addComponent(registrierung)
         			.addGap(18)
-        			.addComponent(scroll, GroupLayout.PREFERRED_SIZE, 396, GroupLayout.PREFERRED_SIZE)
-        			.addContainerGap(30, Short.MAX_VALUE))
+        			.addComponent(scroll, GroupLayout.PREFERRED_SIZE, 392, GroupLayout.PREFERRED_SIZE)
+        			.addContainerGap(34, Short.MAX_VALUE))
         );
         
         getContentPane().setLayout(groupLayout);
