@@ -151,7 +151,6 @@ public class Registrierung extends JFrame {
         mailunternehmen.setColumns(10);
         
         beginn = new JTextField();
-        beginn.setText("JJJJ-MM-TT");
         beginn.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
         beginn.setColumns(10);
         
@@ -160,7 +159,6 @@ public class Registrierung extends JFrame {
         themenbereich.setColumns(10);
         
         ende = new JTextField();
-        ende.setText("JJJJ-MM-TT");
         ende.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
         ende.setColumns(10);
         
