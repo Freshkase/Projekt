@@ -41,14 +41,14 @@ public class DemoDatenbank {
 			System.out.println();
 			ResultSet rs2 = anweisung.executeQuery("Select studenten.Nachname, studenten.Vorname, studenten.E_Mail, studenten.Name_Unternehmen, professoren.Nachname, professoren.Vorname from professoren,studenten where studenten.Professoren_ID=professoren.Professoren_ID");
 			
-			System.out.printf("%-28s %-30s %-15s %-15s", "Student", "E-Mail", "Unternehmen", "Betreuer");
+			System.out.printf("%-28s %-30s %-20s %-15s", "Student", "E-Mail", "Unternehmen", "Betreuer");
 			System.out.println();
 			
 			while (rs2.next()) {
 				if (rs2.getString(5)==null) {
-				System.out.printf("%-28s %-30s %-15s %-15s", rs2.getString(1) + ", " + rs2.getString(2), rs2.getString(3), rs2.getString(4), "auswaehlen");
+				System.out.printf("%-28s %-30s %-20s %-15s", rs2.getString(1) + ", " + rs2.getString(2), rs2.getString(3), rs2.getString(4), "auswaehlen");
 				} else {
-					System.out.printf("%-28s %-30s %-15s %-15s", rs2.getString(1) + ", " + rs2.getString(2), rs2.getString(3), rs2.getString(4), rs2.getString(5) + ", " + rs2.getString(6));	
+					System.out.printf("%-28s %-30s %-20s %-15s", rs2.getString(1) + ", " + rs2.getString(2), rs2.getString(3), rs2.getString(4), rs2.getString(5) + ", " + rs2.getString(6));	
 				}
 				System.out.println();
 			}
