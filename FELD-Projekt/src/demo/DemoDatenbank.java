@@ -26,6 +26,8 @@ public class DemoDatenbank {
 			System.out.println("Connected to the database");
 			
 			Statement anweisung = conn.createStatement();
+			
+			//Professoren
 			ResultSet rs = anweisung.executeQuery("SELECT Professoren_ID, Nachname, Vorname, E_Mail, Anmeldename, Kennwort FROM professoren");
 			
 			System.out.printf("%-15s %-15s %-10s %-40s %-20s %-10s", "Professoren-ID", "Nachname", "Vorname", "E-Mail", "Anmeldename", "Kennwort");
@@ -37,9 +39,10 @@ public class DemoDatenbank {
 				System.out.println();
 				}
 			}
-			
 			System.out.println();
-			ResultSet rs2 = anweisung.executeQuery("Select studenten.Nachname, studenten.Vorname, studenten.E_Mail, studenten.Name_Unternehmen, professoren.Nachname, professoren.Vorname from professoren,studenten where studenten.Professoren_ID=professoren.Professoren_ID");
+			
+			//Studenten
+			ResultSet rs2 = anweisung.executeQuery("Select studenten.Nachname, studenten.Vorname, studenten.E_Mail, studenten.Name_Unternehmen, professoren.Nachname, professoren.Vorname from professoren,studenten" /*Fremdschlüssel*/ + " where studenten.Professoren_ID=professoren.Professoren_ID");
 			
 			System.out.printf("%-28s %-30s %-20s %-15s", "Student", "E-Mail", "Unternehmen", "Betreuer");
 			System.out.println();
