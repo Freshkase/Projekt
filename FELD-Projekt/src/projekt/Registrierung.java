@@ -14,7 +14,6 @@ public class Registrierung extends JFrame {
 	private JTextField nummer;
 	private JTextField mail;
 	private JTextField beschreibung;
-	private JTextField kennwort;
 	private JTextField unternehmenname;
 	private JTextField firmenanschrift;
 	private JTextField url;
@@ -25,6 +24,7 @@ public class Registrierung extends JFrame {
 	private JTextField beginn;
 	private JTextField themenbereich;
 	private JTextField ende;
+	private JPasswordField kennwort;
 
     public Registrierung() throws HeadlessException {
     	setTitle("FELD");
@@ -118,10 +118,6 @@ public class Registrierung extends JFrame {
         JLabel kennwortfix = new JLabel("Kennwort");
         kennwortfix.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
         
-        kennwort = new JTextField();
-        kennwort.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
-        kennwort.setColumns(10);
-        
         unternehmenname = new JTextField();
         unternehmenname.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
         unternehmenname.setColumns(10);
@@ -151,6 +147,7 @@ public class Registrierung extends JFrame {
         mailunternehmen.setColumns(10);
         
         beginn = new JTextField();
+        beginn.setText("JJJJ-MM-TT");
         beginn.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
         beginn.setColumns(10);
         
@@ -159,10 +156,14 @@ public class Registrierung extends JFrame {
         themenbereich.setColumns(10);
         
         ende = new JTextField();
+        ende.setText("JJJJ-MM-TT");
         ende.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
         ende.setColumns(10);
         
         JLabel lblNewLabel = new JLabel("-");
+        
+        kennwort = new JPasswordField();
+        kennwort.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
         
         GroupLayout gl_panel = new GroupLayout(panel);
         gl_panel.setHorizontalGroup(
@@ -204,7 +205,7 @@ public class Registrierung extends JFrame {
         					.addComponent(unternehmen)
         					.addContainerGap(465, Short.MAX_VALUE))
         				.addGroup(gl_panel.createSequentialGroup()
-        					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+        					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
         						.addGroup(gl_panel.createSequentialGroup()
         							.addComponent(themenbereichfix)
         							.addPreferredGap(ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
@@ -233,7 +234,7 @@ public class Registrierung extends JFrame {
         							.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
         								.addComponent(firmenbetreuer, GroupLayout.PREFERRED_SIZE, 224, GroupLayout.PREFERRED_SIZE)
         								.addComponent(url, GroupLayout.PREFERRED_SIZE, 224, GroupLayout.PREFERRED_SIZE)))
-        						.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
+        						.addGroup(gl_panel.createSequentialGroup()
         							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
         								.addComponent(emailfix)
         								.addComponent(zeitraumfix))
@@ -271,10 +272,10 @@ public class Registrierung extends JFrame {
         				.addComponent(mailfix)
         				.addComponent(indexmail))
         			.addPreferredGap(ComponentPlacement.UNRELATED)
-        			.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+        			.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
         				.addComponent(kennwortfix)
         				.addComponent(kennwort, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-        			.addGap(42)
+        			.addGap(29)
         			.addComponent(unternehmen)
         			.addPreferredGap(ComponentPlacement.UNRELATED)
         			.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
@@ -343,8 +344,8 @@ public class Registrierung extends JFrame {
         			.addGap(12)
         			.addComponent(registrierung)
         			.addGap(18)
-        			.addComponent(scroll, GroupLayout.PREFERRED_SIZE, 392, GroupLayout.PREFERRED_SIZE)
-        			.addContainerGap(34, Short.MAX_VALUE))
+        			.addComponent(scroll, GroupLayout.PREFERRED_SIZE, 381, GroupLayout.PREFERRED_SIZE)
+        			.addContainerGap(545, Short.MAX_VALUE))
         );
         
         getContentPane().setLayout(groupLayout);
