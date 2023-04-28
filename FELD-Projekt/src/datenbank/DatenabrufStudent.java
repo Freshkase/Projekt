@@ -1,9 +1,12 @@
-package projekt;
+package datenbank;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+
+import objekte.Professor;
+import objekte.Student;
 
 
 public class DatenabrufStudent {

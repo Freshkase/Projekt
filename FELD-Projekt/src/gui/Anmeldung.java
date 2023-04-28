@@ -1,4 +1,4 @@
-package projekt;
+package gui;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -9,6 +9,10 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import java.awt.Font;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
+import datenbank.DatenabrufStudent;
+import objekte.Student;
+
 import javax.swing.JButton;
 import java.awt.Color;
 import javax.swing.*;

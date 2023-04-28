@@ -1,10 +1,13 @@
-package projekt;
+package gui;
 
 import java.awt.*;
 
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
+import datenbank.DatenabrufStudent;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 

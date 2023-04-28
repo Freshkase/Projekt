@@ -1,4 +1,4 @@
-package projekt;
+package gui;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -13,6 +13,10 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
+import datenbank.DatenabrufStudent;
+import objekte.Student;
+
 import java.awt.Font;
  
 public class StudentGUI extends JPanel {

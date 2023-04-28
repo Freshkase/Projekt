@@ -1,4 +1,4 @@
-package projekt;
+package objekte;
 
 public class Professor {
 	private int id;
