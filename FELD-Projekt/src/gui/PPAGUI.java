@@ -88,16 +88,16 @@ public class PPAGUI extends JPanel {
         		.addGroup(groupLayout.createSequentialGroup()
         			.addContainerGap(13, Short.MAX_VALUE)
         			.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-        				.addComponent(scrollbar, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 930, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(btnNewButton, Alignment.TRAILING))
+        				.addComponent(btnNewButton, Alignment.TRAILING)
+        				.addComponent(scrollbar, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 930, GroupLayout.PREFERRED_SIZE))
         			.addContainerGap())
         );
         groupLayout.setVerticalGroup(
         	groupLayout.createParallelGroup(Alignment.TRAILING)
         		.addGroup(groupLayout.createSequentialGroup()
-        			.addContainerGap(116, Short.MAX_VALUE)
+        			.addGap(90)
         			.addComponent(scrollbar, GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE)
-        			.addGap(85)
+        			.addPreferredGap(ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
         			.addComponent(btnNewButton)
         			.addGap(25))
         );
