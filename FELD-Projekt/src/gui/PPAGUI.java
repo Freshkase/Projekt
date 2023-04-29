@@ -29,8 +29,6 @@ public class PPAGUI extends JPanel {
  
     public PPAGUI() {
  
-    	
-        
         String[] columnNames = {"Name",
 				        		"E-Mail",
 				        		"Unternehmen",
@@ -75,13 +73,7 @@ public class PPAGUI extends JPanel {
         	public void actionPerformed(ActionEvent e) {
         	}
         });
-        
-        
-        
        
-        
-       
-        
         GroupLayout groupLayout = new GroupLayout(this);
         groupLayout.setHorizontalGroup(
         	groupLayout.createParallelGroup(Alignment.LEADING)
