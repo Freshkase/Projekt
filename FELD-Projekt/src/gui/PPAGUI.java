@@ -68,6 +68,7 @@ public class PPAGUI extends JPanel {
         JScrollPane scrollbar = new JScrollPane(table);
         
         JButton btnNewButton = new JButton("Zuteilung beenden");
+        btnNewButton.setFont(new Font("Dialog", Font.PLAIN, 13));
         btnNewButton.setBackground(new Color(255, 0, 0));
         btnNewButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
