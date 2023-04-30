@@ -85,7 +85,7 @@ public class StudentGUI extends JPanel {
         JLabel emailfix = new JLabel("Zugeteilter Professor:");
         
         JLabel status = new JLabel("Status:");
-        
+      
         JLabel lblNewLabel;
         if(ausgabe.get(tmp).getProf().getId()==0) {
         	lblNewLabel = new JLabel("noch nicht vergeben");
