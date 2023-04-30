@@ -7,9 +7,15 @@ import javax.swing.JTable;
 import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
+import datenbank.DatenabrufStudent;
+import objekte.Student;
+
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -39,13 +45,27 @@ public class PPAGUI extends JPanel {
         String ausgabeBericht = "Nein";
         String ausgabeNachweis = "Nein";
         String ausgabeVortrag = "Nein";
-        
+        DatenabrufStudent db = new DatenabrufStudent();
+	      ArrayList<Student> ausgabe = db.ausgeben();
        
-        Object [][] data = new Object [1][8];
-        	data[0][4] = ausgabeBesuchsbericht;
-        	data[0][5] = ausgabeNachweis;
-        	data[0][6] = ausgabeVortrag;
-        	data[0][7] = ausgabeBericht;
+        Object [][] data = new Object [ausgabe.size()][8];
+        for (int i=0;i< ausgabe.size();i++)
+		 {
+			 data[i][0] =  ausgabe.get(i).getNachname() + ", " + ausgabe.get(i).getVorname();
+			 data[i][1] =  ausgabe.get(i).getEmail();
+			 data[i][2] =  ausgabe.get(i).getUnternehmen();
+			 if(ausgabe.get(i).getProf().getNachname()==null)
+			 {
+				 data[i][3] ="auswählen";
+			 }
+			 else {
+			 data[i][3] =  ausgabe.get(i).getProf().getNachname() + ", " + ausgabe.get(i).getProf().getVorname();
+			 }
+        	 data[i][4] = ausgabeBesuchsbericht;
+        	 data[i][5] = ausgabeNachweis;
+        	 data[i][6] = ausgabeVortrag;
+        	 data[i][7] = ausgabeBericht;
+		 }
  
  
         final JTable table = new JTable(data, columnNames);
