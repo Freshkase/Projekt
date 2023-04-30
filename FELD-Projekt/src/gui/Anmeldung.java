@@ -10,7 +10,10 @@ import javax.swing.JTextField;
 import java.awt.Font;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+import datenbank.DatenabrufPPA;
+import datenbank.DatenabrufProfessor;
 import datenbank.DatenabrufStudent;
+import objekte.Professor;
 import objekte.Student;
 
 import javax.swing.JButton;
@@ -109,30 +112,82 @@ public class Anmeldung {
 		btnAnmelden.setBackground(new Color(254, 255, 255));
 		btnAnmelden.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				DatenabrufStudent db = new DatenabrufStudent();
-		        ArrayList<Student> ausgabe = db.ausgeben();
-		        
-		        String name = textField.getText();
-		        String passwort = passwordField.getText();
-		        for (int i = 0; i < ausgabe.size(); i++) {
-		        	if(name.equals(ausgabe.get(i).getAnmeldename())) {
-		        		if (ausgabe.get(i).getKennwort().equals(passwort)) {
-		        			StudentGUI student = new StudentGUI(name);
-		        			student.main(null);
-			        		frame.dispose();
-			        		
-			        	}
-		        	} else {
-		        		textField.setText(null);
-		        		passwordField.setText(null);
-		        		lblNewLabel.setText("Falsche Eingabe!");
-		        		lblNewLabel.setForeground(Color.RED);
-		        	}
-		        	
-		        }
-				
-			}
+
+				String name = textField.getText();
+				String passwort = passwordField.getText();
+
+				if (name.charAt(1) == '.') {
+					DatenabrufProfessor dbprofessor = new DatenabrufProfessor();
+					ArrayList<Professor> ausgabeprofessor = dbprofessor.ausgeben();
+
+					for (int i = 0; i < ausgabeprofessor.size(); i++) {
+						if (name.equals(ausgabeprofessor.get(i).getAnmeldename())) {
+							if (ausgabeprofessor.get(i).getKennwort().equals(passwort)) {
+								ProfessorenGUI professor = new ProfessorenGUI(name);
+								professor.main(null);
+								frame.dispose();
+							}
+						} else {
+							textField.setText(null);
+							passwordField.setText(null);
+							lblNewLabel.setText("Falsche Eingabe!");
+							lblNewLabel.setForeground(Color.RED);
+						}
+
+					}
+				}
+
+					boolean studentenpruefung = true;
+					for (int i = 0; i < name.length(); i++) {
+						if (name.charAt(i) == '.') {
+							studentenpruefung = false;
+							break;
+						}
+					}
+
+					if (studentenpruefung == true) {
+						DatenabrufStudent dbstudent = new DatenabrufStudent();
+						ArrayList<Student> ausgabestudent = dbstudent.ausgeben();
+
+						for (int i = 0; i < ausgabestudent.size(); i++) {
+							if (name.equals(ausgabestudent.get(i).getAnmeldename())) {
+								if (ausgabestudent.get(i).getKennwort().equals(passwort)) {
+									StudentGUI student = new StudentGUI(name);
+									student.main(null);
+									frame.dispose();
+								}
+							} else {
+								textField.setText(null);
+								passwordField.setText(null);
+								lblNewLabel.setText("Falsche Eingabe!");
+								lblNewLabel.setForeground(Color.RED);
+							}
+
+						}
+					} else {
+						DatenabrufPPA dbppa = new DatenabrufPPA();
+						ArrayList<Professor> ausgabeppa = dbppa.ausgeben();
+
+						for (int i = 0; i < ausgabeppa.size(); i++) {
+							if (name.equals(ausgabeppa.get(i).getAnmeldename())) {
+								if (ausgabeppa.get(i).getKennwort().equals(passwort)) {
+									PPAGUI ppa = new PPAGUI(name);
+									ppa.main(null);
+									frame.dispose();
+								}
+							} else {
+								textField.setText(null);
+								passwordField.setText(null);
+								lblNewLabel.setText("Falsche Eingabe!");
+								lblNewLabel.setForeground(Color.RED);
+							}
+
+						}
+						
+					}
+
+				}
+
 		});
 		
 		JLabel lblNewLabel_3 = new JLabel("@hft-stuttgart.de");

@@ -7,28 +7,24 @@ import javax.swing.JTable;
 import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
-
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
-
-
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
-import javax.swing.table.DefaultTableModel;
  
 public class PPAGUI extends JPanel {
     private boolean DEBUG = false;
-  
+    private static String anmeldename;
 
  
-    public PPAGUI() {
+    public PPAGUI(String anmeldename) {
  
+    	this.anmeldename = anmeldename;
+    	
         String[] columnNames = {"Name",
 				        		"E-Mail",
 				        		"Unternehmen",
@@ -124,7 +120,7 @@ public class PPAGUI extends JPanel {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
  
         //Create and set up the content pane.
-        PPAGUI newContentPane = new PPAGUI();
+        PPAGUI newContentPane = new PPAGUI(anmeldename);
         newContentPane.setOpaque(true); //content panes must be opaque
         frame.setContentPane(newContentPane);
  

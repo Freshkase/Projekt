@@ -1,31 +1,22 @@
 package gui;
 
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.EventQueue;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.GroupLayout;
-import javax.swing.JButton;
 import javax.swing.GroupLayout.Alignment;
-
 import datenbank.DatenabrufStudent;
 import objekte.Student;
 
 import javax.swing.JTable;
 
-public class ProfessorenGui extends JPanel{
-
-	private JFrame frame;
+public class ProfessorenGUI extends JPanel{
 	private boolean DEBUG = false;
-	private JTable table;
+	private static String anmeldename;
 	/**
 	 * Launch the application.
 	 */
@@ -34,22 +25,23 @@ public class ProfessorenGui extends JPanel{
 	/**
 	 * Create the application.
 	 */
-	  DatenabrufStudent db = new DatenabrufStudent();
-      ArrayList<Student> ausgabe = db.ausgeben();
-	public ProfessorenGui() {
+	  
+    public ProfessorenGUI(String anmeldename) {
 		
+    	this.anmeldename = anmeldename;
 		
 		 String[] columnNames = {"Student",
 	        					"E-Mail",
 	        					"Unternehmen",
 	        					"Betreuer",
 		 						};
-		 
+		 DatenabrufStudent db = new DatenabrufStudent();
+	      ArrayList<Student> ausgabe = db.ausgeben();
 		
 		 Object [][] data = new Object [ ausgabe.size()][4];
 		 for (int i=0;i< ausgabe.size();i++)
 		 {
-			 data[i][0] =  ausgabe.get(i).getNachname();
+			 data[i][0] =  ausgabe.get(i).getNachname() + ", " + ausgabe.get(i).getVorname();
 			 data[i][1] =  ausgabe.get(i).getEmail();
 			 data[i][2] =  ausgabe.get(i).getUnternehmen();
 			 if(ausgabe.get(i).getProf().getNachname()==null)
@@ -88,7 +80,7 @@ public class ProfessorenGui extends JPanel{
          	groupLayout.createParallelGroup(Alignment.TRAILING)
          		.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
          			.addGap(110)
-         			.addComponent(scrollbar, GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE)
+         			.addComponent(scrollbar, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
          			.addContainerGap(447, Short.MAX_VALUE))
          );
          setLayout(groupLayout);
@@ -117,7 +109,7 @@ public class ProfessorenGui extends JPanel{
 	        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	 
 	        //Create and set up the content pane.
-	        ProfessorenGui newContentPane = new ProfessorenGui();
+	        ProfessorenGUI newContentPane = new ProfessorenGUI(anmeldename);
 	        newContentPane.setOpaque(true); //content panes must be opaque
 	        frame.setContentPane(newContentPane);
 	 
