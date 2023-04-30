@@ -49,7 +49,7 @@ public class ProfessorenGUI extends JPanel{
 				 data[i][3] ="auswählen";
 			 }
 			 else {
-			 data[i][3] =  ausgabe.get(i).getProf().getNachname();
+			 data[i][3] =  ausgabe.get(i).getProf().getNachname() + ", " + ausgabe.get(i).getProf().getVorname();
 			 }
 		 }
 		
