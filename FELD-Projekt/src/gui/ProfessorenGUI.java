@@ -112,7 +112,7 @@ public class ProfessorenGUI extends JPanel{
          	groupLayout.createParallelGroup(Alignment.TRAILING)
          		.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
          			.addGap(110)
-         			.addComponent(scrollbar, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+         			.addComponent(scrollbar, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE)
          			.addContainerGap(447, Short.MAX_VALUE))
          );
          setLayout(groupLayout);
