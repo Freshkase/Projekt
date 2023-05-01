@@ -87,6 +87,8 @@ public class PPAGUI extends JPanel {
         btnNewButton.setBackground(new Color(255, 0, 0));
         btnNewButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
+        		Mail mail = new Mail();
+        		mail.send();
         	}
         });
        
