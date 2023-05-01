@@ -44,6 +44,7 @@ public class Mail {
 
     public void send () {
 
+    	
     	Properties properties = new Properties();
 		properties.put("mail.smtp.auth",  "true");
 		properties.put("mail.smtp.starttls.enable", "true");
