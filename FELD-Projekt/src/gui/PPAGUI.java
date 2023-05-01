@@ -1,26 +1,25 @@
 package gui;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import datenbank.DatenabrufStudent;
 import objekte.Student;
-
-import java.awt.Font;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.Color;
  
 public class PPAGUI extends JPanel {
     private boolean DEBUG = false;
@@ -56,7 +55,7 @@ public class PPAGUI extends JPanel {
 			 data[i][2] =  ausgabe.get(i).getUnternehmen();
 			 if(ausgabe.get(i).getProf().getNachname()==null)
 			 {
-				 data[i][3] ="auswählen";
+				 data[i][3] = new JButton("Button");
 			 }
 			 else {
 			 data[i][3] =  ausgabe.get(i).getProf().getNachname() + ", " + ausgabe.get(i).getProf().getVorname();
