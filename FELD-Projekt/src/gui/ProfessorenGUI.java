@@ -24,6 +24,7 @@ import datenbank.DatenabrufStudent;
 import objekte.Student;
 
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 import javax.swing.UIManager;
 
 public class ProfessorenGUI extends JPanel{
@@ -70,11 +71,12 @@ public class ProfessorenGUI extends JPanel{
      	 final JTable table = new JTable(data, columnNames);
          table.setPreferredScrollableViewportSize(new Dimension(500, 70));
          table.setFillsViewportHeight(true);
+        
          table.getColumnModel().getColumn(4).setCellRenderer(new ButtonRenderer());
          table.getColumnModel().getColumn(4).setCellEditor(new ButtonEditor(new JCheckBox()));
          table.getColumnModel().getColumn(2).setCellRenderer(new ButtonRenderer());
          table.getColumnModel().getColumn(2).setCellEditor(new ButtonEditor(new JCheckBox()));
-         
+         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
          if (DEBUG) {
              table.addMouseListener(new MouseAdapter() {
                  public void mouseClicked(MouseEvent e) {
@@ -137,11 +139,9 @@ public class ProfessorenGUI extends JPanel{
         		 if(ausgabe.get(i).getProf().getNachname()==null || column == 2) {
         			 if (row == i || column == 2) { 
         				 if (isSelected) {
-                         setForeground(table.getSelectionForeground());
-                         setBackground(table.getSelectionBackground());
+                        
         				 } else {
-                         setForeground(table.getForeground());
-                         setBackground(UIManager.getColor("Button.background"));
+                         
                      }
                      setText((value == null) ? "" : value.toString());
                      return this;
@@ -186,11 +186,9 @@ public class ProfessorenGUI extends JPanel{
         			 buttonColumn = column;
         			 if(row == i || column == 2) {
         				 if (isSelected) {
-        					 button.setForeground(table.getSelectionForeground());
-        					 button.setBackground(table.getSelectionBackground());
+        					
         				 } else {
-        					 button.setForeground(table.getForeground());
-        					 button.setBackground(table.getBackground());
+        					
         				 }
         				 label = (value == null) ? "" : value.toString();
         				 button.setText(label);
