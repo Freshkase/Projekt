@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -9,16 +10,23 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
+import javax.swing.DefaultCellEditor;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.table.TableCellRenderer;
 
 import datenbank.DatenabrufStudent;
+import gui.ProfessorenGUI.ButtonEditor;
+import gui.ProfessorenGUI.ButtonRenderer;
 import objekte.Student;
  
 public class PPAGUI extends JPanel {
@@ -55,7 +63,7 @@ public class PPAGUI extends JPanel {
 			 data[i][2] =  ausgabe.get(i).getUnternehmen();
 			 if(ausgabe.get(i).getProf().getNachname()==null)
 			 {
-				 data[i][3] = new JButton("Button");
+				 data[i][3] = "auswählen";
 			 }
 			 else {
 			 data[i][3] =  ausgabe.get(i).getProf().getNachname() + ", " + ausgabe.get(i).getProf().getVorname();
@@ -70,6 +78,8 @@ public class PPAGUI extends JPanel {
         final JTable table = new JTable(data, columnNames);
         table.setPreferredScrollableViewportSize(new Dimension(500, 70));
         table.setFillsViewportHeight(true);
+        table.getColumnModel().getColumn(3).setCellRenderer(new ButtonRenderer());
+        table.getColumnModel().getColumn(3).setCellEditor(new ButtonEditor(new JCheckBox()));
  
         if (DEBUG) {
             table.addMouseListener(new MouseAdapter() {
@@ -129,6 +139,138 @@ public class PPAGUI extends JPanel {
         }
         System.out.println("--------------------------");
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+ // TableCellRenderer für den JButton-Objekt
+    static class ButtonRenderer extends JButton implements TableCellRenderer {
+        public ButtonRenderer() {
+            setOpaque(true);
+        }
+        
+        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+        	 DatenabrufStudent db = new DatenabrufStudent();
+   	         ArrayList<Student> ausgabe = db.ausgeben();
+        
+        	 for (int i=0;i< ausgabe.size();i++) {
+        		 if(ausgabe.get(i).getProf().getNachname()==null) {
+        			 if (row == i) { 
+        				 if (isSelected) {
+                        
+        				 } else {
+                         
+                     }
+                     setText((value == null) ? "" : value.toString());
+                     return this;
+			 }
+            } else { // alle anderen Zellen
+                return new JLabel((value == null) ? "" : value.toString());
+            }
+        }
+        	 return new JLabel((value == null) ? "" : value.toString());
+       }
+    }
+    
+    // TableCellEditor für den JButton-Objekt
+    static class ButtonEditor extends DefaultCellEditor {
+        protected JButton button;
+        
+        private String label;
+        
+        private boolean isPushed;
+        private int buttonRow;
+        private int buttonColumn;
+        private DatenabrufStudent db = new DatenabrufStudent();
+	    private ArrayList<Student> ausgabe = db.ausgeben();
+        
+        public ButtonEditor(JCheckBox checkBox) {
+            super(checkBox);
+            button = new JButton();
+            button.setOpaque(true);
+            button.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    fireEditingStopped();
+                }
+            });
+        }
+        
+        public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
+        	 
+        
+        	 for (int i=0;i< ausgabe.size();i++) {
+        		 if(ausgabe.get(i).getProf().getNachname()==null) {
+        			 buttonRow = row;
+        			 buttonColumn = column;
+        			 if(row == i || column == 2) {
+        				 if (isSelected) {
+        					
+        				 } else {
+        					
+        				 }
+        				 label = (value == null) ? "" : value.toString();
+        				 button.setText(label);
+        				 isPushed = true;
+        			 }
+        		 }
+        	}
+        	 return button;
+        }
+        
+        public Object getCellEditorValue() {
+            if (isPushed) {
+                // Öffne ein neues Fenster, wenn der Button geklickt wird
+            	String message = "Name: " + ausgabe.get(buttonRow).getUnternehmen();
+            	JOptionPane.showMessageDialog(null, message, "Informationen zum Unternehmen", JOptionPane.INFORMATION_MESSAGE);
+            } 
+          
+            isPushed = false;
+            return new String(label);
+        }
+        
+        public boolean stopCellEditing() {
+            isPushed = false;
+            return super.stopCellEditing();
+        }
+        
+        protected void fireEditingStopped() {
+            super.fireEditingStopped();
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
  
     /**
      * Create the GUI and show it.  For thread safety,
