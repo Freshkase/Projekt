@@ -55,10 +55,6 @@ public class Mail {
 		
 		DatenbankabrufGesamt db = new DatenbankabrufGesamt();
 		ArrayList<Person> empfaenger = db.ausgeben();
-
-//		ArrayList<Person> empfaenger = new ArrayList<>();
-//		empfaenger.add(new Student("22pole1bwi@hft-stuttgart.de"));
-//		empfaenger.add(new Professor("lea.posselt@web.de"));
 		
        Session session = Session.getInstance(properties, new Authenticator() {
            @Override
