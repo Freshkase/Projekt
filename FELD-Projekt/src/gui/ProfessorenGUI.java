@@ -32,24 +32,26 @@ public class ProfessorenGUI extends JPanel{
 		
 		 String[] columnNames = {"Student",
 	        					"E-Mail",
-	        					"Unternehmen",
+	        					"Unternehmen", 
+	        					"Zeitraum",
 	        					"Betreuer",
 		 						};
 		 DatenabrufStudent db = new DatenabrufStudent();
 	      ArrayList<Student> ausgabe = db.ausgeben();
 		
-		 Object [][] data = new Object [ ausgabe.size()][4];
+		 Object [][] data = new Object [ausgabe.size()][5];
 		 for (int i=0;i< ausgabe.size();i++)
 		 {
 			 data[i][0] =  ausgabe.get(i).getNachname() + ", " + ausgabe.get(i).getVorname();
 			 data[i][1] =  ausgabe.get(i).getEmail();
 			 data[i][2] =  ausgabe.get(i).getUnternehmen();
+			 data[i][3] = ausgabe.get(i).getBeginn() + " - " + ausgabe.get(i).getEnde();
 			 if(ausgabe.get(i).getProf().getNachname()==null)
 			 {
-				 data[i][3] ="auswählen";
+				 data[i][4] ="auswählen";
 			 }
 			 else {
-			 data[i][3] =  ausgabe.get(i).getProf().getNachname() + ", " + ausgabe.get(i).getProf().getVorname();
+			 data[i][4] =  ausgabe.get(i).getProf().getNachname() + ", " + ausgabe.get(i).getProf().getVorname();
 			 }
 		 }
 		

@@ -12,10 +12,12 @@ public class Student {
 	private String bericht;
 	private String tätigkeitsnachweis;
 	private String vortrag;
+	private String beginn;
+	private String ende;
 	private Professor prof;
 	
 	
-	public Student(String anmeldename, String nachname, String vorname, int matrikelnummer, String email, String unternehmen, String bericht, String tätigkeitsnachweis, String vortrag, Professor prof, String kennwort) {
+	public Student(String anmeldename, String nachname, String vorname, int matrikelnummer, String email, String unternehmen, String bericht, String tätigkeitsnachweis, String vortrag, Professor prof, String kennwort, String beginn, String ende) {
 		super();
 		this.nachname = nachname;
 		this.vorname = vorname;
@@ -28,6 +30,12 @@ public class Student {
 		this.vortrag = vortrag;
 		this.prof = prof;
 		this.kennwort = kennwort;
+		
+		String beginnRichtig[] = beginn.split("-");
+		this.beginn = beginnRichtig[2] + "." + beginnRichtig[1] + "." + beginnRichtig[0];
+		
+		String endeRichtig[] = ende.split("-");
+		this.ende = endeRichtig[2] + "." + endeRichtig[1] + "." + endeRichtig[0];
 	}
 
 	@Override
@@ -77,6 +85,14 @@ public class Student {
 
 	public Professor getProf() {
 		return prof;
+	}
+
+	public String getBeginn() {
+		return beginn;
+	}
+
+	public String getEnde() {
+		return ende;
 	}
 
 
