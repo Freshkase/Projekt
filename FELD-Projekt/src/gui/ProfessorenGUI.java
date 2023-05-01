@@ -72,6 +72,8 @@ public class ProfessorenGUI extends JPanel{
          table.setFillsViewportHeight(true);
          table.getColumnModel().getColumn(4).setCellRenderer(new ButtonRenderer());
          table.getColumnModel().getColumn(4).setCellEditor(new ButtonEditor(new JCheckBox()));
+         table.getColumnModel().getColumn(2).setCellRenderer(new ButtonRenderer());
+         table.getColumnModel().getColumn(2).setCellEditor(new ButtonEditor(new JCheckBox()));
          
          if (DEBUG) {
              table.addMouseListener(new MouseAdapter() {
@@ -132,8 +134,8 @@ public class ProfessorenGUI extends JPanel{
    	         ArrayList<Student> ausgabe = db.ausgeben();
         
         	 for (int i=0;i< ausgabe.size();i++) {
-        		 if(ausgabe.get(i).getProf().getNachname()==null) {
-        			 if (row == i) { 
+        		 if(ausgabe.get(i).getProf().getNachname()==null || column == 2) {
+        			 if (row == i || column == 2) { 
         				 if (isSelected) {
                          setForeground(table.getSelectionForeground());
                          setBackground(table.getSelectionBackground());
@@ -159,6 +161,10 @@ public class ProfessorenGUI extends JPanel{
         private String label;
         
         private boolean isPushed;
+        private int buttonRow;
+        private int buttonColumn;
+        private DatenabrufStudent db = new DatenabrufStudent();
+	    private ArrayList<Student> ausgabe = db.ausgeben();
         
         public ButtonEditor(JCheckBox checkBox) {
             super(checkBox);
@@ -172,12 +178,13 @@ public class ProfessorenGUI extends JPanel{
         }
         
         public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
-        	 DatenabrufStudent db = new DatenabrufStudent();
-   	         ArrayList<Student> ausgabe = db.ausgeben();
+        	 
         
         	 for (int i=0;i< ausgabe.size();i++) {
-        		 if(ausgabe.get(i).getProf().getNachname()==null) {
-        			 if(row == i) {
+        		 if(ausgabe.get(i).getProf().getNachname()==null || column == 2) {
+        			 buttonRow = row;
+        			 buttonColumn = column;
+        			 if(row == i || column == 2) {
         				 if (isSelected) {
         					 button.setForeground(table.getSelectionForeground());
         					 button.setBackground(table.getSelectionBackground());
@@ -197,8 +204,25 @@ public class ProfessorenGUI extends JPanel{
         public Object getCellEditorValue() {
             if (isPushed) {
                 // Öffne ein neues Fenster, wenn der Button geklickt wird
-         
-                JOptionPane.showMessageDialog(null, "Button wurde geklickt!" + button.getLocation());
+            if(buttonColumn == 2) {
+            	String message = "Name: " + ausgabe.get(buttonRow).getUnternehmen();
+            	JOptionPane.showMessageDialog(null, message, "Informationen zum Unternehmen", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+            	int option = JOptionPane.showOptionDialog(null,
+                        "Sind Sie sicher? " + ausgabe.get(buttonRow).getNachname(),
+                        "Bestätigung",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE,
+                        null,
+                        new String[]{"Ja", "Zurück"},
+                        "Zurück");
+                
+                if (option == JOptionPane.YES_OPTION) {
+                	//Hier kann dann in die Datenbank eingelesen werden
+                   ausgabe.get(buttonRow).getAnmeldename();
+                }
+            }
+            	
             }
             isPushed = false;
             return new String(label);
