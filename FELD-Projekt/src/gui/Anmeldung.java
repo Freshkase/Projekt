@@ -117,14 +117,14 @@ public class Anmeldung {
 				String passwort = passwordField.getText();
 
 				if (name.charAt(1) == '.') {
-					DatenabrufProfessor dbprofessor = new DatenabrufProfessor();
-					ArrayList<Professor> ausgabeprofessor = dbprofessor.ausgeben();
+					DatenabrufPPA dbppa = new DatenabrufPPA();
+					ArrayList<Professor> ausgabeppa = dbppa.ausgeben();
 
-					for (int i = 0; i < ausgabeprofessor.size(); i++) {
-						if (name.equals(ausgabeprofessor.get(i).getAnmeldename())) {
-							if (ausgabeprofessor.get(i).getKennwort().equals(passwort)) {
-								ProfessorenGUI professor = new ProfessorenGUI(name);
-								professor.main(null);
+					for (int i = 0; i < ausgabeppa.size(); i++) {
+						if (name.equals(ausgabeppa.get(i).getAnmeldename())) {
+							if (ausgabeppa.get(i).getKennwort().equals(passwort)) {
+								PPAGUI ppa = new PPAGUI(name);
+								ppa.main(null);
 								frame.dispose();
 							}
 						} else {
@@ -135,6 +135,7 @@ public class Anmeldung {
 						}
 
 					}
+					
 				}
 
 					boolean studentenpruefung = true;
@@ -165,14 +166,14 @@ public class Anmeldung {
 
 						}
 					} else {
-						DatenabrufPPA dbppa = new DatenabrufPPA();
-						ArrayList<Professor> ausgabeppa = dbppa.ausgeben();
+						DatenabrufProfessor dbprofessor = new DatenabrufProfessor();
+						ArrayList<Professor> ausgabeprofessor = dbprofessor.ausgeben();
 
-						for (int i = 0; i < ausgabeppa.size(); i++) {
-							if (name.equals(ausgabeppa.get(i).getAnmeldename())) {
-								if (ausgabeppa.get(i).getKennwort().equals(passwort)) {
-									PPAGUI ppa = new PPAGUI(name);
-									ppa.main(null);
+						for (int i = 0; i < ausgabeprofessor.size(); i++) {
+							if (name.equals(ausgabeprofessor.get(i).getAnmeldename())) {
+								if (ausgabeprofessor.get(i).getKennwort().equals(passwort)) {
+									ProfessorenGUI professor = new ProfessorenGUI(name);
+									professor.main(null);
 									frame.dispose();
 								}
 							} else {
@@ -183,7 +184,6 @@ public class Anmeldung {
 							}
 
 						}
-						
 					}
 
 				}
