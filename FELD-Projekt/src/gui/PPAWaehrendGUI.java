@@ -25,8 +25,10 @@ import javax.swing.table.TableCellRenderer;
 import datenbank.DatenabrufStudent;
 import gui.ProfessorenWaehrendGUI.ButtonEditor;
 import gui.ProfessorenWaehrendGUI.ButtonRenderer;
+import objekte.Professor;
 import objekte.Student;
 import datenbank.DatenabrufStatus;
+import datenbank.DatenabrufProfessor;
  
 public class PPAWaehrendGUI extends JPanel {
     private boolean DEBUG = false;
@@ -87,7 +89,10 @@ public class PPAWaehrendGUI extends JPanel {
                 }
             });
         }
- 
+        
+        JLabel nichterlaubt = new JLabel("");
+        nichterlaubt.setForeground(new Color(255, 38, 0));
+        
         //Create the scroll pane and add the table to it.
         JScrollPane scrollbar = new JScrollPane(table);
         
@@ -96,6 +101,14 @@ public class PPAWaehrendGUI extends JPanel {
         btnNewButton.setBackground(new Color(255, 0, 0));
         btnNewButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
+        		boolean erlaubt = true;
+        		for (int i = 0; i < ausgabe.size(); i++) {
+        			if (ausgabe.get(i).getProf().getId() == 0) {
+        				erlaubt = false;
+        				break;
+        			}
+        		}
+        		if (erlaubt) {
         		Mail mail = new Mail();
         		mail.send();
         		
@@ -105,25 +118,37 @@ public class PPAWaehrendGUI extends JPanel {
         		frame.setVisible(false);
         		PPANachGUI ppa = new PPANachGUI(anmeldename);
         		ppa.main(null);
+        		
+        		} else {
+        			nichterlaubt.setText("Bitte teilen Sie zunächst jedem Studierenden einen Professor zu, bevor Sie die Zuteilung beenden.");
+        		}
         	}
         });
+        
+       
        
         GroupLayout groupLayout = new GroupLayout(this);
         groupLayout.setHorizontalGroup(
         	groupLayout.createParallelGroup(Alignment.LEADING)
         		.addGroup(groupLayout.createSequentialGroup()
-        			.addContainerGap(13, Short.MAX_VALUE)
+        			.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         			.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
         				.addComponent(btnNewButton, Alignment.TRAILING)
         				.addComponent(scrollbar, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 930, GroupLayout.PREFERRED_SIZE))
         			.addContainerGap())
+        		.addGroup(groupLayout.createSequentialGroup()
+        			.addContainerGap()
+        			.addComponent(nichterlaubt)
+        			.addContainerGap(869, Short.MAX_VALUE))
         );
         groupLayout.setVerticalGroup(
         	groupLayout.createParallelGroup(Alignment.TRAILING)
         		.addGroup(groupLayout.createSequentialGroup()
-        			.addGap(90)
+        			.addGap(20)
+        			.addComponent(nichterlaubt)
+        			.addGap(54)
         			.addComponent(scrollbar, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
-        			.addPreferredGap(ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
+        			.addPreferredGap(ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
         			.addComponent(btnNewButton)
         			.addGap(25))
         );
@@ -220,13 +245,43 @@ public class PPAWaehrendGUI extends JPanel {
         	 return button;
         }
         
-        public Object getCellEditorValue() {
+        public Object getCellEditorValue() {       
             if (isPushed) {
                 // Öffne ein neues Fenster, wenn der Button geklickt wird
-            	String message = "Name: " + ausgabe.get(buttonRow).getUnternehmen();
-            	JOptionPane.showMessageDialog(null, message, "Informationen zum Unternehmen", JOptionPane.INFORMATION_MESSAGE);
-            } 
+            	DatenabrufProfessor db2 = new DatenabrufProfessor();
+      	      	ArrayList<Professor> ausgabeprof = db2.ausgeben();
+      	      	
+      	      	Object[] message = new Object[ausgabeprof.size()-1];
+      	      	for (int i = 1; i < ausgabeprof.size(); i++) {
+      	      		message[i-1] = new JCheckBox(ausgabeprof.get(i).getNachname() + ", " + ausgabeprof.get(i).getVorname());
+      	      	}
+      	      	
+      	      	
+            	int option = JOptionPane.showOptionDialog(null,
+                        message,
+                        "Professoren-Zuteilung",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE,
+                        null,
+                        new String[]{"Auswählen", "Zurück"},
+                        "Zurück");
+            	
+            	int nummer = ausgabe.get(buttonRow).getMatrikelnr();
+            	
+            	for (int i = 0; i < ausgabeprof.size()-1; i++) {
+            		if (((JCheckBox) message[i]).isSelected()) {
+            			db.aendern(ausgabeprof.get(i+1).getId(), nummer);
+            		}
           
+            	}
+            	
+            	
+            }
+            
+            frame.dispose();
+            PPAWaehrendGUI neu = new PPAWaehrendGUI(anmeldename);
+            neu.main(null);
+            
             isPushed = false;
             return new String(label);
         }
