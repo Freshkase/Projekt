@@ -9,7 +9,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-
 import javax.swing.DefaultCellEditor;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -23,18 +22,18 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.table.TableCellRenderer;
-
 import datenbank.DatenabrufStudent;
-import gui.ProfessorenGUI.ButtonEditor;
-import gui.ProfessorenGUI.ButtonRenderer;
+import gui.ProfessorenWaehrendGUI.ButtonEditor;
+import gui.ProfessorenWaehrendGUI.ButtonRenderer;
 import objekte.Student;
+import datenbank.DatenabrufStatus;
  
-public class PPAGUI extends JPanel {
+public class PPANachGUI extends JPanel {
     private boolean DEBUG = false;
     private static String anmeldename;
 
  
-    public PPAGUI(String anmeldename) {
+    public PPANachGUI(String anmeldename) {
  
     	this.anmeldename = anmeldename;
     	
@@ -45,7 +44,7 @@ public class PPAGUI extends JPanel {
         						"Besuchsbericht",
                                 "Tätigkeitsnachweis",
                                 "BPS-Vortrag",
-                                "BPS-Bericht",
+                                "BPS-Berichteee",
                                 };
         
         String ausgabeBesuchsbericht = "Nein";
@@ -97,8 +96,11 @@ public class PPAGUI extends JPanel {
         btnNewButton.setBackground(new Color(255, 0, 0));
         btnNewButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		Mail mail = new Mail();
-        		mail.send();
+//        		Mail mail = new Mail();
+//        		mail.send();
+//        		
+        		DatenabrufStatus db = new DatenabrufStatus();
+        		db.aendern(1);
         	}
         });
        
@@ -139,16 +141,6 @@ public class PPAGUI extends JPanel {
         }
         System.out.println("--------------------------");
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
  // TableCellRenderer für den JButton-Objekt
     static class ButtonRenderer extends JButton implements TableCellRenderer {
@@ -244,46 +236,14 @@ public class PPAGUI extends JPanel {
             super.fireEditingStopped();
         }
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-    
-    
  
-    /**
-     * Create the GUI and show it.  For thread safety,
-     * this method should be invoked from the
-     * event-dispatching thread.
-     */
     public static void createAndShowGUI() {
         //Create and set up the window.
         JFrame frame = new JFrame("FELD-PPA");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
  
         //Create and set up the content pane.
-        PPAGUI newContentPane = new PPAGUI(anmeldename);
+        PPANachGUI newContentPane = new PPANachGUI(anmeldename);
         newContentPane.setOpaque(true); //content panes must be opaque
         frame.setContentPane(newContentPane);
  

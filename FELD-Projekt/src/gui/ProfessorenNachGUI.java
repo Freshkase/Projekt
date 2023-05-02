@@ -27,7 +27,7 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.UIManager;
 
-public class ProfessorenGUI extends JPanel{
+public class ProfessorenNachGUI extends JPanel{
 	private boolean DEBUG = false;
 	private static String anmeldename;
 	/**
@@ -39,7 +39,7 @@ public class ProfessorenGUI extends JPanel{
 	 * Create the application.
 	 */
 	  
-    public ProfessorenGUI(String anmeldename) {
+    public ProfessorenNachGUI(String anmeldename) {
 		
     	this.anmeldename = anmeldename;
 		
@@ -47,7 +47,7 @@ public class ProfessorenGUI extends JPanel{
 	        					"E-Mail",
 	        					"Unternehmen", 
 	        					"Zeitraum",
-	        					"Betreuer",
+	        					"Betreuereee",
 		 						};
 		 DatenabrufStudent db = new DatenabrufStudent();
 	      ArrayList<Student> ausgabe = db.ausgeben();
@@ -122,8 +122,6 @@ public class ProfessorenGUI extends JPanel{
          setLayout(groupLayout);
 		
 	}
-    
-    
     
  // TableCellRenderer für den JButton-Objekt
     static class ButtonRenderer extends JButton implements TableCellRenderer {
@@ -235,39 +233,6 @@ public class ProfessorenGUI extends JPanel{
             super.fireEditingStopped();
         }
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-	
 	 
 	 public static void createAndShowGUI() {
 	        //Create and set up the window.
@@ -275,7 +240,7 @@ public class ProfessorenGUI extends JPanel{
 	        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	 
 	        //Create and set up the content pane.
-	        ProfessorenGUI newContentPane = new ProfessorenGUI(anmeldename);
+	        ProfessorenNachGUI newContentPane = new ProfessorenNachGUI(anmeldename);
 	        newContentPane.setOpaque(true); //content panes must be opaque
 	        frame.setContentPane(newContentPane);
 	 

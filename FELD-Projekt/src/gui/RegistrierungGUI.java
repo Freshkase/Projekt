@@ -11,7 +11,7 @@ import datenbank.DatenabrufStudent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class Registrierung extends JFrame {
+public class RegistrierungGUI extends JFrame {
 	private JTextField nachname;
 	private JTextField vorname;
 	private JTextField nummer;
@@ -29,7 +29,7 @@ public class Registrierung extends JFrame {
 	private JTextField ende;
 	private JPasswordField kennwort;
 
-    public Registrierung() throws HeadlessException {
+    public RegistrierungGUI() throws HeadlessException {
     	setTitle("FELD");
         final JPanel panel = new JPanel();
         panel.setBackground(new Color(254, 255, 255));
@@ -112,7 +112,7 @@ public class Registrierung extends JFrame {
         		DatenabrufStudent db = new DatenabrufStudent();
         		String email = mail.getText() + "@hft-stuttgart.de";
         		db.einlesen(nummer.getText(), nachname.getText(), vorname.getText(), email, mail.getText(), kennwort.getText(), unternehmenname.getText(), firmenanschrift.getText(), url.getText(), mailunternehmen.getText(), firmenbetreuer.getText(), telefon.getText(), abteilung.getText(), beginn.getText(), ende.getText(), themenbereich.getText(), beschreibung.getText());
-        		Anmeldung anmeldung = new Anmeldung();
+        		AnmeldungGUI anmeldung = new AnmeldungGUI();
     			anmeldung.main(null);
     			dispose();
         	}
@@ -360,7 +360,7 @@ public class Registrierung extends JFrame {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new Registrierung().setVisible(true);
+                new RegistrierungGUI().setVisible(true);
             }
         });
     }

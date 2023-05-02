@@ -13,6 +13,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import datenbank.DatenabrufPPA;
 import datenbank.DatenabrufProfessor;
 import datenbank.DatenabrufStudent;
+import datenbank.DatenabrufStatus;
 import objekte.Professor;
 import objekte.Student;
 
@@ -23,7 +24,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
-public class Anmeldung {
+public class AnmeldungGUI {
 
 	private JFrame frame;
 	private JTextField textField;
@@ -35,7 +36,7 @@ public class Anmeldung {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Anmeldung window = new Anmeldung();
+					AnmeldungGUI window = new AnmeldungGUI();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -47,7 +48,7 @@ public class Anmeldung {
 	/**
 	 * Create the application.
 	 */
-	public Anmeldung() {
+	public AnmeldungGUI() {
 		initialize();
 	}
 
@@ -95,7 +96,7 @@ public class Anmeldung {
 		JButton btnNewButton = new JButton("Registrieren");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Registrierung registrieren = new Registrierung();
+				RegistrierungGUI registrieren = new RegistrierungGUI();
 				registrieren.setVisible(true);
 				frame.dispose();
 			}
@@ -116,27 +117,30 @@ public class Anmeldung {
 				String name = textField.getText();
 				String passwort = passwordField.getText();
 
-				if (name.charAt(1) == '.') {
-					DatenabrufPPA dbppa = new DatenabrufPPA();
-					ArrayList<Professor> ausgabeppa = dbppa.ausgeben();
+				DatenabrufStatus dbstatus = new DatenabrufStatus();
 
-					for (int i = 0; i < ausgabeppa.size(); i++) {
-						if (name.equals(ausgabeppa.get(i).getAnmeldename())) {
-							if (ausgabeppa.get(i).getKennwort().equals(passwort)) {
-								PPAGUI ppa = new PPAGUI(name);
-								ppa.main(null);
-								frame.dispose();
+				if (dbstatus.ausgeben() == 0) {
+					if (name.charAt(1) == '.') {
+						DatenabrufPPA dbppa = new DatenabrufPPA();
+						ArrayList<Professor> ausgabeppa = dbppa.ausgeben();
+
+						for (int i = 0; i < ausgabeppa.size(); i++) {
+							if (name.equals(ausgabeppa.get(i).getAnmeldename())) {
+								if (ausgabeppa.get(i).getKennwort().equals(passwort)) {
+									PPAWaehrendGUI ppa = new PPAWaehrendGUI(name);
+									ppa.main(null);
+									frame.dispose();
+								}
+							} else {
+								textField.setText(null);
+								passwordField.setText(null);
+								lblNewLabel.setText("Falsche Eingabe!");
+								lblNewLabel.setForeground(Color.RED);
 							}
-						} else {
-							textField.setText(null);
-							passwordField.setText(null);
-							lblNewLabel.setText("Falsche Eingabe!");
-							lblNewLabel.setForeground(Color.RED);
+
 						}
 
 					}
-					
-				}
 
 					boolean studentenpruefung = true;
 					for (int i = 0; i < name.length(); i++) {
@@ -172,7 +176,7 @@ public class Anmeldung {
 						for (int i = 0; i < ausgabeprofessor.size(); i++) {
 							if (name.equals(ausgabeprofessor.get(i).getAnmeldename())) {
 								if (ausgabeprofessor.get(i).getKennwort().equals(passwort)) {
-									ProfessorenGUI professor = new ProfessorenGUI(name);
+									ProfessorenWaehrendGUI professor = new ProfessorenWaehrendGUI(name);
 									professor.main(null);
 									frame.dispose();
 								}
@@ -186,7 +190,81 @@ public class Anmeldung {
 						}
 					}
 
+				} else {
+					//ab hier ändern mit neuen GUI's
+					
+					if (name.charAt(1) == '.') {
+						DatenabrufPPA dbppa = new DatenabrufPPA();
+						ArrayList<Professor> ausgabeppa = dbppa.ausgeben();
+
+						for (int i = 0; i < ausgabeppa.size(); i++) {
+							if (name.equals(ausgabeppa.get(i).getAnmeldename())) {
+								if (ausgabeppa.get(i).getKennwort().equals(passwort)) {
+									PPANachGUI ppa = new PPANachGUI(name);
+									ppa.main(null);
+									frame.dispose();
+								}
+							} else {
+								textField.setText(null);
+								passwordField.setText(null);
+								lblNewLabel.setText("Falsche Eingabe!");
+								lblNewLabel.setForeground(Color.RED);
+							}
+
+						}
+
+					}
+
+					boolean studentenpruefung = true;
+					for (int i = 0; i < name.length(); i++) {
+						if (name.charAt(i) == '.') {
+							studentenpruefung = false;
+							break;
+						}
+					}
+
+					if (studentenpruefung == true) {
+						DatenabrufStudent dbstudent = new DatenabrufStudent();
+						ArrayList<Student> ausgabestudent = dbstudent.ausgeben();
+
+						for (int i = 0; i < ausgabestudent.size(); i++) {
+							if (name.equals(ausgabestudent.get(i).getAnmeldename())) {
+								if (ausgabestudent.get(i).getKennwort().equals(passwort)) {
+									StudentGUI student = new StudentGUI(name);
+									student.main(null);
+									frame.dispose();
+								}
+							} else {
+								textField.setText(null);
+								passwordField.setText(null);
+								lblNewLabel.setText("Falsche Eingabe!");
+								lblNewLabel.setForeground(Color.RED);
+							}
+
+						}
+					} else {
+						DatenabrufProfessor dbprofessor = new DatenabrufProfessor();
+						ArrayList<Professor> ausgabeprofessor = dbprofessor.ausgeben();
+
+						for (int i = 0; i < ausgabeprofessor.size(); i++) {
+							if (name.equals(ausgabeprofessor.get(i).getAnmeldename())) {
+								if (ausgabeprofessor.get(i).getKennwort().equals(passwort)) {
+									ProfessorenNachGUI professor = new ProfessorenNachGUI(name);
+									professor.main(null);
+									frame.dispose();
+								}
+							} else {
+								textField.setText(null);
+								passwordField.setText(null);
+								lblNewLabel.setText("Falsche Eingabe!");
+								lblNewLabel.setForeground(Color.RED);
+							}
+
+						}
+					}
 				}
+
+			}
 
 		});
 		
