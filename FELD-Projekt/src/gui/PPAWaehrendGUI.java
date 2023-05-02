@@ -43,20 +43,12 @@ public class PPAWaehrendGUI extends JPanel {
 				        		"E-Mail",
 				        		"Unternehmen",
 				        		"Betreuer",
-        						"Besuchsbericht",
-                                "Tätigkeitsnachweis",
-                                "BPS-Vortrag",
-                                "BPS-Bericht",
                                 };
         
-        String ausgabeBesuchsbericht = "Nein";
-        String ausgabeBericht = "Nein";
-        String ausgabeNachweis = "Nein";
-        String ausgabeVortrag = "Nein";
         DatenabrufStudent db = new DatenabrufStudent();
 	      ArrayList<Student> ausgabe = db.ausgeben();
        
-        Object [][] data = new Object [ausgabe.size()][8];
+        Object [][] data = new Object [ausgabe.size()][4];
         for (int i=0;i< ausgabe.size();i++)
 		 {
 			 data[i][0] =  ausgabe.get(i).getNachname() + ", " + ausgabe.get(i).getVorname();
@@ -69,10 +61,7 @@ public class PPAWaehrendGUI extends JPanel {
 			 else {
 			 data[i][3] =  ausgabe.get(i).getProf().getNachname() + ", " + ausgabe.get(i).getProf().getVorname();
 			 }
-        	 data[i][4] = ausgabeBesuchsbericht;
-        	 data[i][5] = ausgabeNachweis;
-        	 data[i][6] = ausgabeVortrag;
-        	 data[i][7] = ausgabeBericht;
+        	
 		 }
  
  
