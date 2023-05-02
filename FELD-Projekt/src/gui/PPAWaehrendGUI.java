@@ -30,7 +30,7 @@ import objekte.Student;
 import datenbank.DatenabrufStatus;
 import datenbank.DatenabrufProfessor;
  
-public class PPAWaehrendGUI extends JPanel {
+public class PPAWaehrendGUI extends JPanel  {
     private boolean DEBUG = false;
     private static String anmeldename;
     private static JFrame frame;
