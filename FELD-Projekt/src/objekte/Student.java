@@ -9,13 +9,14 @@ public class Student extends Person {
 	private String vortrag;
 	private String beginn;
 	private String ende;
+	private String besuchsbericht;
 	private Professor prof;
 	
 	public Student(String email) {
 		super(email);
 	}
 
-	public Student(String anmeldename, String nachname, String vorname, int matrikelnummer, String email, String unternehmen, String bericht, String tätigkeitsnachweis, String vortrag, Professor prof, String kennwort, String beginn, String ende) {
+	public Student(String anmeldename, String nachname, String vorname, int matrikelnummer, String email, String unternehmen, String bericht, String tätigkeitsnachweis, String vortrag, Professor prof, String kennwort, String beginn, String ende,String besuchsbericht) {
 		super(nachname, vorname, email, kennwort, anmeldename);
 		this.unternehmen = unternehmen;
 		this.matrikelnummer = matrikelnummer;
@@ -29,6 +30,8 @@ public class Student extends Person {
 		
 		String endeRichtig[] = ende.split("-");
 		this.ende = endeRichtig[2] + "." + endeRichtig[1] + "." + endeRichtig[0];
+		
+		this.besuchsbericht = besuchsbericht;
 	}
 
 	public int getMatrikelnr() {
@@ -63,7 +66,9 @@ public class Student extends Person {
 		return ende;
 	}
 
-
+	public String getbesuchsbericht() {
+		return besuchsbericht;
+	}
 	
 	
 	

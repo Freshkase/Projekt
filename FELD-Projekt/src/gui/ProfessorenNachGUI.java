@@ -2,6 +2,7 @@ package gui;
 
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -20,10 +21,12 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 
+import datenbank.DatenabrufProfessor;
 import datenbank.DatenabrufStudent;
 import objekte.Student;
 
 import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.ListSelectionModel;
 import javax.swing.UIManager;
 
@@ -47,25 +50,28 @@ public class ProfessorenNachGUI extends JPanel{
 	        					"E-Mail",
 	        					"Unternehmen", 
 	        					"Zeitraum",
-	        					"Betreuereee",
+	        					"Besuchsbericht",
+	        					"BPS-Bericht",
 		 						};
 		 DatenabrufStudent db = new DatenabrufStudent();
 	      ArrayList<Student> ausgabe = db.ausgeben();
 		
-		 Object [][] data = new Object [ausgabe.size()][5];
+		 Object [][] data = new Object [ausgabe.size()][6];
+		
 		 for (int i=0;i< ausgabe.size();i++)
 		 {
 			 data[i][0] =  ausgabe.get(i).getNachname() + ", " + ausgabe.get(i).getVorname();
 			 data[i][1] =  ausgabe.get(i).getEmail();
 			 data[i][2] =  ausgabe.get(i).getUnternehmen();
 			 data[i][3] = ausgabe.get(i).getBeginn() + " - " + ausgabe.get(i).getEnde();
-			 if(ausgabe.get(i).getProf().getNachname()==null)
+			 if(ausgabe.get(i).getbesuchsbericht()==null)
 			 {
-				 data[i][4] = "auswählen";
+				 data[i][4] = "erstellen";
 			 }
 			 else {
-			 data[i][4] =  ausgabe.get(i).getProf().getNachname() + ", " + ausgabe.get(i).getProf().getVorname();
+			 data[i][4] = "bearbeiten";
 			 }
+			 data[i][5]=ausgabe.get(i).getBericht();
 		 }
 		
      	 final JTable table = new JTable(data, columnNames);
@@ -134,7 +140,7 @@ public class ProfessorenNachGUI extends JPanel{
    	         ArrayList<Student> ausgabe = db.ausgeben();
         
         	 for (int i=0;i< ausgabe.size();i++) {
-        		 if(ausgabe.get(i).getProf().getNachname()==null || column == 2) {
+        		 if(ausgabe.get(i).getbesuchsbericht()==null || column == 2) {
         			 if (row == i || column == 2) { 
         				 if (isSelected) {
                         
@@ -179,7 +185,6 @@ public class ProfessorenNachGUI extends JPanel{
         	 
         
         	 for (int i=0;i< ausgabe.size();i++) {
-        		 if(ausgabe.get(i).getProf().getNachname()==null || column == 2) {
         			 buttonRow = row;
         			 buttonColumn = column;
         			 if(row == i || column == 2) {
@@ -192,7 +197,7 @@ public class ProfessorenNachGUI extends JPanel{
         				 button.setText(label);
         				 isPushed = true;
         			 }
-        		 }
+        		 
         	}
         	 return button;
         }
@@ -204,19 +209,29 @@ public class ProfessorenNachGUI extends JPanel{
             	String message = "Name: " + ausgabe.get(buttonRow).getUnternehmen();
             	JOptionPane.showMessageDialog(null, message, "Informationen zum Unternehmen", JOptionPane.INFORMATION_MESSAGE);
             } else {
-            	int option = JOptionPane.showOptionDialog(null,
-                        "Sind Sie sicher? " + ausgabe.get(buttonRow).getNachname(),
-                        "Bestätigung",
-                        JOptionPane.YES_NO_OPTION,
-                        JOptionPane.QUESTION_MESSAGE,
-                        null,
-                        new String[]{"Ja", "Zurück"},
-                        "Zurück");
-                
-                if (option == JOptionPane.YES_OPTION) {
-                	//Hier kann dann in die Datenbank eingelesen werden
-                   ausgabe.get(buttonRow).getAnmeldename();
-                }
+		        JPanel panel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
+		        JTextArea textArea = new JTextArea(45, 120);
+		        if(ausgabe.get(buttonRow).getbesuchsbericht()==null)
+		        {
+		        textArea.setText("Bitte hier Besuchbericht reinschreiben");
+		        }
+		        else
+		        {
+		        	 textArea.setText(ausgabe.get(buttonRow).getbesuchsbericht());
+		        }
+		        	
+		        panel.add(new JScrollPane(textArea));
+
+		        int result = JOptionPane.showConfirmDialog(null, panel, "Besuchsbericht "+ausgabe.get(buttonRow).getVorname()+" "+ausgabe.get(buttonRow).getNachname(), JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+		        if (result == JOptionPane.OK_OPTION) {
+		            String input = textArea.getText();
+		            DatenabrufProfessor dp=new DatenabrufProfessor();
+		           // dp.Besuchsberichterstellen(input, ausgabe.get(buttonRow).getMatrikelnr());
+		            System.out.println("Eingegebener Text: " + input);
+		            System.out.println(anmeldename);
+		            // Hier wird der eingegebene Text in der Variable "eingabe" gespeichert
+		            String eingabe = input;
+		        }
             }
             	
             }
