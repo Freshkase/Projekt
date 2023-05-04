@@ -208,16 +208,16 @@ public class ProfessorenWaehrendGUI extends JPanel{
             if(buttonColumn == 2) {
             	  DatenabrufStudent db = new DatenabrufStudent();
                   ArrayList<Unternehmen> unternehmenls = db.ausUnternehmen();
-            	String message = "Name: " + unternehmenls.get(buttonRow).getName() + "\n" +
-            			"Anschrift: " + unternehmenls.get(buttonRow).getAnschrift() + "\n" +
-            			"URL: " + unternehmenls.get(buttonRow).getUrl() + "\n" +
-            			"E-Mail: " + unternehmenls.get(buttonRow).getEmail() + "\n" +
-            			"Firmen-Betreuer: " + unternehmenls.get(buttonRow).getBetreuer() + "\n" +
-            			"Telefonnummer: " + unternehmenls.get(buttonRow).getTelefon() + "\n" +
-            			"Abteilung: " + unternehmenls.get(buttonRow).getBereich() + "\n" +
-            			"Zeitraum: " + unternehmenls.get(buttonRow).getBeginn() + " - " + unternehmenls.get(buttonRow).getEnde() + "\n" +
-            			"Themenbereich: " + unternehmenls.get(buttonRow).getThema() + "\n" +
-            			"Beschreibung: " + unternehmenls.get(buttonRow).getBeschreibung() + "\n";
+            	String message = "Name: " + unternehmenls.get(buttonRow).getName() + "\n"
+                        + "Anschrift: " + unternehmenls.get(buttonRow).getAnschrift() + "\n"
+                        + "URL: " + unternehmenls.get(buttonRow).getUrl() + "\n"
+                        + "E-Mail: " + unternehmenls.get(buttonRow).getEmail() + "\n"
+                        + "Firmen-Betreuer: " + unternehmenls.get(buttonRow).getBetreuer() + "\n"
+                        + "Telefonnummer: " + unternehmenls.get(buttonRow).getTelefon() + "\n"
+                        + "Abteilung: " + unternehmenls.get(buttonRow).getBereich() + "\n"
+                        + "Zeitraum: " + unternehmenls.get(buttonRow).getBeginn() + " - " + unternehmenls.get(buttonRow).getEnde() + "\n"
+                        + "Themenbereich: " + unternehmenls.get(buttonRow).getThema() + "\n"
+                        + "Beschreibung: " + unternehmenls.get(buttonRow).getBeschreibung() + "\n";
             	JOptionPane.showMessageDialog(null, message, "Informationen zum Unternehmen", JOptionPane.INFORMATION_MESSAGE);
             } else {
             	int option = JOptionPane.showOptionDialog(null,
