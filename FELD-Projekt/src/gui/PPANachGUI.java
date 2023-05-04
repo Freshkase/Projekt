@@ -58,19 +58,19 @@ public class PPANachGUI extends JPanel {
 			 data[i][1] =  ausgabe.get(i).getEmail();
 			 data[i][2] =  ausgabe.get(i).getUnternehmen();
 			 data[i][3] =  ausgabe.get(i).getProf().getNachname() + ", " + ausgabe.get(i).getProf().getVorname();
-			 if(ausgabe.get(i).getbesuchsbericht()==null)
+			 if(ausgabe.get(i).getbesuchsbericht().equals(" "))
 			 {
 				 data[i][4] = "Nein";
 			 }else {
 				 data[i][4] = "Ja";
 			 }
-			 if(ausgabe.get(i).getTätigkeitsnachweis()==null)
+			 if(ausgabe.get(i).getTätigkeitsnachweis().equals("nein"))
 			 {
 				 data[i][5] = "Ja/Nein";
 			 }else{
 				 data[i][5] =  ausgabe.get(i).getTätigkeitsnachweis();
 			 }
-        	 if(ausgabe.get(i).getVortrag()==null)
+        	 if(ausgabe.get(i).getVortrag().equals("nein"))
 			 {
 				 data[i][6] = "Ja/Nein";
 			 }else{
@@ -162,7 +162,7 @@ public class PPANachGUI extends JPanel {
    	         ArrayList<Student> ausgabe = db.ausgeben();
         
         	 for (int i=0;i< ausgabe.size();i++) {
-        		 if(ausgabe.get(i).getTätigkeitsnachweis()==null || ausgabe.get(i).getVortrag()==null ) {
+        		 if(ausgabe.get(i).getTätigkeitsnachweis().equals("nein") || ausgabe.get(i).getVortrag().equals("nein") ) {
         			 if (row == i) { 
         				 if (isSelected) {
                         
@@ -207,7 +207,7 @@ public class PPANachGUI extends JPanel {
         	 
         
         	 for (int i=0;i< ausgabe.size();i++) {
-        		 if(ausgabe.get(i).getTätigkeitsnachweis()==null || ausgabe.get(i).getVortrag()==null) {
+        		 if(ausgabe.get(i).getTätigkeitsnachweis().equals("nein") || ausgabe.get(i).getVortrag().equals("nein")) {
         			 buttonRow = row;
         			 buttonColumn = column;
         			 if(row == i || column == 2) {
