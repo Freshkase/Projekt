@@ -58,7 +58,7 @@ public class PPANachGUI extends JPanel {
 			 data[i][1] =  ausgabe.get(i).getEmail();
 			 data[i][2] =  ausgabe.get(i).getUnternehmen();
 			 data[i][3] =  ausgabe.get(i).getProf().getNachname() + ", " + ausgabe.get(i).getProf().getVorname();
-			 if(ausgabe.get(i).getbesuchsbericht().equals(" "))
+			 if(ausgabe.get(i).getBesuchsbericht().equals(" "))
 			 {
 				 data[i][4] = "Nein";
 			 }else {
@@ -66,13 +66,13 @@ public class PPANachGUI extends JPanel {
 			 }
 			 if(ausgabe.get(i).getTätigkeitsnachweis().equals("nein"))
 			 {
-				 data[i][5] = "Ja/Nein";
+				 data[i][5] = "Nein";
 			 }else{
 				 data[i][5] =  ausgabe.get(i).getTätigkeitsnachweis();
 			 }
         	 if(ausgabe.get(i).getVortrag().equals("nein"))
 			 {
-				 data[i][6] = "Ja/Nein";
+				 data[i][6] = "Nein";
 			 }else{
 				 data[i][6] =  ausgabe.get(i).getVortrag();
 			 }
