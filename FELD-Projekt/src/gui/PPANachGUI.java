@@ -53,7 +53,6 @@ public class PPANachGUI extends JPanel {
         DatenabrufStudent db = new DatenabrufStudent();
 	    ArrayList<Student> ausgabe = db.ausgeben();
 	    
-	    System.out.println(ausgabe);
        
         Object [][] data = new Object [ausgabe.size()][8];
         for (int i=0;i< ausgabe.size();i++)
