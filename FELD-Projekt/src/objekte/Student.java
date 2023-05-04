@@ -1,5 +1,7 @@
 package objekte;
 
+import java.util.Objects;
+
 public class Student extends Person {
 	//Eigenschaften
 	private int matrikelnummer;
@@ -68,6 +70,23 @@ public class Student extends Person {
 
 	public String getBesuchsbericht() {
 		return besuchsbericht;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(matrikelnummer);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Student other = (Student) obj;
+		return matrikelnummer == other.matrikelnummer;
 	}
 	
 	

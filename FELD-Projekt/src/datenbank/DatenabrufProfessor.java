@@ -47,7 +47,7 @@ public class DatenabrufProfessor {
 	}
 	
 	
-	public void Besuchsberichterstellen (String Besuchsbericht, int nummer) {
+	public void BesuchsberichtErstellen (String Besuchsbericht, int nummer) {
 
 		Connection conn = null;
 
@@ -63,7 +63,7 @@ public class DatenabrufProfessor {
 			conn = DriverManager.getConnection(url2 + dbName, username, password);
 
 			Statement anweisung = conn.createStatement();
-			String uebergabe = "UPDATE STUDENTEN SET Besuchsbericht = " + Besuchsbericht + " WHERE Matrikelnummer = " + nummer;
+			String uebergabe = "UPDATE STUDENTEN SET Besuchsbericht = '" + Besuchsbericht + "' WHERE Matrikelnummer = " + nummer;
 			anweisung.executeUpdate(uebergabe);
 			
 			

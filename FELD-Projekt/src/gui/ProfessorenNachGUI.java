@@ -2,6 +2,7 @@ package gui;
 
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -9,7 +10,11 @@ import java.awt.event.MouseEvent;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -30,6 +35,7 @@ import objekte.Student;
 import objekte.Unternehmen;
 
 import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.ListSelectionModel;
 import javax.swing.UIManager;
 
@@ -37,6 +43,8 @@ public class ProfessorenNachGUI extends JPanel{
 	private boolean DEBUG = false;
 	private static String anmeldename;
 	private static JFrame frame;
+	private static ArrayList<Student> verkuerzt2 = new ArrayList<>();
+	private static ArrayList<Student> verkuerzt = new ArrayList<>();
 	/**
 	 * Launch the application.
 	 */
@@ -60,27 +68,43 @@ public class ProfessorenNachGUI extends JPanel{
 		 DatenabrufStudent db = new DatenabrufStudent();
 	     ArrayList<Student> ausgabe = db.ausgeben();
 	     Collections.sort(ausgabe, new MyComparator());
-//	     ArrayList<Student> verkuerzt = new ArrayList<>();
-//	     for (int j=0;j< ausgabe.size();j++) {
-//			if(ausgabe.get(j).getProf().getAnmeldename().equals(anmeldename)){
-//				verkuerzt.add(ausgabe.get(j));
-//			}
-//	      }
-	      
-		 Object [][] data = new Object [ausgabe.size()][6];
-		 for (int i=0;i< ausgabe.size();i++)
+	     
+	     for (int j=0;j< ausgabe.size();j++) {
+	    	if (ausgabe.get(j).getProf().getAnmeldename()!=null) {
+				if(ausgabe.get(j).getProf().getAnmeldename().equals(anmeldename)){
+					verkuerzt2.add(ausgabe.get(j));
+				}
+	    	}
+
+	     }
+	     
+	     HashSet<Student> unique = new HashSet<>();
+	     for (int i = 0; i < verkuerzt2.size();i++) {
+	    	 unique.add(verkuerzt2.get(i));
+	     }
+	     
+	     if (unique.size() == verkuerzt2.size()) {
+	 		for (Student i : unique) {
+	    	 verkuerzt.add(i);
+	     } 
+	     }
+	     
+	     Collections.sort(verkuerzt, new MyComparator());
+		
+		 Object [][] data = new Object [verkuerzt.size()][6];
+		 for (int i=0;i< verkuerzt.size();i++)
 		 {
-			 data[i][0] =  ausgabe.get(i).getNachname() + ", " + ausgabe.get(i).getVorname();
-			 data[i][1] =  ausgabe.get(i).getEmail();
-			 data[i][2] =  ausgabe.get(i).getUnternehmen();
-			 data[i][3] = ausgabe.get(i).getBeginn() + " - " + ausgabe.get(i).getEnde();
-			 if(ausgabe.get(i).getBesuchsbericht().equals(" ")){
+			 data[i][0] =  verkuerzt.get(i).getNachname() + ", " + verkuerzt.get(i).getVorname();
+			 data[i][1] =  verkuerzt.get(i).getEmail();
+			 data[i][2] =  verkuerzt.get(i).getUnternehmen();
+			 data[i][3] = verkuerzt.get(i).getBeginn() + " - " + verkuerzt.get(i).getEnde();
+			 if(verkuerzt.get(i).getBesuchsbericht().equals(" ")){
 				 data[i][4] = "Erstellen";
 			 }
 			 else {
 			 data[i][4] =  "Besuchsbericht erstellt";
 			 }
-			 data[i][5] = ausgabe.get(i).getBericht();
+			 data[i][5] = verkuerzt.get(i).getBericht();
 		 }
 		
      	 final JTable table = new JTable(data, columnNames);
@@ -137,8 +161,9 @@ public class ProfessorenNachGUI extends JPanel{
          setLayout(groupLayout);
 		
 	}
-    
- // TableCellRenderer für den JButton-Objekt
+   
+
+// TableCellRenderer für den JButton-Objekt
     static class ButtonRenderer extends JButton implements TableCellRenderer {
         public ButtonRenderer() {
             setOpaque(true);
@@ -146,12 +171,8 @@ public class ProfessorenNachGUI extends JPanel{
         
 		public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
 				int row, int column) {
-			DatenabrufStudent db = new DatenabrufStudent();
-			ArrayList<Student> ausgabe = db.ausgeben();
-			Collections.sort(ausgabe, new MyComparator());
-
-			for (int i = 0; i < ausgabe.size(); i++) {
-				if (ausgabe.get(i).getBesuchsbericht().equals(" ") || column == 5) {
+			for (int i = 0; i < verkuerzt.size(); i++) {
+				if (verkuerzt.get(i).getBesuchsbericht().equals(" ") || column == 5) {
 					if(row == i || column == 5) {
 					setText((value == null) ? "" : value.toString());
 					return this;
@@ -167,9 +188,7 @@ public class ProfessorenNachGUI extends JPanel{
     // TableCellEditor für den JButton-Objekt
     static class ButtonEditor extends DefaultCellEditor {
         protected JButton button;
-        
         private String label;
-        
         private boolean isPushed;
         private int buttonRow;
         private int buttonColumn;
@@ -187,12 +206,8 @@ public class ProfessorenNachGUI extends JPanel{
         }
         
         public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
-        	DatenabrufStudent db = new DatenabrufStudent();
-			ArrayList<Student> ausgabe = db.ausgeben();
-			Collections.sort(ausgabe, new MyComparator());
-            
-       	 	for (int i=0;i< ausgabe.size();i++) {
-       	 		if(ausgabe.get(i).getBesuchsbericht().equals(" ") || column == 5) {
+       	 	for (int i=0;i< verkuerzt.size();i++) {
+       	 		if(verkuerzt.get(i).getBesuchsbericht().equals(" ") || column == 5) {
        			 buttonRow = row;
        			 buttonColumn = column;
        			 if(row == i || column == 5) {
@@ -217,37 +232,30 @@ public class ProfessorenNachGUI extends JPanel{
             	//hier reinschreiben was bei Button-Klick BPS-Bericht Ja/Nein passiert
             	
             } else {
-            	//hier reinschreiben was bei Button-Klick BPS-Bericht Ja/Nein passiert
-            	DatenabrufStudent db = new DatenabrufStudent();
-         	    ArrayList<Student> ausgabe = db.ausgeben();
-         	    Collections.sort(ausgabe, new MyComparator());
-            	int option = JOptionPane.showOptionDialog(null,
-                        "Sind Sie sicher? " + ausgabe.get(buttonRow).getNachname(),
-                        "Bestätigung",
-                        JOptionPane.YES_NO_OPTION,
-                        JOptionPane.QUESTION_MESSAGE,
-                        null,
-                        new String[]{"Ja", "Zurück"},
-                        "Zurück");
-                
-                if (option == JOptionPane.YES_OPTION) {
-                	
-                	DatenabrufProfessor db2 = new DatenabrufProfessor();
-          	      	ArrayList<Professor> ausgabeprof = db2.ausgeben();
-                	int nummer = ausgabe.get(buttonRow).getMatrikelnr();
-                	
-            		for (int i = 1; i < ausgabeprof.size(); i++) {
-            			if(ausgabeprof.get(i).getAnmeldename().equals(anmeldename)) {
-            				db.aendern(ausgabeprof.get(i).getId(), nummer);
-            				
-            			}
-            		}
-            		frame.dispose();
-            		ProfessorenNachGUI neu = new ProfessorenNachGUI(anmeldename);
-                    neu.main(null);
-            	
-                	
-                }
+            	JPanel panel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
+		        JTextArea textArea = new JTextArea(45, 120);
+		        if(verkuerzt.get(buttonRow).getBesuchsbericht().equals(" ")){
+		        	textArea.setText("Bitte hier Besuchbericht reinschreiben");
+		        }	
+		        panel.add(new JScrollPane(textArea));
+
+		        int result = JOptionPane.showConfirmDialog(null, panel, "Besuchsbericht "+verkuerzt.get(buttonRow).getVorname()+" "+verkuerzt.get(buttonRow).getNachname(), JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+		        if (result == JOptionPane.OK_OPTION) {
+		            String input = textArea.getText();
+		            DatenabrufProfessor db = new DatenabrufProfessor();
+		            db.BesuchsberichtErstellen(input, verkuerzt.get(buttonRow).getMatrikelnr());
+		            
+		            
+		            
+		            frame.dispose();
+		           
+		            //lädt irgendwie nicht die aktuelle Version??? bei PPAWaehrendGUI klappt es so jedoch
+		            ProfessorenNachGUI neue = new ProfessorenNachGUI(anmeldename);
+	                neue.main(null);
+		            
+		        }
+		        
+		        
                 
             }
             	
@@ -266,28 +274,29 @@ public class ProfessorenNachGUI extends JPanel{
         }
     }
 	 
-	 public static void createAndShowGUI() {
-	        //Create and set up the window.
-	        ProfessorenNachGUI.frame = new JFrame("FELD-Professoren");
-	        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	 
-	        //Create and set up the content pane.
-	        ProfessorenNachGUI newContentPane = new ProfessorenNachGUI(anmeldename);
-	        newContentPane.setOpaque(true); //content panes must be opaque
-	        frame.setContentPane(newContentPane);
-	 
-	        //Display the window.
-	        frame.pack();
-	        frame.setVisible(true);
-	    }
+    public static void createAndShowGUI() {
+        //Create and set up the window.
+        ProfessorenNachGUI.frame = new JFrame("FELD-Professoren");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+ 
+        //Create and set up the content pane.
+        ProfessorenNachGUI newContentPane = new ProfessorenNachGUI(anmeldename);
+        newContentPane.setOpaque(true); //content panes must be opaque
+        frame.setContentPane(newContentPane);
+ 
+        //Display the window.
+        frame.pack();
+        frame.setVisible(true);
+    }
 	 
 	 public static void main(String[] args) {
 	        //Schedule a job for the event-dispatching thread:
 	        //creating and showing this application's GUI.
 	        javax.swing.SwingUtilities.invokeLater(new Runnable() {
 	            public void run() {
-	                createAndShowGUI();
-	            }
+	            	createAndShowGUI();  
+	        	    }
+	            
 	        });
 	    }
     

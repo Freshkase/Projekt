@@ -30,7 +30,7 @@ public class StudentGUI extends JPanel {
     	
         DatenabrufStudent db = new DatenabrufStudent();
         ArrayList<Student> ausgabe = db.ausgeben();
-        
+        System.out.println(ausgabe);
         int tmp = 0;
         for (int i = 0; i < ausgabe.size(); i++) {
         	if (ausgabe.get(i).getAnmeldename().equals(anmeldename)) {
