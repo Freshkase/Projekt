@@ -48,10 +48,6 @@ public class PPANachGUI extends JPanel {
                                 "BPS-Berichte",
                                 };
         
-        //String ausgabeBesuchsbericht = "Nein";
-        //String ausgabeBericht = "Nein";
-        //String ausgabeNachweis = "Nein";
-       // String ausgabeVortrag = "Nein";
         DatenabrufStudent db = new DatenabrufStudent();
 	      ArrayList<Student> ausgabe = db.ausgeben();
        
@@ -61,35 +57,23 @@ public class PPANachGUI extends JPanel {
 			 data[i][0] =  ausgabe.get(i).getNachname() + ", " + ausgabe.get(i).getVorname();
 			 data[i][1] =  ausgabe.get(i).getEmail();
 			 data[i][2] =  ausgabe.get(i).getUnternehmen();
-			// if(ausgabe.get(i).getProf().getNachname()==null)
-			// {
-			//	 data[i][3] = "auswählen";
-			// }
-			// else {
 			 data[i][3] =  ausgabe.get(i).getProf().getNachname() + ", " + ausgabe.get(i).getProf().getVorname();
-			 //}
-			 if(ausgabe.get(i).getbesuchsbericht()=="")
+			 if(ausgabe.get(i).getbesuchsbericht()==null)
 			 {
 				 data[i][4] = "Nein";
-			 }
-			 else {
-			 data[i][4] = "Ja";
+			 }else {
+				 data[i][4] = "Ja";
 			 }
 			 if(ausgabe.get(i).getTätigkeitsnachweis()==null)
-				 {
-					 data[i][5] = "Ja/Nein";
-				 }
-				 else {
-					 data[i][5] =  ausgabe.get(i).getTätigkeitsnachweis();
-			}
-			
-        	 //data[i][5] = ausgabeNachweis;
-        	// data[i][6] = ausgabeVortrag;
+			 {
+				 data[i][5] = "Ja/Nein";
+			 }else{
+				 data[i][5] =  ausgabe.get(i).getTätigkeitsnachweis();
+			 }
         	 if(ausgabe.get(i).getVortrag()==null)
 			 {
 				 data[i][6] = "Ja/Nein";
-			 }
-			 else {
+			 }else{
 				 data[i][6] =  ausgabe.get(i).getVortrag();
 			 }
         	 data[i][7] =  ausgabe.get(i).getBericht();
