@@ -223,7 +223,7 @@ public class PPANachGUI extends JPanel {
         	 
         
         	 for (int i=0;i< ausgabe.size();i++) {
-        		 if(ausgabe.get(i).getTätigkeitsnachweis()=="nein") {
+        		 if(ausgabe.get(i).getTätigkeitsnachweis()=="nein" || ausgabe.get(i).getVortrag()=="nein") {
         			 buttonRow = row;
         			 buttonColumn = column;
         			 if(row == i || column == 2) {
