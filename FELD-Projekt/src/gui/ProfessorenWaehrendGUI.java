@@ -22,6 +22,7 @@ import javax.swing.JCheckBox;
 
 import datenbank.DatenabrufStudent;
 import objekte.Student;
+import objekte.Unternehmen;
 
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
@@ -201,7 +202,18 @@ public class ProfessorenWaehrendGUI extends JPanel{
             if (isPushed) {
                 // Öffne ein neues Fenster, wenn der Button geklickt wird
             if(buttonColumn == 2) {
-            	String message = "Name: " + ausgabe.get(buttonRow).getUnternehmen();
+            	  DatenabrufStudent db = new DatenabrufStudent();
+                  ArrayList<Unternehmen> unternehmenls = db.ausUnternehmen();
+            	String message = "Name: " + unternehmenls.get(buttonRow).getName() + "\n" +
+            			"Anschrift: " + unternehmenls.get(buttonRow).getAnschrift() + "\n" +
+            			"URL: " + unternehmenls.get(buttonRow).getUrl() + "\n" +
+            			"E-Mail: " + unternehmenls.get(buttonRow).getEmail() + "\n" +
+            			"Firmen-Betreuer: " + unternehmenls.get(buttonRow).getBetreuer() + "\n" +
+            			"Telefonnummer: " + unternehmenls.get(buttonRow).getTelefon() + "\n" +
+            			"Abteilung: " + unternehmenls.get(buttonRow).getBereich() + "\n" +
+            			"Zeitraum: " + unternehmenls.get(buttonRow).getBeginn() + " - " + unternehmenls.get(buttonRow).getEnde() + "\n" +
+            			"Themenbereich: " + unternehmenls.get(buttonRow).getThema() + "\n" +
+            			"Beschreibung: " + unternehmenls.get(buttonRow).getBeschreibung() + "\n";
             	JOptionPane.showMessageDialog(null, message, "Informationen zum Unternehmen", JOptionPane.INFORMATION_MESSAGE);
             } else {
             	int option = JOptionPane.showOptionDialog(null,
