@@ -55,23 +55,35 @@ public class ProfessorenNachGUI extends JPanel{
 		 						};
 		 DatenabrufStudent db = new DatenabrufStudent();
 	      ArrayList<Student> ausgabe = db.ausgeben();
-		
-		 Object [][] data = new Object [ausgabe.size()][6];
-		
-		 for (int i=0;i< ausgabe.size();i++)
-		 {
-			 data[i][0] =  ausgabe.get(i).getNachname() + ", " + ausgabe.get(i).getVorname();
-			 data[i][1] =  ausgabe.get(i).getEmail();
-			 data[i][2] =  ausgabe.get(i).getUnternehmen();
-			 data[i][3] = ausgabe.get(i).getBeginn() + " - " + ausgabe.get(i).getEnde();
-			 if(ausgabe.get(i).getbesuchsbericht()==null)
+	      int zaehler = 0;
+	      for (int j=0;j< ausgabe.size();j++)
 			 {
-				 data[i][4] = "erstellen";
+				 if(ausgabe.get(j).getProf().getAnmeldename().equals(anmeldename))
+				 {
+					 zaehler++;
+			 
+			 }
+			 }
+		 Object [][] data = new Object [zaehler][6];
+		 for (int j=0;j< ausgabe.size();j++)
+		 {
+			 if(ausgabe.get(j).getProf().getAnmeldename().equals(anmeldename))
+			 {
+		
+			 data[j][0] =  ausgabe.get(j).getNachname() + ", " + ausgabe.get(j).getVorname();
+			 data[j][1] =  ausgabe.get(j).getEmail();
+			 data[j][2] =  ausgabe.get(j).getUnternehmen();
+			 data[j][3] = ausgabe.get(j).getBeginn() + " - " + ausgabe.get(j).getEnde();
+			 if(ausgabe.get(j).getbesuchsbericht()==null)
+			 {
+				 data[j][4] = "Erstellen";
 			 }
 			 else {
-			 data[i][4] = "bearbeiten";
+			 data[j][4] = "Bericht wurde erstellt";
 			 }
-			 data[i][5]=ausgabe.get(i).getBericht();
+			 data[j][5]=ausgabe.get(j).getBericht();
+		 
+		 }
 		 }
 		
      	 final JTable table = new JTable(data, columnNames);
