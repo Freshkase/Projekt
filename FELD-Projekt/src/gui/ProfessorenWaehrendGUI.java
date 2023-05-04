@@ -33,6 +33,7 @@ import javax.swing.UIManager;
 public class ProfessorenWaehrendGUI extends JPanel{
 	private boolean DEBUG = false;
 	private static String anmeldename;
+	private static JFrame frame;
 	/**
 	 * Launch the application.
 	 */
@@ -228,15 +229,19 @@ public class ProfessorenWaehrendGUI extends JPanel{
                         "Zurück");
                 
                 if (option == JOptionPane.YES_OPTION) {
+                	
                 	DatenabrufProfessor db2 = new DatenabrufProfessor();
           	      	ArrayList<Professor> ausgabeprof = db2.ausgeben();
                 	int nummer = ausgabe.get(buttonRow).getMatrikelnr();
- 
-            		for (int i = 0; i < ausgabeprof.size()-1; i++) {
-            			if(anmeldename.equals(ausgabeprof.get(i).getAnmeldename())) {
+                	
+            		for (int i = 1; i < ausgabeprof.size(); i++) {
+            			if(ausgabeprof.get(i).getAnmeldename().equals(anmeldename)) {
             				db.aendern(ausgabeprof.get(i).getId(), nummer);
+            				
             			}
             		}
+            		frame.dispose();
+            		
                 	
                 }
                 
@@ -259,7 +264,7 @@ public class ProfessorenWaehrendGUI extends JPanel{
 	 
 	 public static void createAndShowGUI() {
 	        //Create and set up the window.
-	        JFrame frame = new JFrame("FELD-Professoren");
+	        ProfessorenWaehrendGUI.frame = new JFrame("FELD-Professoren");
 	        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	 
 	        //Create and set up the content pane.
