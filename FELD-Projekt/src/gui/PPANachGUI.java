@@ -111,8 +111,8 @@ public class PPANachGUI extends JPanel {
 //        		Mail mail = new Mail();
 //        		mail.send();
 //        		
-        		DatenabrufStatus db = new DatenabrufStatus();
-        		db.aendern(1);
+//        		DatenabrufStatus db = new DatenabrufStatus();
+//        		db.aendern(1);
         	}
         });
        
