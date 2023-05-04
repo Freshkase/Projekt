@@ -44,11 +44,11 @@ public class PPANachGUI extends JPanel {
         						"Besuchsbericht",
                                 "Tätigkeitsnachweis",
                                 "BPS-Vortrag",
-                                "BPS-Berichteee",
+                                "BPS-Berichte",
                                 };
         
-        String ausgabeBesuchsbericht = "Nein";
-        String ausgabeBericht = "Nein";
+        //String ausgabeBesuchsbericht = "Nein";
+        //String ausgabeBericht = "Nein";
         String ausgabeNachweis = "Nein";
         String ausgabeVortrag = "Nein";
         DatenabrufStudent db = new DatenabrufStudent();
@@ -60,17 +60,23 @@ public class PPANachGUI extends JPanel {
 			 data[i][0] =  ausgabe.get(i).getNachname() + ", " + ausgabe.get(i).getVorname();
 			 data[i][1] =  ausgabe.get(i).getEmail();
 			 data[i][2] =  ausgabe.get(i).getUnternehmen();
-			 if(ausgabe.get(i).getProf().getNachname()==null)
+			// if(ausgabe.get(i).getProf().getNachname()==null)
+			// {
+			//	 data[i][3] = "auswählen";
+			// }
+			// else {
+			 data[i][3] =  ausgabe.get(i).getProf().getNachname() + ", " + ausgabe.get(i).getProf().getVorname();
+			 //}
+			 if(ausgabe.get(i).getbesuchsbericht()==null)
 			 {
-				 data[i][3] = "auswählen";
+				 data[i][4] = "Nein";
 			 }
 			 else {
-			 data[i][3] =  ausgabe.get(i).getProf().getNachname() + ", " + ausgabe.get(i).getProf().getVorname();
+			 data[i][4] = "Ja";
 			 }
-        	 data[i][4] = ausgabeBesuchsbericht;
         	 data[i][5] = ausgabeNachweis;
         	 data[i][6] = ausgabeVortrag;
-        	 data[i][7] = ausgabeBericht;
+        	 data[i][7] =  ausgabe.get(i).getBericht();
 		 }
  
  
@@ -91,9 +97,9 @@ public class PPANachGUI extends JPanel {
         //Create the scroll pane and add the table to it.
         JScrollPane scrollbar = new JScrollPane(table);
         
-        JButton btnNewButton = new JButton("Zuteilung beenden");
+        JButton btnNewButton = new JButton("Senden");
         btnNewButton.setFont(new Font("Dialog", Font.PLAIN, 13));
-        btnNewButton.setBackground(new Color(255, 0, 0));
+        btnNewButton.setBackground(new Color(0, 128, 255));
         btnNewButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
 //        		Mail mail = new Mail();
