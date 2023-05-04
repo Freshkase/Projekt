@@ -168,6 +168,7 @@ public class AnmeldungGUI {
 								lblNewLabel.setText("Falsche Eingabe!");
 								lblNewLabel.setForeground(Color.RED);
 							}
+							
 
 						}
 					} else {
