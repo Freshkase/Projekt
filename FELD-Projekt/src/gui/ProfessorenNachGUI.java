@@ -33,7 +33,7 @@ import javax.swing.UIManager;
 public class ProfessorenNachGUI extends JPanel{
 	private boolean DEBUG = false;
 	private static String anmeldename;
-	private ArrayList<Student> verkuerzt = new ArrayList<>();
+
 	/**
 	 * Launch the application.
 	 */
@@ -56,7 +56,7 @@ public class ProfessorenNachGUI extends JPanel{
 		 						};
 		 DatenabrufStudent db = new DatenabrufStudent();
 	     ArrayList<Student> ausgabe = db.ausgeben();
-	     
+	     ArrayList<Student> verkuerzt = new ArrayList<>();
 	     for (int j=0;j< ausgabe.size();j++) {
 			if(ausgabe.get(j).getProf().getAnmeldename().equals(anmeldename)){
 				verkuerzt.add(ausgabe.get(j));
@@ -140,23 +140,32 @@ public class ProfessorenNachGUI extends JPanel{
 	}
     
  // TableCellRenderer für den JButton-Objekt
-     class ButtonRenderer extends JButton implements TableCellRenderer {
-    	DatenabrufStudent db = new DatenabrufStudent();
-	    ArrayList<Student> ausgabe = db.ausgeben();
+   static class ButtonRenderer extends JButton implements TableCellRenderer {
         public ButtonRenderer() {
             setOpaque(true);
         }
         
         public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-        	 
-        
-        	 for (int i=0;i< verkuerzt.size();i++) {
+        	 DatenabrufStudent db = new DatenabrufStudent();
+    	     ArrayList<Student> ausgabe = db.ausgeben();
+    	     ArrayList<Student> verkuerzt = new ArrayList<>();
+    	     for (int j=0;j< ausgabe.size();j++) {
+    			if(ausgabe.get(j).getProf().getAnmeldename().equals(anmeldename)){
+    				verkuerzt.add(ausgabe.get(j));
+    			}
+    	      }
+    	     
+    	     
+        	 for (int i=0;i< ausgabe.size();i++) {
         		 if(verkuerzt.get(i).getbesuchsbericht().equals(" ") || column == 2) {
         			 if (row == i || column == 2) { 
+        				 
         				 if (isSelected) {
-                        
+        					 setForeground(table.getSelectionForeground());
+                             setBackground(table.getSelectionBackground());
         				 } else {
-                         
+        			         setForeground(table.getForeground());
+                             setBackground(UIManager.getColor("Button.background"));
                      }
                      setText((value == null) ? "" : value.toString());
                      return this;
@@ -170,7 +179,7 @@ public class ProfessorenNachGUI extends JPanel{
     }
     
     // TableCellEditor für den JButton-Objekt
-     class ButtonEditor extends DefaultCellEditor {
+    static class ButtonEditor extends DefaultCellEditor {
         protected JButton button;
         
         private String label;
@@ -178,8 +187,7 @@ public class ProfessorenNachGUI extends JPanel{
         private boolean isPushed;
         private int buttonRow;
         private int buttonColumn;
-        private DatenabrufStudent db = new DatenabrufStudent();
-        private ArrayList<Student> ausgabe = db.ausgeben();
+      
         
         public ButtonEditor(JCheckBox checkBox) {
             super(checkBox);
@@ -193,26 +201,48 @@ public class ProfessorenNachGUI extends JPanel{
         }
         
         public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
-        	 
-        
+        	
+        	 DatenabrufStudent db = new DatenabrufStudent();
+    	     ArrayList<Student> ausgabe = db.ausgeben();
+    	     ArrayList<Student> verkuerzt = new ArrayList<>();
+    	     for (int j=0;j< ausgabe.size();j++) {
+    			if(ausgabe.get(j).getProf().getAnmeldename().equals(anmeldename)){
+    				verkuerzt.add(ausgabe.get(j));
+    			}
+    	      }
+    	     
         	 for (int i=0;i< verkuerzt.size();i++) {
+        		 if(verkuerzt.get(i).getbesuchsbericht().equals(" ") || column == 2) {
         			 buttonRow = row;
         			 buttonColumn = column;
-        			 if(column == 2 || row == i) {
+        			 
+        			 if(row == i || column == 2) {
+        				 
         				 if (isSelected) {
-        					
+        					 button.setForeground(table.getSelectionForeground());
+        					 button.setBackground(table.getSelectionBackground());
         				 } else {
-        					
+        					 button.setForeground(table.getForeground());
+        					 button.setBackground(table.getBackground());
         				 }
         				 label = (value == null) ? "" : value.toString();
         				 button.setText(label);
         				 isPushed = true;
         			 }
+        		 }
         	}
         	 return button;
         }
         
         public Object getCellEditorValue() {
+        	 DatenabrufStudent db = new DatenabrufStudent();
+    	     ArrayList<Student> ausgabe = db.ausgeben();
+    	     ArrayList<Student> verkuerzt = new ArrayList<>();
+    	     for (int j=0;j< ausgabe.size();j++) {
+    			if(ausgabe.get(j).getProf().getAnmeldename().equals(anmeldename)){
+    				verkuerzt.add(ausgabe.get(j));
+    			}
+    	      }
             if (isPushed) {
                 // Öffne ein neues Fenster, wenn der Button geklickt wird
             if(buttonColumn == 2) {
@@ -248,7 +278,6 @@ public class ProfessorenNachGUI extends JPanel{
             isPushed = false;
             return new String(label);
         }
-        
         public boolean stopCellEditing() {
             isPushed = false;
             return super.stopCellEditing();
