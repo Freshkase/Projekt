@@ -20,7 +20,9 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 
+import datenbank.DatenabrufProfessor;
 import datenbank.DatenabrufStudent;
+import objekte.Professor;
 import objekte.Student;
 import objekte.Unternehmen;
 
@@ -226,9 +228,18 @@ public class ProfessorenWaehrendGUI extends JPanel{
                         "Zurück");
                 
                 if (option == JOptionPane.YES_OPTION) {
-                	//Hier kann dann in die Datenbank eingelesen werden
-                   ausgabe.get(buttonRow).getAnmeldename();
+                	DatenabrufProfessor db2 = new DatenabrufProfessor();
+          	      	ArrayList<Professor> ausgabeprof = db2.ausgeben();
+                	int nummer = ausgabe.get(buttonRow).getMatrikelnr();
+ 
+            		for (int i = 0; i < ausgabeprof.size()-1; i++) {
+            			if(anmeldename.equals(ausgabeprof.get(i).getAnmeldename())) {
+            				db.aendern(ausgabeprof.get(i).getId(), nummer);
+            			}
+            		}
+                	
                 }
+                
             }
             	
             }
