@@ -66,7 +66,7 @@ public class Student extends Person {
 		return ende;
 	}
 
-	public String getbesuchsbericht() {
+	public String getBesuchsbericht() {
 		return besuchsbericht;
 	}
 	
