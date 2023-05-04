@@ -255,21 +255,29 @@ public class PPAWaehrendGUI extends JPanel  {
                         new String[]{"Auswählen", "Zurück"},
                         "Zurück");
             	
-            	int nummer = ausgabe.get(buttonRow).getMatrikelnr();
+            	if (option == JOptionPane.YES_OPTION) {
+                	//Hier kann dann in die Datenbank eingelesen werden
+            		int nummer = ausgabe.get(buttonRow).getMatrikelnr();
+            		
+            		for (int i = 0; i < ausgabeprof.size()-1; i++) {
+                		if (((JCheckBox) message[i]).isSelected()) {
+                			db.aendern(ausgabeprof.get(i+1).getId(), nummer);
+                		}
+              
+                	}
+            		
+            		frame.dispose();
+                    PPAWaehrendGUI neu = new PPAWaehrendGUI(anmeldename);
+                    neu.main(null);
+                }
             	
-            	for (int i = 0; i < ausgabeprof.size()-1; i++) {
-            		if (((JCheckBox) message[i]).isSelected()) {
-            			db.aendern(ausgabeprof.get(i+1).getId(), nummer);
-            		}
-          
-            	}
+            	
+            	
             	
             	
             }
             
-            frame.dispose();
-            PPAWaehrendGUI neu = new PPAWaehrendGUI(anmeldename);
-            neu.main(null);
+            
             
             isPushed = false;
             return new String(label);
