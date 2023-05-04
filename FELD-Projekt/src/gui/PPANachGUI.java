@@ -26,13 +26,15 @@ import javax.swing.table.TableCellRenderer;
 import datenbank.DatenabrufStudent;
 import gui.ProfessorenWaehrendGUI.ButtonEditor;
 import gui.ProfessorenWaehrendGUI.ButtonRenderer;
+import objekte.Professor;
 import objekte.Student;
+import datenbank.DatenabrufProfessor;
 import datenbank.DatenabrufStatus;
  
 public class PPANachGUI extends JPanel {
     private boolean DEBUG = false;
     private static String anmeldename;
-
+    private static JFrame frame;
  
     public PPANachGUI(String anmeldename) {
  
@@ -228,8 +230,40 @@ public class PPANachGUI extends JPanel {
         public Object getCellEditorValue() {
             if (isPushed) {
                 // Öffne ein neues Fenster, wenn der Button geklickt wird
-            	String message = "Name: " + ausgabe.get(buttonRow).getUnternehmen();
-            	JOptionPane.showMessageDialog(null, message, "Informationen zum Unternehmen", JOptionPane.INFORMATION_MESSAGE);
+            	DatenabrufStudent db = new DatenabrufStudent();
+      	      	ArrayList<Student> ausgabestudent = db.ausgeben();
+      	      	
+      	      	Object[] message = new Object[ausgabestudent.size()-1];
+      	      	for (int i = 1; i < ausgabestudent.size(); i++) {
+      	      		message[1] = new JCheckBox("Ja");
+      	      		message[2] = new JCheckBox("Nein");
+      	      	}
+      	      	
+      	      	
+            	int option = JOptionPane.showOptionDialog(null,
+                        message,
+                        "Status ändern",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE,
+                        null,
+                        new String[]{"Auswählen", "Zurück"},
+                        "Zurück");
+            	
+            	if (option == JOptionPane.YES_OPTION) {
+                	//Hier kann dann in die Datenbank eingelesen werden
+            		int nummer = ausgabe.get(buttonRow).getMatrikelnr();
+            		
+            		for (int i = 1; i < ausgabestudent.size()-1; i++) {
+                		if (((JCheckBox) message[i]).isSelected()) {
+   //             			db.aendern(ausgabestudent.get(i+1).getTätigkeitsnachweis(), nummer);
+                		}
+              
+                	}
+            		
+            		frame.dispose();
+                    PPANachGUI neu = new PPANachGUI(anmeldename);
+                    neu.main(null);
+                }
             } 
           
             isPushed = false;
