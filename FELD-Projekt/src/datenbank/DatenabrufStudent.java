@@ -65,7 +65,7 @@ public class DatenabrufStudent {
 			conn = DriverManager.getConnection(url2 + dbName, username, password);
 
 			Statement anweisung = conn.createStatement();
-			String uebergabe = "INSERT INTO STUDENTEN (Matrikelnummer, Nachname, Vorname, E_Mail, Anmeldename, Kennwort, Name_Unternehmen, Firmenanschrift, URL_Unternehmen, E_Mail_Unternehmen, Firmenbetreuer, Telefonnummer_Unternehmen, Abteilung, Beginn_BPS, Ende_BPS, Themenbereich_BPS, Stellenbeschreibung, Professoren_ID, Bericht, Tätigkeitsnachweis, BPS_Vortrag ) VALUES (" + mtrn + ", '" + nachname + "', '" + vorname + "', '" + mail + "', '" + anmeldename + "', '" + kennwort + "', '" + unternehmen + "', '" + firmenanschrift + "', '" + url + "', '" + emailu + "', '" + betreuer + "', '" + telefon + "', '" + abteilung + "', '" + beginn + "', '" + ende + "', '" + themenbereich + "', '" + stelle + "', '0', 'nein', 'nein', 'nein', '')";
+			String uebergabe = "INSERT INTO STUDENTEN (Matrikelnummer, Nachname, Vorname, E_Mail, Anmeldename, Kennwort, Name_Unternehmen, Firmenanschrift, URL_Unternehmen, E_Mail_Unternehmen, Firmenbetreuer, Telefonnummer_Unternehmen, Abteilung, Beginn_BPS, Ende_BPS, Themenbereich_BPS, Stellenbeschreibung, Professoren_ID, Bericht, Tätigkeitsnachweis, BPS_Vortrag, Besuchsbericht) VALUES (" + mtrn + ", '" + nachname + "', '" + vorname + "', '" + mail + "', '" + anmeldename + "', '" + kennwort + "', '" + unternehmen + "', '" + firmenanschrift + "', '" + url + "', '" + emailu + "', '" + betreuer + "', '" + telefon + "', '" + abteilung + "', '" + beginn + "', '" + ende + "', '" + themenbereich + "', '" + stelle + "', '0', 'nein', 'nein', 'nein', '')";
 			anweisung.executeUpdate(uebergabe);
 			
 			
