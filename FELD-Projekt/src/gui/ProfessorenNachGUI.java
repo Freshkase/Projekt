@@ -149,7 +149,7 @@ public class ProfessorenNachGUI extends JPanel{
    	         ArrayList<Student> ausgabe = db.ausgeben();
         
         	 for (int i=0;i< ausgabe.size();i++) {
-        		 if(ausgabe.get(i).getbesuchsbericht().equals("") || column == 2 || column == 4) {
+        		 if(ausgabe.get(i).getbesuchsbericht().equals("") || column == 2) {
         			 if (row == i || column == 2) { 
         				 if (isSelected) {
                         
