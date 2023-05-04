@@ -208,7 +208,6 @@ public class ProfessorenNachGUI extends JPanel{
         				 button.setText(label);
         				 isPushed = true;
         			 }
-        		 
         	}
         	 return button;
         }
