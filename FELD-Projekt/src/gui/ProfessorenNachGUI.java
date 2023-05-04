@@ -72,7 +72,7 @@ public class ProfessorenNachGUI extends JPanel{
 				 data[j][1] =  verkuerzt.get(j).getEmail();
 				 data[j][2] =  verkuerzt.get(j).getUnternehmen();
 				 data[j][3] = verkuerzt.get(j).getBeginn() + " - " + verkuerzt.get(j).getEnde();
-				 if(verkuerzt.get(j).getbesuchsbericht().equals("")){
+				 if(verkuerzt.get(j).getbesuchsbericht().equals(" ")){
 					 data[j][4] = "Erstellen";
 				 }
 				 else {
@@ -81,7 +81,8 @@ public class ProfessorenNachGUI extends JPanel{
 				 data[j][5]=verkuerzt.get(j).getBericht();
 		 
 			 }
-		 }
+		 } 
+		
 		
      	 final JTable table = new JTable(data, columnNames);
          table.setPreferredScrollableViewportSize(new Dimension(500, 70));
@@ -139,7 +140,7 @@ public class ProfessorenNachGUI extends JPanel{
 	}
     
  // TableCellRenderer für den JButton-Objekt
-    static class ButtonRenderer extends JButton implements TableCellRenderer {
+     class ButtonRenderer extends JButton implements TableCellRenderer {
     	DatenabrufStudent db = new DatenabrufStudent();
 	    ArrayList<Student> ausgabe = db.ausgeben();
         public ButtonRenderer() {
@@ -149,8 +150,8 @@ public class ProfessorenNachGUI extends JPanel{
         public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
         	 
         
-        	 for (int i=0;i< ausgabe.size();i++) {
-        		 if(ausgabe.get(i).getbesuchsbericht().equals("") || column == 2) {
+        	 for (int i=0;i< verkuerzt.size();i++) {
+        		 if(verkuerzt.get(i).getbesuchsbericht().equals(" ") || column == 2) {
         			 if (row == i || column == 2) { 
         				 if (isSelected) {
                         
@@ -197,7 +198,7 @@ public class ProfessorenNachGUI extends JPanel{
         	 for (int i=0;i< verkuerzt.size();i++) {
         			 buttonRow = row;
         			 buttonColumn = column;
-        			 if(column == 2 || !ausgabe.get(i).getbesuchsbericht().equals("")) {
+        			 if(column == 2 || row == i) {
         				 if (isSelected) {
         					
         				 } else {
@@ -221,7 +222,7 @@ public class ProfessorenNachGUI extends JPanel{
             } else {
 		        JPanel panel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
 		        JTextArea textArea = new JTextArea(45, 120);
-		        if(verkuerzt.get(buttonRow).getbesuchsbericht()==null)
+		        if(verkuerzt.get(buttonRow).getbesuchsbericht().equals(" "))
 		        {
 		        textArea.setText("Bitte hier Besuchbericht reinschreiben");
 		        }
