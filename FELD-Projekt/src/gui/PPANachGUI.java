@@ -82,7 +82,7 @@ public class PPANachGUI extends JPanel {
 				 else {
 					 data[i][5] =  ausgabe.get(i).getTätigkeitsnachweis();
 			}
-				 
+			
         	 //data[i][5] = ausgabeNachweis;
         	// data[i][6] = ausgabeVortrag;
         	 if(ausgabe.get(i).getVortrag()=="nein")
