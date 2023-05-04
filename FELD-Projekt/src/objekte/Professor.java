@@ -8,8 +8,8 @@ public class Professor extends Person {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Professor(int id, String nachname, String vorname) {
-		super(nachname, vorname);
+	public Professor(int id, String nachname, String vorname, String anmeldename) {
+		super(nachname, vorname, anmeldename);
 		this.id = id;
 	}
 	
