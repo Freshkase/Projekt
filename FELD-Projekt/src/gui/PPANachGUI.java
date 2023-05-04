@@ -20,6 +20,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.table.TableCellRenderer;
 import datenbank.DatenabrufStudent;
@@ -49,8 +50,8 @@ public class PPANachGUI extends JPanel {
         
         //String ausgabeBesuchsbericht = "Nein";
         //String ausgabeBericht = "Nein";
-        String ausgabeNachweis = "Nein";
-        String ausgabeVortrag = "Nein";
+        //String ausgabeNachweis = "Nein";
+       // String ausgabeVortrag = "Nein";
         DatenabrufStudent db = new DatenabrufStudent();
 	      ArrayList<Student> ausgabe = db.ausgeben();
        
@@ -74,8 +75,23 @@ public class PPANachGUI extends JPanel {
 			 else {
 			 data[i][4] = "Ja";
 			 }
-        	 data[i][5] = ausgabeNachweis;
-        	 data[i][6] = ausgabeVortrag;
+			 if(ausgabe.get(i).getTätigkeitsnachweis()=="nein")
+				 {
+					 data[i][5] = "auswählen";
+				 }
+				 else {
+					 data[i][5] =  ausgabe.get(i).getTätigkeitsnachweis();
+			}
+				 
+        	 //data[i][5] = ausgabeNachweis;
+        	// data[i][6] = ausgabeVortrag;
+        	 if(ausgabe.get(i).getVortrag()=="nein")
+			 {
+				 data[i][6] = "auswählen";
+			 }
+			 else {
+				 data[i][6] =  ausgabe.get(i).getVortrag();
+			 }
         	 data[i][7] =  ausgabe.get(i).getBericht();
 		 }
  
@@ -83,8 +99,11 @@ public class PPANachGUI extends JPanel {
         final JTable table = new JTable(data, columnNames);
         table.setPreferredScrollableViewportSize(new Dimension(500, 70));
         table.setFillsViewportHeight(true);
-        table.getColumnModel().getColumn(3).setCellRenderer(new ButtonRenderer());
-        table.getColumnModel().getColumn(3).setCellEditor(new ButtonEditor(new JCheckBox()));
+        table.getColumnModel().getColumn(5).setCellRenderer(new ButtonRenderer());
+        table.getColumnModel().getColumn(5).setCellEditor(new ButtonEditor(new JCheckBox()));
+        table.getColumnModel().getColumn(6).setCellRenderer(new ButtonRenderer());
+        table.getColumnModel().getColumn(6).setCellEditor(new ButtonEditor(new JCheckBox()));
+        table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
  
         if (DEBUG) {
             table.addMouseListener(new MouseAdapter() {
@@ -159,7 +178,7 @@ public class PPANachGUI extends JPanel {
    	         ArrayList<Student> ausgabe = db.ausgeben();
         
         	 for (int i=0;i< ausgabe.size();i++) {
-        		 if(ausgabe.get(i).getProf().getNachname()==null) {
+        		 if(ausgabe.get(i).getTätigkeitsnachweis()=="nein" || ausgabe.get(i).getVortrag()=="nein" ) {
         			 if (row == i) { 
         				 if (isSelected) {
                         
@@ -204,7 +223,7 @@ public class PPANachGUI extends JPanel {
         	 
         
         	 for (int i=0;i< ausgabe.size();i++) {
-        		 if(ausgabe.get(i).getProf().getNachname()==null) {
+        		 if(ausgabe.get(i).getTätigkeitsnachweis()=="nein") {
         			 buttonRow = row;
         			 buttonColumn = column;
         			 if(row == i || column == 2) {
