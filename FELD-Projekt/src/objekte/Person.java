@@ -15,9 +15,10 @@ public class Person {
 		this.anmeldename = anmeldename;
 	}
 	
-	public Person (String nachname, String vorname) {
+	public Person (String nachname, String vorname, String anmeldename) {
 		this.nachname = nachname;
 		this.vorname = vorname;
+		this.anmeldename = anmeldename;
 	}
 	
 	public Person (String email) {
