@@ -243,7 +243,7 @@ public class ProfessorenWaehrendGUI extends JPanel{
             		frame.dispose();
             		ProfessorenWaehrendGUI neu = new ProfessorenWaehrendGUI(anmeldename);
                     neu.main(null);
-            		
+            	
                 	
                 }
                 
