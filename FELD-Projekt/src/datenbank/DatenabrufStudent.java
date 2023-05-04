@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import objekte.Professor;
 import objekte.Student;
+import objekte.Unternehmen;
 
 
 public class DatenabrufStudent {
@@ -107,6 +108,38 @@ public class DatenabrufStudent {
 		}
 		
 
+	}
+	public ArrayList<Unternehmen> ausUnternehmen () {
+		Connection conn = null;
+
+		String url = "jdbc:mysql://3.69.96.96:3306/";
+		String dbName = "db1";
+		String driver = "com.mysql.cj.jdbc.Driver";
+		String username = "db1";
+		String password = "!db1.wip23?";
+
+		ArrayList<Unternehmen> ausgaben = new ArrayList<>();
+		try {
+			Class.forName(driver);
+
+			conn = DriverManager.getConnection(url + dbName, username, password);
+
+			Statement anweisung = conn.createStatement();
+			ResultSet rs = anweisung.executeQuery("SELECT studenten.Name_Unternehmen, studenten.Firmenanschrift, studenten.URL_Unternehmen, studenten.E_Mail_Unternehmen, studenten.Firmenbetreuer, studenten.Telefonnummer_Unternehmen, studenten.Abteilung, studenten.Beginn_BPS, studenten.Ende_BPS, studenten.Themenbereich_BPS, studenten.Stellenbeschreibung FROM studenten, professoren WHERE studenten.Professoren_ID=professoren.Professoren_ID");
+
+			while (rs.next()) {
+				ausgaben.add(new Unternehmen(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9),rs.getString(10),rs.getString(11)));
+			}
+			
+			
+			conn.close();
+			
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return ausgaben;
 	}
 	
 
