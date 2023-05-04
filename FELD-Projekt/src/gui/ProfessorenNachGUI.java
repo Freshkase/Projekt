@@ -54,36 +54,32 @@ public class ProfessorenNachGUI extends JPanel{
 	        					"BPS-Bericht",
 		 						};
 		 DatenabrufStudent db = new DatenabrufStudent();
-	      ArrayList<Student> ausgabe = db.ausgeben();
-	      int zaehler = 0;
-	      for (int j=0;j< ausgabe.size();j++)
-			 {
-				 if(ausgabe.get(j).getProf().getAnmeldename().equals(anmeldename))
-				 {
-					 zaehler++;
+	     ArrayList<Student> ausgabe = db.ausgeben();
+	     ArrayList<Student> verkuerzt = new ArrayList<>();
+	     for (int j=0;j< ausgabe.size();j++) {
+			if(ausgabe.get(j).getProf().getAnmeldename().equals(anmeldename)){
+				verkuerzt.add(ausgabe.get(j));
+			}
+	      }
+	      
+		 Object [][] data = new Object [verkuerzt.size()][6];
+		 for (int j=0;j< verkuerzt.size();j++) {
 			 
-			 }
-			 }
-		 Object [][] data = new Object [zaehler][6];
-		 for (int j=0;j< ausgabe.size();j++)
-		 {
-			 if(ausgabe.get(j).getProf().getAnmeldename().equals(anmeldename))
-			 {
+			 if(verkuerzt.get(j).getProf().getAnmeldename().equals(anmeldename)){
 		
-			 data[j][0] =  ausgabe.get(j).getNachname() + ", " + ausgabe.get(j).getVorname();
-			 data[j][1] =  ausgabe.get(j).getEmail();
-			 data[j][2] =  ausgabe.get(j).getUnternehmen();
-			 data[j][3] = ausgabe.get(j).getBeginn() + " - " + ausgabe.get(j).getEnde();
-			 if(ausgabe.get(j).getbesuchsbericht()==null)
-			 {
-				 data[j][4] = "Erstellen";
-			 }
-			 else {
-			 data[j][4] = "Bericht wurde erstellt";
-			 }
-			 data[j][5]=ausgabe.get(j).getBericht();
+				 data[j][0] =  verkuerzt.get(j).getNachname() + ", " + verkuerzt.get(j).getVorname();
+				 data[j][1] =  verkuerzt.get(j).getEmail();
+				 data[j][2] =  verkuerzt.get(j).getUnternehmen();
+				 data[j][3] = verkuerzt.get(j).getBeginn() + " - " + verkuerzt.get(j).getEnde();
+				 if(verkuerzt.get(j).getbesuchsbericht()==null){
+					 data[j][4] = "Erstellen";
+				 }
+				 else {
+					 data[j][4] = "Bericht wurde erstellt";
+				 }
+				 data[j][5]=verkuerzt.get(j).getBericht();
 		 
-		 }
+			 }
 		 }
 		
      	 final JTable table = new JTable(data, columnNames);
