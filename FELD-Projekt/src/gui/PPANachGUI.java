@@ -20,18 +20,21 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.table.TableCellRenderer;
 import datenbank.DatenabrufStudent;
 import gui.ProfessorenWaehrendGUI.ButtonEditor;
 import gui.ProfessorenWaehrendGUI.ButtonRenderer;
+import objekte.Professor;
 import objekte.Student;
+import datenbank.DatenabrufProfessor;
 import datenbank.DatenabrufStatus;
  
 public class PPANachGUI extends JPanel {
     private boolean DEBUG = false;
     private static String anmeldename;
-
+    private static JFrame frame;
  
     public PPANachGUI(String anmeldename) {
  
@@ -44,13 +47,9 @@ public class PPANachGUI extends JPanel {
         						"Besuchsbericht",
                                 "Tätigkeitsnachweis",
                                 "BPS-Vortrag",
-                                "BPS-Berichteee",
+                                "BPS-Berichte",
                                 };
         
-        String ausgabeBesuchsbericht = "Nein";
-        String ausgabeBericht = "Nein";
-        String ausgabeNachweis = "Nein";
-        String ausgabeVortrag = "Nein";
         DatenabrufStudent db = new DatenabrufStudent();
 	    ArrayList<Student> ausgabe = db.ausgeben();
 	    
@@ -62,25 +61,37 @@ public class PPANachGUI extends JPanel {
 			 data[i][0] =  ausgabe.get(i).getNachname() + ", " + ausgabe.get(i).getVorname();
 			 data[i][1] =  ausgabe.get(i).getEmail();
 			 data[i][2] =  ausgabe.get(i).getUnternehmen();
-			 if(ausgabe.get(i).getProf().getNachname()==null)
-			 {
-				 data[i][3] = "auswählen";
-			 }
-			 else {
 			 data[i][3] =  ausgabe.get(i).getProf().getNachname() + ", " + ausgabe.get(i).getProf().getVorname();
+			 if(ausgabe.get(i).getBesuchsbericht().equals(" "))
+			 {
+				 data[i][4] = "Nein";
+			 }else {
+				 data[i][4] = "Ja";
 			 }
-        	 data[i][4] = ausgabeBesuchsbericht;
-        	 data[i][5] = ausgabeNachweis;
-        	 data[i][6] = ausgabeVortrag;
-        	 data[i][7] = ausgabeBericht;
+			 if(ausgabe.get(i).getTätigkeitsnachweis().equals("nein"))
+			 {
+				 data[i][5] = "Nein";
+			 }else{
+				 data[i][5] =  ausgabe.get(i).getTätigkeitsnachweis();
+			 }
+        	 if(ausgabe.get(i).getVortrag().equals("nein"))
+			 {
+				 data[i][6] = "Nein";
+			 }else{
+				 data[i][6] =  ausgabe.get(i).getVortrag();
+			 }
+        	 data[i][7] =  ausgabe.get(i).getBericht();
 		 }
  
  
         final JTable table = new JTable(data, columnNames);
         table.setPreferredScrollableViewportSize(new Dimension(500, 70));
         table.setFillsViewportHeight(true);
-        table.getColumnModel().getColumn(3).setCellRenderer(new ButtonRenderer());
-        table.getColumnModel().getColumn(3).setCellEditor(new ButtonEditor(new JCheckBox()));
+        table.getColumnModel().getColumn(5).setCellRenderer(new ButtonRenderer());
+        table.getColumnModel().getColumn(5).setCellEditor(new ButtonEditor(new JCheckBox()));
+        table.getColumnModel().getColumn(6).setCellRenderer(new ButtonRenderer());
+        table.getColumnModel().getColumn(6).setCellEditor(new ButtonEditor(new JCheckBox()));
+        table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
  
         if (DEBUG) {
             table.addMouseListener(new MouseAdapter() {
@@ -93,9 +104,9 @@ public class PPANachGUI extends JPanel {
         //Create the scroll pane and add the table to it.
         JScrollPane scrollbar = new JScrollPane(table);
         
-        JButton btnNewButton = new JButton("Zuteilung beenden");
+        JButton btnNewButton = new JButton("Senden");
         btnNewButton.setFont(new Font("Dialog", Font.PLAIN, 13));
-        btnNewButton.setBackground(new Color(255, 0, 0));
+        btnNewButton.setBackground(new Color(0, 128, 255));
         btnNewButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
 //        		Mail mail = new Mail();
@@ -155,7 +166,7 @@ public class PPANachGUI extends JPanel {
    	         ArrayList<Student> ausgabe = db.ausgeben();
         
         	 for (int i=0;i< ausgabe.size();i++) {
-        		 if(ausgabe.get(i).getProf().getNachname()==null) {
+        		 if(ausgabe.get(i).getTätigkeitsnachweis().equals("nein") || ausgabe.get(i).getVortrag().equals("nein") ) {
         			 if (row == i) { 
         				 if (isSelected) {
                         
@@ -200,7 +211,7 @@ public class PPANachGUI extends JPanel {
         	 
         
         	 for (int i=0;i< ausgabe.size();i++) {
-        		 if(ausgabe.get(i).getProf().getNachname()==null) {
+        		 if(ausgabe.get(i).getTätigkeitsnachweis().equals("nein") || ausgabe.get(i).getVortrag().equals("nein")) {
         			 buttonRow = row;
         			 buttonColumn = column;
         			 if(row == i || column == 2) {
@@ -221,8 +232,40 @@ public class PPANachGUI extends JPanel {
         public Object getCellEditorValue() {
             if (isPushed) {
                 // Öffne ein neues Fenster, wenn der Button geklickt wird
-            	String message = "Name: " + ausgabe.get(buttonRow).getUnternehmen();
-            	JOptionPane.showMessageDialog(null, message, "Informationen zum Unternehmen", JOptionPane.INFORMATION_MESSAGE);
+            	DatenabrufStudent db = new DatenabrufStudent();
+      	      	ArrayList<Student> ausgabestudent = db.ausgeben();
+      	      	
+      	      	Object[] message = new Object[ausgabestudent.size()-1];
+      	      	for (int i = 1; i < ausgabestudent.size(); i++) {
+      	      		message[1] = new JCheckBox("Ja");
+      	      		message[2] = new JCheckBox("Nein");
+      	      	}
+      	      	
+      	      	
+            	int option = JOptionPane.showOptionDialog(null,
+                        message,
+                        "Status ändern",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE,
+                        null,
+                        new String[]{"Auswählen", "Zurück"},
+                        "Zurück");
+            	
+            	if (option == JOptionPane.YES_OPTION) {
+                	//Hier kann dann in die Datenbank eingelesen werden
+            		int nummer = ausgabe.get(buttonRow).getMatrikelnr();
+            		
+            		for (int i = 1; i < ausgabestudent.size()-1; i++) {
+                		if (((JCheckBox) message[i]).isSelected()) {
+   //             			db.aendern(ausgabestudent.get(i+1).getTätigkeitsnachweis(), nummer);
+                		}
+              
+                	}
+            		
+            		frame.dispose();
+                    PPANachGUI neu = new PPANachGUI(anmeldename);
+                    neu.main(null);
+                }
             } 
           
             isPushed = false;
