@@ -72,7 +72,7 @@ public class ProfessorenNachGUI extends JPanel{
 				 data[j][1] =  verkuerzt.get(j).getEmail();
 				 data[j][2] =  verkuerzt.get(j).getUnternehmen();
 				 data[j][3] = verkuerzt.get(j).getBeginn() + " - " + verkuerzt.get(j).getEnde();
-				 if(verkuerzt.get(j).getbesuchsbericht()==null){
+				 if(verkuerzt.get(j).getbesuchsbericht().equals("")){
 					 data[j][4] = "Erstellen";
 				 }
 				 else {
@@ -140,13 +140,14 @@ public class ProfessorenNachGUI extends JPanel{
     
  // TableCellRenderer für den JButton-Objekt
     static class ButtonRenderer extends JButton implements TableCellRenderer {
+    	DatenabrufStudent db = new DatenabrufStudent();
+	    ArrayList<Student> ausgabe = db.ausgeben();
         public ButtonRenderer() {
             setOpaque(true);
         }
         
         public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-        	 DatenabrufStudent db = new DatenabrufStudent();
-   	         ArrayList<Student> ausgabe = db.ausgeben();
+        	 
         
         	 for (int i=0;i< ausgabe.size();i++) {
         		 if(ausgabe.get(i).getbesuchsbericht().equals("") || column == 2) {
@@ -177,7 +178,7 @@ public class ProfessorenNachGUI extends JPanel{
         private int buttonRow;
         private int buttonColumn;
         private DatenabrufStudent db = new DatenabrufStudent();
-	
+        private ArrayList<Student> ausgabe = db.ausgeben();
         
         public ButtonEditor(JCheckBox checkBox) {
             super(checkBox);
@@ -196,7 +197,7 @@ public class ProfessorenNachGUI extends JPanel{
         	 for (int i=0;i< verkuerzt.size();i++) {
         			 buttonRow = row;
         			 buttonColumn = column;
-        			 if(row == i || column == 2 || column == 4) {
+        			 if(column == 2 || !ausgabe.get(i).getbesuchsbericht().equals("")) {
         				 if (isSelected) {
         					
         				 } else {
