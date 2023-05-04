@@ -146,37 +146,39 @@ public class ProfessorenNachGUI extends JPanel{
         }
         
         public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-        	 DatenabrufStudent db = new DatenabrufStudent();
-    	     ArrayList<Student> ausgabe = db.ausgeben();
-    	     ArrayList<Student> verkuerzt = new ArrayList<>();
-    	     for (int j=0;j< ausgabe.size();j++) {
-    			if(ausgabe.get(j).getProf().getAnmeldename().equals(anmeldename)){
-    				verkuerzt.add(ausgabe.get(j));
-    			}
-    	      }
-    	     
-    	     
-        	 for (int i=0;i< ausgabe.size();i++) {
-        		 if(verkuerzt.get(i).getbesuchsbericht().equals(" ") || column == 2) {
-        			 if (row == i || column == 2) { 
-        				 
-        				 if (isSelected) {
-        					 setForeground(table.getSelectionForeground());
-                             setBackground(table.getSelectionBackground());
-        				 } else {
-        			         setForeground(table.getForeground());
-                             setBackground(UIManager.getColor("Button.background"));
-                     }
-                     setText((value == null) ? "" : value.toString());
-                     return this;
-			 }
-            } else { // alle anderen Zellen
-                return new JLabel((value == null) ? "" : value.toString());
-            }
-        }
-        	 return new JLabel((value == null) ? "" : value.toString());
-       }
-    }
+			DatenabrufStudent db = new DatenabrufStudent();
+			ArrayList<Student> ausgabe = db.ausgeben();
+			ArrayList<Student> verkuerzt = new ArrayList<>();
+			for (int j = 0; j < ausgabe.size(); j++) {
+				if (ausgabe.get(j).getProf().getAnmeldename().equals(anmeldename)) {
+					verkuerzt.add(ausgabe.get(j));
+				}
+			}
+
+			for (int i = 0; i < ausgabe.size(); i++) {
+				System.out.println(i);
+				if (verkuerzt.get(i).getbesuchsbericht().equals("1")) {
+				
+					if (row == i || column == 2) {
+
+						if (isSelected) {
+							setForeground(table.getSelectionForeground());
+							setBackground(table.getSelectionBackground());
+						} else {
+							setForeground(table.getForeground());
+							setBackground(UIManager.getColor("Button.background"));
+						}
+						setText((value == null) ? "" : value.toString());
+						return this;
+					}
+				} else { // alle anderen Zellen
+					
+					return new JLabel((value == null) ? "" : value.toString());
+				}
+			}
+			return new JLabel((value == null) ? "" : value.toString());
+		}
+	}
     
     // TableCellEditor für den JButton-Objekt
     static class ButtonEditor extends DefaultCellEditor {
