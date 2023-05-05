@@ -218,7 +218,7 @@ public class ProfessorenWaehrendGUI extends JPanel{
                   message += String.format("%-38s%s\n", "Zeitraum:", unternehmenls.get(buttonRow).getBeginn() + " - " + unternehmenls.get(buttonRow).getEnde());
                   message += String.format("%-31s%s\n", "Themenbereich:", unternehmenls.get(buttonRow).getThema());
                   message += String.format("%-32s%s\n", "Beschreibung:", unternehmenls.get(buttonRow).getBeschreibung());
-
+                  
             	JOptionPane.showMessageDialog(null, message, "Informationen zum Unternehmen", JOptionPane.INFORMATION_MESSAGE);
             } else {
             	int option = JOptionPane.showOptionDialog(null,
