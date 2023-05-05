@@ -9,6 +9,8 @@ import java.awt.event.MouseEvent;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 import java.util.ArrayList;
+import java.util.Collections;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -55,6 +57,7 @@ public class ProfessorenWaehrendGUI extends JPanel{
 		 						};
 		 DatenabrufStudent db = new DatenabrufStudent();
 	      ArrayList<Student> ausgabe = db.ausgeben();
+	      Collections.sort(ausgabe, new MyComparator2());
 		
 		 Object [][] data = new Object [ausgabe.size()][5];
 		 for (int i=0;i< ausgabe.size();i++)
