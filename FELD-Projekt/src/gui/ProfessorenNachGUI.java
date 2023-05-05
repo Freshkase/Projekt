@@ -231,7 +231,23 @@ public class ProfessorenNachGUI extends JPanel{
             if (isPushed) {
                 // Öffne ein neues Fenster, wenn der Button geklickt wird
             if(buttonColumn == 5) {
-            	//hier reinschreiben was bei Button-Klick BPS-Bericht Ja/Nein passiert
+            	int option = JOptionPane.showOptionDialog(null,
+                        "Wollen sie den Status ändern? ",
+                        "Bestätigung",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE,
+                        null,
+                        new String[]{"Ja", "Zurück"},
+                        "Zurück");
+                
+                if (option == JOptionPane.YES_OPTION) {
+                	DatenabrufStudent db = new DatenabrufStudent();
+                	db.einlesenbericht(verkuerzt.get(buttonRow).getMatrikelnr());
+            		frame.dispose();
+            		ProfessorenWaehrendGUI neu = new ProfessorenWaehrendGUI(anmeldename);
+                    neu.main(null);
+                	
+                }
             	
             } if(buttonColumn == 4) {
             	JPanel panel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
