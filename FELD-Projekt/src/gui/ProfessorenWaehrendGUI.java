@@ -24,6 +24,7 @@ import javax.swing.JCheckBox;
 
 import datenbank.DatenabrufProfessor;
 import datenbank.DatenabrufStudent;
+import datenbank.MyComparator;
 import objekte.Professor;
 import objekte.Student;
 import objekte.Unternehmen;
@@ -31,6 +32,7 @@ import objekte.Unternehmen;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.UIManager;
+import datenbank.MyComparator2;
 
 public class ProfessorenWaehrendGUI extends JPanel{
 	private boolean DEBUG = false;
@@ -208,6 +210,15 @@ public class ProfessorenWaehrendGUI extends JPanel{
             if(buttonColumn == 2) {
             	  DatenabrufStudent db = new DatenabrufStudent();
                   ArrayList<Unternehmen> unternehmenls = db.ausUnternehmen();
+                  DatenabrufStudent dk = new DatenabrufStudent();
+         	     ArrayList<Student> ausgabe = dk.ausgeben();
+         	    Collections.sort(ausgabe, new MyComparator2());
+                  
+                  for(int i=0;i<=unternehmenls.size()-1;i++)
+                  {  
+                  if(ausgabe.get(buttonRow).getAnmeldename().equals(unternehmenls.get(i).getanmeldesnamedesstudenten()))
+                  {
+                  
                   String message = String.format("%-40s%s\n", "Name:", unternehmenls.get(buttonRow).getName());
                   message += String.format("%-39s%s\n", "Anschrift:", unternehmenls.get(buttonRow).getAnschrift());
                   message += String.format("%-41s%s\n", "URL:", unternehmenls.get(buttonRow).getUrl());
@@ -220,7 +231,10 @@ public class ProfessorenWaehrendGUI extends JPanel{
                   message += String.format("%-32s%s\n", "Beschreibung:", unternehmenls.get(buttonRow).getBeschreibung());
                   
             	JOptionPane.showMessageDialog(null, message, "Informationen zum Unternehmen", JOptionPane.INFORMATION_MESSAGE);
-            } else {
+                  }
+                  }
+                  
+                  } else {
             	int option = JOptionPane.showOptionDialog(null,
                         "Sind Sie sicher? ",
                         "Bestätigung",
