@@ -211,24 +211,24 @@ public class ProfessorenWaehrendGUI extends JPanel{
             	  DatenabrufStudent db = new DatenabrufStudent();
                   ArrayList<Unternehmen> unternehmenls = db.ausUnternehmen();
                   DatenabrufStudent dk = new DatenabrufStudent();
-         	     ArrayList<Student> ausgabe = dk.ausgeben();
-         	    Collections.sort(ausgabe, new MyComparator2());
+         	     ArrayList<Student> hallo = dk.ausgeben();
+         	    Collections.sort(hallo, new MyComparator2());
                   
                   for(int i=0;i<=unternehmenls.size()-1;i++)
                   {  
-                  if(ausgabe.get(buttonRow).getAnmeldename().equals(unternehmenls.get(i).getanmeldesnamedesstudenten()))
+                  if(hallo.get(buttonRow).getAnmeldename().equals(unternehmenls.get(i).getanmeldesnamedesstudenten()))
                   {
                   
-                  String message = String.format("%-40s%s\n", "Name:", unternehmenls.get(buttonRow).getName());
-                  message += String.format("%-39s%s\n", "Anschrift:", unternehmenls.get(buttonRow).getAnschrift());
-                  message += String.format("%-41s%s\n", "URL:", unternehmenls.get(buttonRow).getUrl());
-                  message += String.format("%-41s%s\n", "E-Mail:", unternehmenls.get(buttonRow).getEmail());
-                  message += String.format("%-31s%s\n", "Firmen-Betreuer:", unternehmenls.get(buttonRow).getBetreuer());
-                  message += String.format("%-31s%s\n", "Telefonnummer:", unternehmenls.get(buttonRow).getTelefon());
-                  message += String.format("%-38s%s\n", "Abteilung:", unternehmenls.get(buttonRow).getBereich());
-                  message += String.format("%-38s%s\n", "Zeitraum:", unternehmenls.get(buttonRow).getBeginn() + " - " + unternehmenls.get(buttonRow).getEnde());
-                  message += String.format("%-31s%s\n", "Themenbereich:", unternehmenls.get(buttonRow).getThema());
-                  message += String.format("%-32s%s\n", "Beschreibung:", unternehmenls.get(buttonRow).getBeschreibung());
+                  String message = String.format("%-40s%s\n", "Name:", unternehmenls.get(i).getName());
+                  message += String.format("%-39s%s\n", "Anschrift:", unternehmenls.get(i).getAnschrift());
+                  message += String.format("%-41s%s\n", "URL:", unternehmenls.get(i).getUrl());
+                  message += String.format("%-41s%s\n", "E-Mail:", unternehmenls.get(i).getEmail());
+                  message += String.format("%-31s%s\n", "Firmen-Betreuer:", unternehmenls.get(i).getBetreuer());
+                  message += String.format("%-31s%s\n", "Telefonnummer:", unternehmenls.get(i).getTelefon());
+                  message += String.format("%-38s%s\n", "Abteilung:", unternehmenls.get(i).getBereich());
+                  message += String.format("%-38s%s\n", "Zeitraum:", unternehmenls.get(i).getBeginn() + " - " + unternehmenls.get(buttonRow).getEnde());
+                  message += String.format("%-31s%s\n", "Themenbereich:", unternehmenls.get(i).getThema());
+                  message += String.format("%-32s%s\n", "Beschreibung:", unternehmenls.get(i).getBeschreibung());
                   
             	JOptionPane.showMessageDialog(null, message, "Informationen zum Unternehmen", JOptionPane.INFORMATION_MESSAGE);
                   }
