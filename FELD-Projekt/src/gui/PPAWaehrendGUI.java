@@ -159,7 +159,7 @@ public class PPAWaehrendGUI extends JPanel  {
             }
             System.out.println();
         }
-        System.out.println("--------------------------");
+        System.out.println("--------------------------"); 
     }
     
  // TableCellRenderer für den JButton-Objekt
