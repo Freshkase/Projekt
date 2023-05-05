@@ -244,7 +244,7 @@ public class ProfessorenNachGUI extends JPanel{
                 	DatenabrufStudent db = new DatenabrufStudent();
                 	db.einlesenbericht(verkuerzt.get(buttonRow).getMatrikelnr());
             		frame.dispose();
-            		ProfessorenWaehrendGUI neu = new ProfessorenWaehrendGUI(anmeldename);
+            		ProfessorenNachGUI neu = new ProfessorenNachGUI(anmeldename);
                     neu.main(null);
                 	
                 }
