@@ -111,7 +111,8 @@ public class ProfessorenNachGUI extends JPanel{
      	 final JTable table = new JTable(data, columnNames);
          table.setPreferredScrollableViewportSize(new Dimension(500, 70));
          table.setFillsViewportHeight(true);
-        
+         table.getColumnModel().getColumn(2).setCellRenderer(new ButtonRenderer());
+         table.getColumnModel().getColumn(2).setCellEditor(new ButtonEditor(new JCheckBox()));
          table.getColumnModel().getColumn(4).setCellRenderer(new ButtonRenderer());
          table.getColumnModel().getColumn(4).setCellEditor(new ButtonEditor(new JCheckBox()));
          table.getColumnModel().getColumn(5).setCellRenderer(new ButtonRenderer());
@@ -173,7 +174,7 @@ public class ProfessorenNachGUI extends JPanel{
 		public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
 				int row, int column) {
 			for (int i = 0; i < verkuerzt.size(); i++) {
-				if (verkuerzt.get(i).getBesuchsbericht().equals(" ") || column == 5) {
+				if (verkuerzt.get(i).getBesuchsbericht().equals(" ") || column == 5 || column ==2) {
 					if(row == i || column == 5) {
 					setText((value == null) ? "" : value.toString());
 					return this;
@@ -208,7 +209,7 @@ public class ProfessorenNachGUI extends JPanel{
         
         public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
        	 	for (int i=0;i< verkuerzt.size();i++) {
-       	 		if(verkuerzt.get(i).getBesuchsbericht().equals(" ") || column == 5) {
+       	 		if(verkuerzt.get(i).getBesuchsbericht().equals(" ") || column == 5 || column ==2) {
        			 buttonRow = row;
        			 buttonColumn = column;
        			 if(row == i || column == 5) {
@@ -232,7 +233,7 @@ public class ProfessorenNachGUI extends JPanel{
             if(buttonColumn == 5) {
             	//hier reinschreiben was bei Button-Klick BPS-Bericht Ja/Nein passiert
             	
-            } else {
+            } if(buttonColumn == 4) {
             	JPanel panel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
 		        JTextArea textArea = new JTextArea(45, 120);
 		        if(verkuerzt.get(buttonRow).getBesuchsbericht().equals(" ")){
@@ -256,12 +257,37 @@ public class ProfessorenNachGUI extends JPanel{
 	                neue.main(null);
 		            
 		        }
-		        
-		        
-                
+
             }
+            if(buttonColumn == 2) {
             	
+            	 DatenabrufStudent db = new DatenabrufStudent();
+                 ArrayList<Unternehmen> unternehmenls = db.ausUnternehmen();
+                 
+
+
+                 for(int i=0;i<=unternehmenls.size()-1;i++)
+                 {  
+                 if(verkuerzt.get(buttonRow).getAnmeldename().equals(unternehmenls.get(i).getanmeldesnamedesstudenten()))
+                 {
+           	String message = "Name: " + unternehmenls.get(i).getName() + "\n"
+                       + "Anschrift: " + unternehmenls.get(i).getAnschrift() + "\n"
+                       + "URL: " + unternehmenls.get(i).getUrl() + "\n"
+                       + "E-Mail: " + unternehmenls.get(i).getEmail() + "\n"
+                       + "Firmen-Betreuer: " + unternehmenls.get(i).getBetreuer() + "\n"
+                       + "Telefonnummer: " + unternehmenls.get(i).getTelefon() + "\n"
+                       + "Abteilung: " + unternehmenls.get(i).getBereich() + "\n"
+                       + "Zeitraum: " + unternehmenls.get(i).getBeginn() + " - " + unternehmenls.get(i).getEnde() + "\n"
+                       + "Themenbereich: " + unternehmenls.get(i).getThema() + "\n"
+                       + "Beschreibung: " + unternehmenls.get(i).getBeschreibung() + "\n";
+           	JOptionPane.showMessageDialog(null, message, "Informationen zum Unternehmen", JOptionPane.INFORMATION_MESSAGE);
+            	
+                 }
             }
+            }
+            }
+            
+            
             isPushed = false;
             return new String(label);
         }

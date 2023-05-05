@@ -12,9 +12,10 @@ public class Unternehmen {
 	private String ende;
 	private String thema;
 	private String beschreibung;
+	private String anmeldesnamedesstudenten;
 	
 	public Unternehmen(String name, String anschrift, String url, String email, String betreuer, String telefon,
-			String bereich, String beginn, String ende, String thema, String beschreibung) {
+			String bereich, String beginn, String ende, String thema, String beschreibung,String anmeldesnamedesstudenten) {
 		super();
 		this.name = name;
 		this.anschrift = anschrift;
@@ -27,6 +28,7 @@ public class Unternehmen {
 		this.ende = ende;
 		this.thema = thema;
 		this.beschreibung = beschreibung;
+		this.anmeldesnamedesstudenten= anmeldesnamedesstudenten;
 	}
 
 	public String getName() {
@@ -71,6 +73,10 @@ public class Unternehmen {
 
 	public String getBeschreibung() {
 		return beschreibung;
+	}
+	
+	public String getanmeldesnamedesstudenten() {
+		return anmeldesnamedesstudenten;
 	}
 	
 	

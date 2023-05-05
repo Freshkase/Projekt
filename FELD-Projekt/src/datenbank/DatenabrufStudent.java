@@ -126,10 +126,10 @@ public class DatenabrufStudent {
 			conn = DriverManager.getConnection(url + dbName, username, password);
 
 			Statement anweisung = conn.createStatement();
-			ResultSet rs = anweisung.executeQuery("SELECT studenten.Name_Unternehmen, studenten.Firmenanschrift, studenten.URL_Unternehmen, studenten.E_Mail_Unternehmen, studenten.Firmenbetreuer, studenten.Telefonnummer_Unternehmen, studenten.Abteilung, studenten.Beginn_BPS, studenten.Ende_BPS, studenten.Themenbereich_BPS, studenten.Stellenbeschreibung FROM studenten, professoren WHERE studenten.Professoren_ID=professoren.Professoren_ID");
+			ResultSet rs = anweisung.executeQuery("SELECT studenten.Name_Unternehmen, studenten.Firmenanschrift, studenten.URL_Unternehmen, studenten.E_Mail_Unternehmen, studenten.Firmenbetreuer, studenten.Telefonnummer_Unternehmen, studenten.Abteilung, studenten.Beginn_BPS, studenten.Ende_BPS, studenten.Themenbereich_BPS, studenten.Stellenbeschreibung, studenten.Anmeldename FROM studenten, professoren WHERE studenten.Professoren_ID=professoren.Professoren_ID");
 
 			while (rs.next()) {
-				ausgaben.add(new Unternehmen(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9),rs.getString(10),rs.getString(11)));
+				ausgaben.add(new Unternehmen(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12)));
 			}
 			
 			
