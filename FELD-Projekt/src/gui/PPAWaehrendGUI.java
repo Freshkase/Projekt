@@ -9,6 +9,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.Collections;
+
 import javax.swing.DefaultCellEditor;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -46,7 +48,7 @@ public class PPAWaehrendGUI extends JPanel  {
                                 };
         
         DatenabrufStudent db = new DatenabrufStudent();
-	      ArrayList<Student> ausgabe = db.ausgeben();
+	    ArrayList<Student> ausgabe = db.ausgeben();
        
         Object [][] data = new Object [ausgabe.size()][4];
         for (int i=0;i< ausgabe.size();i++)

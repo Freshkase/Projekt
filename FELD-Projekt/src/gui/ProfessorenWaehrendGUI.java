@@ -57,7 +57,6 @@ public class ProfessorenWaehrendGUI extends JPanel{
 		 						};
 		 DatenabrufStudent db = new DatenabrufStudent();
 	     ArrayList<Student> ausgabe = db.ausgeben();
-	     Collections.sort(ausgabe, new MyComparator2());
 		
 		 Object [][] data = new Object [ausgabe.size()][5];
 		 for (int i=0;i< ausgabe.size();i++)
@@ -139,7 +138,6 @@ public class ProfessorenWaehrendGUI extends JPanel{
         public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
         	 DatenabrufStudent db = new DatenabrufStudent();
    	         ArrayList<Student> ausgabe = db.ausgeben();
-   	         Collections.sort(ausgabe, new MyComparator2());
         
         	 for (int i=0;i< ausgabe.size();i++) {
         		 if(ausgabe.get(i).getProf().getNachname()==null || column == 2) {
@@ -185,7 +183,6 @@ public class ProfessorenWaehrendGUI extends JPanel{
         
         public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
         	 
-        	 Collections.sort(ausgabe, new MyComparator2());
         	 for (int i=0;i< ausgabe.size();i++) {
         		 if(ausgabe.get(i).getProf().getNachname()==null || column == 2) {
         			 buttonRow = row;

@@ -1,4 +1,4 @@
-package gui;
+package datenbank;
 
 import java.util.Comparator;
 
