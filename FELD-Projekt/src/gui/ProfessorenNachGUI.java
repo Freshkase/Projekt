@@ -45,6 +45,7 @@ public class ProfessorenNachGUI extends JPanel{
 	private static JFrame frame;
 	private static ArrayList<Student> verkuerzt2 = new ArrayList<>();
 	private static ArrayList<Student> verkuerzt = new ArrayList<>();
+	private static HashSet<Student> unique = new HashSet<>();
 	/**
 	 * Launch the application.
 	 */
@@ -78,7 +79,6 @@ public class ProfessorenNachGUI extends JPanel{
 
 	     }
 	     
-	     HashSet<Student> unique = new HashSet<>();
 	     for (int i = 0; i < verkuerzt2.size();i++) {
 	    	 unique.add(verkuerzt2.get(i));
 	     }
@@ -90,10 +90,11 @@ public class ProfessorenNachGUI extends JPanel{
 	     }
 	     
 	     Collections.sort(verkuerzt, new MyComparator());
-		
+	     
 		 Object [][] data = new Object [verkuerzt.size()][6];
 		 for (int i=0;i< verkuerzt.size();i++)
 		 {
+			 
 			 data[i][0] =  verkuerzt.get(i).getNachname() + ", " + verkuerzt.get(i).getVorname();
 			 data[i][1] =  verkuerzt.get(i).getEmail();
 			 data[i][2] =  verkuerzt.get(i).getUnternehmen();
@@ -246,10 +247,11 @@ public class ProfessorenNachGUI extends JPanel{
 		            db.BesuchsberichtErstellen(input, verkuerzt.get(buttonRow).getMatrikelnr());
 		            
 		            
-		            
+		            verkuerzt.clear();
+		            verkuerzt2.clear();
+		            unique.clear();
 		            frame.dispose();
-		           
-		            //lädt irgendwie nicht die aktuelle Version??? bei PPAWaehrendGUI klappt es so jedoch
+		            
 		            ProfessorenNachGUI neue = new ProfessorenNachGUI(anmeldename);
 	                neue.main(null);
 		            

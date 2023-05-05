@@ -138,7 +138,6 @@ public class ProfessorenWaehrendGUI extends JPanel{
    	         ArrayList<Student> ausgabe = db.ausgeben();
         
         	 for (int i=0;i< ausgabe.size();i++) {
-        		 System.out.println(i);
         		 if(ausgabe.get(i).getProf().getNachname()==null || column == 2) {
         			 if (row == i || column == 2) { 
         				 if (isSelected) {
