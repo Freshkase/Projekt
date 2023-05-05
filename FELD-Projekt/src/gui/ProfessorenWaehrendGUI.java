@@ -56,8 +56,8 @@ public class ProfessorenWaehrendGUI extends JPanel{
 	        					"Betreuer",
 		 						};
 		 DatenabrufStudent db = new DatenabrufStudent();
-	      ArrayList<Student> ausgabe = db.ausgeben();
-	      Collections.sort(ausgabe, new MyComparator2());
+	     ArrayList<Student> ausgabe = db.ausgeben();
+	     Collections.sort(ausgabe, new MyComparator2());
 		
 		 Object [][] data = new Object [ausgabe.size()][5];
 		 for (int i=0;i< ausgabe.size();i++)
@@ -139,6 +139,7 @@ public class ProfessorenWaehrendGUI extends JPanel{
         public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
         	 DatenabrufStudent db = new DatenabrufStudent();
    	         ArrayList<Student> ausgabe = db.ausgeben();
+   	         Collections.sort(ausgabe, new MyComparator2());
         
         	 for (int i=0;i< ausgabe.size();i++) {
         		 if(ausgabe.get(i).getProf().getNachname()==null || column == 2) {
@@ -184,7 +185,7 @@ public class ProfessorenWaehrendGUI extends JPanel{
         
         public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
         	 
-        
+        	 Collections.sort(ausgabe, new MyComparator2());
         	 for (int i=0;i< ausgabe.size();i++) {
         		 if(ausgabe.get(i).getProf().getNachname()==null || column == 2) {
         			 buttonRow = row;
@@ -223,7 +224,7 @@ public class ProfessorenWaehrendGUI extends JPanel{
             	JOptionPane.showMessageDialog(null, message, "Informationen zum Unternehmen", JOptionPane.INFORMATION_MESSAGE);
             } else {
             	int option = JOptionPane.showOptionDialog(null,
-                        "Sind Sie sicher? " + ausgabe.get(buttonRow).getNachname(),
+                        "Sind Sie sicher? ",
                         "Bestätigung",
                         JOptionPane.YES_NO_OPTION,
                         JOptionPane.QUESTION_MESSAGE,
