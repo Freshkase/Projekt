@@ -42,24 +42,12 @@ public class StudentGUI extends JPanel {
                                 "Tätigkeitsnachweis",
                                 "BPS-Vortrag",
                                 };
+ 
         
-        String ausgabeBericht = "Nein";
-        String ausgabeNachweis = "Nein";
-        String ausgabeVortrag = "Nein";
-        
-        if (ausgabe.get(tmp).getBericht()=="nein") {
-        	ausgabeBericht = "Ja";
-        }
-        if (ausgabe.get(tmp).getTätigkeitsnachweis()=="nein") {
-        	ausgabeNachweis = "Ja";
-        }
-        if (ausgabe.get(tmp).getVortrag()=="nein") {
-        	ausgabeVortrag = "Ja";
-        }
         Object [][] data = new Object [1][3];
-        	data[0][0] = ausgabeBericht;
-        	data[0][1] = ausgabeNachweis;
-        	data[0][2] = ausgabeVortrag;
+        	data[0][0] = ausgabe.get(tmp).getBericht();
+        	data[0][1] = ausgabe.get(tmp).getTätigkeitsnachweis();
+        	data[0][2] = ausgabe.get(tmp).getVortrag();
  
  
         final JTable table = new JTable(data, columnNames);
