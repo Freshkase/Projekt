@@ -173,10 +173,10 @@ public class PPAWaehrendGUI extends JPanel  {
    	         ArrayList<Student> ausgabe = db.ausgeben();
         
         	 for (int i=0;i< ausgabe.size();i++) {
-        		 if(ausgabe.get(i).getProf().getNachname()==null) {
+        		 if(ausgabe.get(i).getProf().getNachname()==null)  {
         			 if (row == i) { 
         				 if (isSelected) {
-                        
+                         
         				 } else {
                          
                      }
