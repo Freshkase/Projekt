@@ -43,7 +43,7 @@ public class StudentGUI extends JPanel {
                                 "BPS-Vortrag",
                                 };
  
-        
+         
         Object [][] data = new Object [1][3];
         	data[0][0] = ausgabe.get(tmp).getBericht();
         	data[0][1] = ausgabe.get(tmp).getTätigkeitsnachweis();
