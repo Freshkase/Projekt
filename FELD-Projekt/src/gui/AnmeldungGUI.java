@@ -26,6 +26,7 @@ import java.awt.event.ActionEvent;
 
 public class AnmeldungGUI {
 
+	
 	private JFrame frame;
 	private JTextField textField;
 	private JPasswordField passwordField;
