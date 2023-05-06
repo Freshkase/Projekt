@@ -216,7 +216,7 @@ public class PPANachGUI extends JPanel {
         			 }
         		 }
         	}
-        	 return button;
+        	 return button; 
         }
         
         public Object getCellEditorValue() {
