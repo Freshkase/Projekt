@@ -86,8 +86,6 @@ public class PPANachGUI extends JPanel {
         final JTable table = new JTable(data, columnNames);
         table.setPreferredScrollableViewportSize(new Dimension(500, 70));
         table.setFillsViewportHeight(true);
-        table.getColumnModel().getColumn(5).setCellRenderer(new ButtonRenderer());
-        table.getColumnModel().getColumn(5).setCellEditor(new ButtonEditor(new JCheckBox()));
         table.getColumnModel().getColumn(6).setCellRenderer(new ButtonRenderer());
         table.getColumnModel().getColumn(6).setCellEditor(new ButtonEditor(new JCheckBox()));
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -165,7 +163,7 @@ public class PPANachGUI extends JPanel {
    	         ArrayList<Student> ausgabe = db.ausgeben();
         
         	 for (int i=0;i< ausgabe.size();i++) {
-        		 if(ausgabe.get(i).getTätigkeitsnachweis().equals("nein") || ausgabe.get(i).getVortrag().equals("nein") ) {
+        		 if(ausgabe.get(i).getVortrag().equals("nein")) {
         			 if (row == i) { 
         				 if (isSelected) {
                         
@@ -210,10 +208,10 @@ public class PPANachGUI extends JPanel {
         	 
         
         	 for (int i=0;i< ausgabe.size();i++) {
-        		 if(ausgabe.get(i).getTätigkeitsnachweis().equals("nein") || ausgabe.get(i).getVortrag().equals("nein")) {
+        		 if(ausgabe.get(i).getVortrag().equals("nein")) {
         			 buttonRow = row;
         			 buttonColumn = column;
-        			 if(row == i || column == 5 || column == 6) {
+        			 if(row == i || column == 6) {
         				 if (isSelected) {
         					
         				 } else {
@@ -241,14 +239,14 @@ public class PPANachGUI extends JPanel {
       	      	}
       	      	
       	      	
-            	int option = JOptionPane.showOptionDialog(null,
-                        message,
-                        "Status ändern",
-                        JOptionPane.YES_NO_OPTION,
-                        JOptionPane.QUESTION_MESSAGE,
-                        null,
-                        new String[]{"Auswählen", "Zurück"},
-                        "Zurück");
+      	      int option = JOptionPane.showOptionDialog(null,
+                      "Wollen Sie den Status ändern? ",
+                      "Bestätigung",
+                      JOptionPane.YES_NO_OPTION,
+                      JOptionPane.QUESTION_MESSAGE,
+                      null,
+                      new String[]{"Ja", "Zurück"},
+                      "Zurück");
             	
             	if (option == JOptionPane.YES_OPTION) {
                 	//Hier kann dann in die Datenbank eingelesen werden
@@ -256,7 +254,7 @@ public class PPANachGUI extends JPanel {
             		
             		for (int i = 1; i < ausgabestudent.size()-1; i++) {
                 		if (((JCheckBox) message[i]).isSelected()) {
-   //             			db.aendern(ausgabestudent.get(i+1).getTätigkeitsnachweis(), nummer);
+                			db.aendernVortrag(ausgabestudent.get(i+1).getTätigkeitsnachweis(), nummer);
                 		}
               
                 	}
