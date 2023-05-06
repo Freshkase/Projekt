@@ -200,6 +200,8 @@ public class StudiensektariatGUI extends JPanel{
             if (isPushed) {
                 // Öffne ein neues Fenster, wenn der Button geklickt wird
             if(buttonColumn == 4)  {
+            	if(ausgabe.get(buttonRow).getTätigkeitsnachweis().equals("nein"))
+            	{
                 	   
             	int option = JOptionPane.showOptionDialog(null,
                         "Sind Sie sicher? ",
@@ -222,9 +224,38 @@ public class StudiensektariatGUI extends JPanel{
             		frame.dispose();
             		StudiensektariatGUI neu = new StudiensektariatGUI(anmeldename);
                     neu.main(null);
-            	
+                }
+            	}
+            	else
+                {
+                	
+                	int option = JOptionPane.showOptionDialog(null,
+                            "dieser eintrag wurde bereits geändert ",
+                            "Bestätigung",
+                            JOptionPane.YES_NO_OPTION,
+                            JOptionPane.QUESTION_MESSAGE,
+                            null,
+                            new String[]{"Ja", "Zurück"},
+                            "Zurück");
+                    if (option == JOptionPane.YES_OPTION) {
+                    	
+                    	DatenabrufProfessor db2 = new DatenabrufProfessor();
+              	      	ArrayList<Professor> ausgabeprof = db2.ausgeben();
+                    	int nummer = ausgabe.get(buttonRow).getMatrikelnr();
+                		for (int i = 1; i < ausgabeprof.size(); i++) {
+                				db.einlesentätigkeitsnachweis(nummer);
+                				
+                			
+                		}
+                		frame.dispose();
+                		StudiensektariatGUI neu = new StudiensektariatGUI(anmeldename);
+                        neu.main(null);
+                    }
                 	
                 }
+            	
+                	
+                
                 
             }
             	
