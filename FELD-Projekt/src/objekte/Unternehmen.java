@@ -8,11 +8,13 @@ public class Unternehmen {
 	private String betreuer;
 	private String telefon;
 	private String bereich;
-	private String beginn;
-	private String ende;
 	private String thema;
 	private String beschreibung;
-	private String anmeldesnamedesstudenten;
+	private String anmeldenamedesstudenten;
+	
+	public Unternehmen (String name) {
+		this.name = name;
+	}
 	
 	public Unternehmen(String name, String anschrift, String url, String email, String betreuer, String telefon,
 			String bereich, String beginn, String ende, String thema, String beschreibung,String anmeldesnamedesstudenten) {
@@ -24,11 +26,9 @@ public class Unternehmen {
 		this.betreuer = betreuer;
 		this.telefon = telefon;
 		this.bereich = bereich;
-		this.beginn = beginn;
-		this.ende = ende;
 		this.thema = thema;
 		this.beschreibung = beschreibung;
-		this.anmeldesnamedesstudenten= anmeldesnamedesstudenten;
+		this.anmeldenamedesstudenten= anmeldesnamedesstudenten;
 	}
 
 	public String getName() {
@@ -59,14 +59,6 @@ public class Unternehmen {
 		return bereich;
 	}
 
-	public String getBeginn() {
-		return beginn;
-	}
-
-	public String getEnde() {
-		return ende;
-	}
-
 	public String getThema() {
 		return thema;
 	}
@@ -76,7 +68,7 @@ public class Unternehmen {
 	}
 	
 	public String getanmeldesnamedesstudenten() {
-		return anmeldesnamedesstudenten;
+		return anmeldenamedesstudenten;
 	}
 	
 	

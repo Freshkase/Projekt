@@ -13,8 +13,10 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import datenbank.DatenabrufPPA;
 import datenbank.DatenabrufProfessor;
 import datenbank.DatenabrufStudent;
+import datenbank.DatenabrufStudierendensekretariat;
 import datenbank.DatenabrufStatus;
 import objekte.Professor;
+import objekte.Sekretaerin;
 import objekte.Student;
 
 import javax.swing.JButton;
@@ -147,7 +149,7 @@ public class AnmeldungGUI {
 
 					boolean studentenpruefung = true;
 					for (int i = 0; i < name.length(); i++) {
-						if (name.charAt(i) == '.') {
+						if (name.charAt(i) == '.' || name.charAt(i) == '-') {
 							studentenpruefung = false;
 							break;
 						}
@@ -170,33 +172,44 @@ public class AnmeldungGUI {
 								lblNewLabel.setText("Falsche Eingabe!");
 								lblNewLabel.setForeground(Color.RED);
 							}
-							
-
 						}
 					} else {
-						DatenabrufProfessor dbprofessor = new DatenabrufProfessor();
-						ArrayList<Professor> ausgabeprofessor = dbprofessor.ausgeben();
-
-						for (int i = 0; i < ausgabeprofessor.size(); i++) {
-							if (name.equals(ausgabeprofessor.get(i).getAnmeldename())) {
-								if (ausgabeprofessor.get(i).getKennwort().equals(passwort)) {
-									ProfessorenWaehrendGUI professor = new ProfessorenWaehrendGUI(name);
-									professor.main(null);
-									frame.dispose();
-								}
-							} else {
-								textField.setText(null);
-								passwordField.setText(null);
-								lblNewLabel.setText("Falsche Eingabe!");
-								lblNewLabel.setForeground(Color.RED);
+						boolean sekretariatpruefung = false;
+						for (int i = 0; i < name.length(); i++) {
+							if (name.charAt(i) == '-') {
+								sekretariatpruefung = true;
+								break;
 							}
+						}
+						
+						if (sekretariatpruefung) {
+							textField.setText(null);
+							passwordField.setText(null);
+							lblNewLabel.setText("Zuteilungsprozess noch nicht beendet. Daher noch keinen Zugriff.");
+							lblNewLabel.setForeground(Color.RED);
+						} else {
+							DatenabrufProfessor dbprofessor = new DatenabrufProfessor();
+							ArrayList<Professor> ausgabeprofessor = dbprofessor.ausgeben();
 
+							for (int i = 0; i < ausgabeprofessor.size(); i++) {
+								if (name.equals(ausgabeprofessor.get(i).getAnmeldename())) {
+									if (ausgabeprofessor.get(i).getKennwort().equals(passwort)) {
+										ProfessorenWaehrendGUI professor = new ProfessorenWaehrendGUI(name);
+										professor.main(null);
+										frame.dispose();
+									}
+								} else {
+									textField.setText(null);
+									passwordField.setText(null);
+									lblNewLabel.setText("Falsche Eingabe!");
+									lblNewLabel.setForeground(Color.RED);
+								}
+
+							}
 						}
 					}
 
 				} else {
-					//ab hier ändern mit neuen GUI's
-					
 					if (name.charAt(1) == '.') {
 						DatenabrufPPA dbppa = new DatenabrufPPA();
 						ArrayList<Professor> ausgabeppa = dbppa.ausgeben();
@@ -221,7 +234,7 @@ public class AnmeldungGUI {
 
 					boolean studentenpruefung = true;
 					for (int i = 0; i < name.length(); i++) {
-						if (name.charAt(i) == '.') {
+						if (name.charAt(i) == '.' || name.charAt(i) == '-') {
 							studentenpruefung = false;
 							break;
 						}
@@ -247,23 +260,50 @@ public class AnmeldungGUI {
 
 						}
 					} else {
-						DatenabrufProfessor dbprofessor = new DatenabrufProfessor();
-						ArrayList<Professor> ausgabeprofessor = dbprofessor.ausgeben();
-
-						for (int i = 0; i < ausgabeprofessor.size(); i++) {
-							if (name.equals(ausgabeprofessor.get(i).getAnmeldename())) {
-								if (ausgabeprofessor.get(i).getKennwort().equals(passwort)) {
-									ProfessorenNachGUI professor = new ProfessorenNachGUI(name);
-									professor.main(null);
-									frame.dispose();
-								}
-							} else {
-								textField.setText(null);
-								passwordField.setText(null);
-								lblNewLabel.setText("Falsche Eingabe!");
-								lblNewLabel.setForeground(Color.RED);
+						boolean sekretariatpruefung = false;
+						for (int i = 0; i < name.length(); i++) {
+							if (name.charAt(i) == '-') {
+								sekretariatpruefung = true;
+								break;
 							}
+						}
+						
+						if (sekretariatpruefung) {
+							DatenabrufStudierendensekretariat dbstudierendensekretariat = new DatenabrufStudierendensekretariat();
+							ArrayList<Sekretaerin> ausgabesk = dbstudierendensekretariat.ausgeben();
 
+							for (int i = 0; i < ausgabesk.size(); i++) {
+								if (name.equals(ausgabesk.get(i).getAnmeldename())) {
+									if (ausgabesk.get(i).getKennwort().equals(passwort)) {
+										StudierendensekretariatGUI sk = new StudierendensekretariatGUI(name);
+										sk.main(null);
+										frame.dispose();
+									}
+								} else {
+									textField.setText(null);
+									passwordField.setText(null);
+									lblNewLabel.setText("Falsche Eingabe!");
+									lblNewLabel.setForeground(Color.RED);
+								}
+							}
+						} else {
+							DatenabrufProfessor dbprofessor = new DatenabrufProfessor();
+							ArrayList<Professor> ausgabeprofessor = dbprofessor.ausgeben();
+
+							for (int i = 0; i < ausgabeprofessor.size(); i++) {
+								if (name.equals(ausgabeprofessor.get(i).getAnmeldename())) {
+									if (ausgabeprofessor.get(i).getKennwort().equals(passwort)) {
+										ProfessorenNachGUI professor = new ProfessorenNachGUI(name);
+										professor.main(null);
+										frame.dispose();
+									}
+								} else {
+									textField.setText(null);
+									passwordField.setText(null);
+									lblNewLabel.setText("Falsche Eingabe!");
+									lblNewLabel.setForeground(Color.RED);
+								}
+							}
 						}
 					}
 				}
@@ -280,12 +320,6 @@ public class AnmeldungGUI {
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(20)
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblNewLabel_1)
-						.addComponent(lblNewLabel))
-					.addContainerGap(336, Short.MAX_VALUE))
-				.addGroup(gl_panel.createSequentialGroup()
 					.addGap(19)
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel.createSequentialGroup()
@@ -301,6 +335,13 @@ public class AnmeldungGUI {
 								.addComponent(btnAnmelden)
 								.addComponent(lblNewLabel_3))
 							.addGap(24))))
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(20)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addComponent(lblNewLabel_1)
+							.addContainerGap(376, Short.MAX_VALUE))))
 		);
 		gl_panel.setVerticalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)

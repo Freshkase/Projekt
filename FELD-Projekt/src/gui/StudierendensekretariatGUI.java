@@ -35,7 +35,7 @@ import javax.swing.UIManager;
 import datenbank.MyComparator2;
 import datenbank.MyComparator3;
 
-public class StudiensektariatGUI extends JPanel{
+public class StudierendensekretariatGUI extends JPanel{
 	private boolean DEBUG = false;
 	private static String anmeldename;
 	private static JFrame frame;
@@ -48,7 +48,7 @@ public class StudiensektariatGUI extends JPanel{
 	 * Create the application.
 	 */
 	  
-    public StudiensektariatGUI(String anmeldename) {
+    public StudierendensekretariatGUI(String anmeldename) {
 		
     	this.anmeldename = anmeldename;
 		
@@ -118,7 +118,7 @@ public class StudiensektariatGUI extends JPanel{
          	groupLayout.createParallelGroup(Alignment.TRAILING)
          		.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
          			.addGap(110)
-         			.addComponent(scrollbar, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE)
+         			.addComponent(scrollbar, GroupLayout.PREFERRED_SIZE, 600, GroupLayout.PREFERRED_SIZE)
          			.addContainerGap(447, Short.MAX_VALUE))
          );
          setLayout(groupLayout);
@@ -223,7 +223,7 @@ public class StudiensektariatGUI extends JPanel{
             			
             		}
             		frame.dispose();
-            		StudiensektariatGUI neu = new StudiensektariatGUI(anmeldename);
+            		StudierendensekretariatGUI neu = new StudierendensekretariatGUI(anmeldename);
                     neu.main(null);
                 }
             	}
@@ -260,11 +260,11 @@ public class StudiensektariatGUI extends JPanel{
 	 
 	 public static void createAndShowGUI() {
 	        //Create and set up the window.
-	        StudiensektariatGUI.frame = new JFrame("FELD-Studiensekteriat");
+	        StudierendensekretariatGUI.frame = new JFrame("FELD-Studiensekteriat");
 	        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	 
 	        //Create and set up the content pane.
-	        StudiensektariatGUI newContentPane = new StudiensektariatGUI(anmeldename);
+	        StudierendensekretariatGUI newContentPane = new StudierendensekretariatGUI(anmeldename);
 	        newContentPane.setOpaque(true); //content panes must be opaque
 	        frame.setContentPane(newContentPane);
 	 

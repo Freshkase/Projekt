@@ -7,15 +7,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -26,18 +21,14 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
-
 import datenbank.DatenabrufProfessor;
 import datenbank.DatenabrufStudent;
 import datenbank.MyComparator;
-import objekte.Professor;
 import objekte.Student;
 import objekte.Unternehmen;
-
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.ListSelectionModel;
-import javax.swing.UIManager;
 
 public class ProfessorenNachGUI extends JPanel{
 	private boolean DEBUG = false;
@@ -97,7 +88,7 @@ public class ProfessorenNachGUI extends JPanel{
 			 
 			 data[i][0] =  verkuerzt.get(i).getNachname() + ", " + verkuerzt.get(i).getVorname();
 			 data[i][1] =  verkuerzt.get(i).getEmail();
-			 data[i][2] =  verkuerzt.get(i).getUnternehmen();
+			 data[i][2] =  verkuerzt.get(i).getUnternehmen().getName();
 			 data[i][3] = verkuerzt.get(i).getBeginn() + " - " + verkuerzt.get(i).getEnde();
 			 if(verkuerzt.get(i).getBesuchsbericht().equals(" ")){
 				 data[i][4] = "Erstellen";
@@ -157,7 +148,7 @@ public class ProfessorenNachGUI extends JPanel{
          	groupLayout.createParallelGroup(Alignment.TRAILING)
          		.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
          			.addGap(110)
-         			.addComponent(scrollbar, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE)
+         			.addComponent(scrollbar, GroupLayout.PREFERRED_SIZE, 600, GroupLayout.PREFERRED_SIZE)
          			.addContainerGap(447, Short.MAX_VALUE))
          );
          setLayout(groupLayout);
@@ -233,6 +224,7 @@ public class ProfessorenNachGUI extends JPanel{
             if(buttonColumn == 5) {
             	DatenabrufStudent db = new DatenabrufStudent();
             	ArrayList<Student> ausgabe = db.ausgeben();
+            	Collections.sort(ausgabe, new MyComparator());
             	if(verkuerzt.get(buttonRow).getBericht().equals("nein"))
             	{
             	int option = JOptionPane.showOptionDialog(null,
@@ -306,7 +298,7 @@ public class ProfessorenNachGUI extends JPanel{
                        + "Firmen-Betreuer: " + unternehmenls.get(i).getBetreuer() + "\n"
                        + "Telefonnummer: " + unternehmenls.get(i).getTelefon() + "\n"
                        + "Abteilung: " + unternehmenls.get(i).getBereich() + "\n"
-                       + "Zeitraum: " + unternehmenls.get(i).getBeginn() + " - " + unternehmenls.get(i).getEnde() + "\n"
+                       + "Zeitraum: " + verkuerzt.get(buttonRow).getBeginn() + " - " + verkuerzt.get(buttonRow).getEnde() + "\n"
                        + "Themenbereich: " + unternehmenls.get(i).getThema() + "\n"
                        + "Beschreibung: " + unternehmenls.get(i).getBeschreibung() + "\n";
            	JOptionPane.showMessageDialog(null, message, "Informationen zum Unternehmen", JOptionPane.INFORMATION_MESSAGE);

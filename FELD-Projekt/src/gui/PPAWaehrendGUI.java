@@ -55,7 +55,7 @@ public class PPAWaehrendGUI extends JPanel  {
 		 {
 			 data[i][0] =  ausgabe.get(i).getNachname() + ", " + ausgabe.get(i).getVorname();
 			 data[i][1] =  ausgabe.get(i).getEmail();
-			 data[i][2] =  ausgabe.get(i).getUnternehmen();
+			 data[i][2] =  ausgabe.get(i).getUnternehmen().getName();
 			 if(ausgabe.get(i).getProf().getNachname()==null)
 			 {
 				 data[i][3] = "auswählen";
@@ -138,7 +138,7 @@ public class PPAWaehrendGUI extends JPanel  {
         			.addGap(20)
         			.addComponent(nichterlaubt)
         			.addGap(54)
-        			.addComponent(scrollbar, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+        			.addComponent(scrollbar, GroupLayout.PREFERRED_SIZE, 600, GroupLayout.PREFERRED_SIZE)
         			.addPreferredGap(ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
         			.addComponent(btnNewButton)
         			.addGap(25))

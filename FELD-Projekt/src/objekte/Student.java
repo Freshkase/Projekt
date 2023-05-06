@@ -5,7 +5,7 @@ import java.util.Objects;
 public class Student extends Person {
 	//Eigenschaften
 	private int matrikelnummer;
-	private String unternehmen;
+	private Unternehmen unternehmen;
 	private String bericht;
 	private String tätigkeitsnachweis;
 	private String vortrag;
@@ -18,7 +18,7 @@ public class Student extends Person {
 		super(email);
 	}
 
-	public Student(String anmeldename, String nachname, String vorname, int matrikelnummer, String email, String unternehmen, String bericht, String tätigkeitsnachweis, String vortrag, Professor prof, String kennwort, String beginn, String ende,String besuchsbericht) {
+	public Student(String anmeldename, String nachname, String vorname, int matrikelnummer, String email, Unternehmen unternehmen, String bericht, String tätigkeitsnachweis, String vortrag, Professor prof, String kennwort, String beginn, String ende,String besuchsbericht) {
 		super(nachname, vorname, email, kennwort, anmeldename);
 		this.unternehmen = unternehmen;
 		this.matrikelnummer = matrikelnummer;
@@ -40,7 +40,7 @@ public class Student extends Person {
 		return matrikelnummer;
 	}
 
-	public String getUnternehmen() {
+	public Unternehmen getUnternehmen() {
 		return unternehmen;
 	}
 

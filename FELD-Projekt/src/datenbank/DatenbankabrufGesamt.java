@@ -46,6 +46,11 @@ public class DatenbankabrufGesamt {
 				ausgabe.add(new Professor(rs3.getString(1)));
 			}
 			
+			ResultSet rs4 = anweisung.executeQuery("SELECT E_Mail FROM studierendensekretariat");
+			while (rs4.next()) {
+				ausgabe.add(new Professor(rs4.getString(1)));
+			}
+			
 			conn.close();
 			
 

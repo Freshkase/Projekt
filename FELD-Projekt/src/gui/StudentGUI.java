@@ -30,7 +30,6 @@ public class StudentGUI extends JPanel {
     	
         DatenabrufStudent db = new DatenabrufStudent();
         ArrayList<Student> ausgabe = db.ausgeben();
-        System.out.println(ausgabe);
         int tmp = 0;
         for (int i = 0; i < ausgabe.size(); i++) {
         	if (ausgabe.get(i).getAnmeldename().equals(anmeldename)) {
@@ -100,7 +99,7 @@ public class StudentGUI extends JPanel {
         JLabel unternehmenfix = new JLabel("Unternehmen:");
         unternehmenfix.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
         
-        JLabel unternehmen = new JLabel(ausgabe.get(tmp).getUnternehmen());
+        JLabel unternehmen = new JLabel(ausgabe.get(tmp).getUnternehmen().getName());
         unternehmen.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
         
        

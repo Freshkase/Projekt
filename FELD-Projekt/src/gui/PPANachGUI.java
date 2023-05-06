@@ -62,7 +62,7 @@ public class PPANachGUI extends JPanel {
 		 {
 			 data[i][0] =  ausgabe.get(i).getNachname() + ", " + ausgabe.get(i).getVorname();
 			 data[i][1] =  ausgabe.get(i).getEmail();
-			 data[i][2] =  ausgabe.get(i).getUnternehmen();
+			 data[i][2] =  ausgabe.get(i).getUnternehmen().getName();
 			 data[i][3] =  ausgabe.get(i).getProf().getNachname() + ", " + ausgabe.get(i).getProf().getVorname();
 			 if(ausgabe.get(i).getBesuchsbericht().equals(" "))
 			 {
@@ -121,7 +121,7 @@ public class PPANachGUI extends JPanel {
         	groupLayout.createParallelGroup(Alignment.TRAILING)
         		.addGroup(groupLayout.createSequentialGroup()
         			.addGap(90)
-        			.addComponent(scrollbar, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+        			.addComponent(scrollbar, GroupLayout.PREFERRED_SIZE, 600, GroupLayout.PREFERRED_SIZE)
         			.addPreferredGap(ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
         			.addComponent(btnNewButton)
         			.addGap(25))
@@ -225,6 +225,7 @@ public class PPANachGUI extends JPanel {
             	
             	DatenabrufStudent db = new DatenabrufStudent();
             	ArrayList<Student> ausgabe = db.ausgeben();
+            	Collections.sort(ausgabe, new MyComparator3());
             	if(ausgabe.get(buttonRow).getVortrag().equals("nein"))
             	{
             	int option = JOptionPane.showOptionDialog(null,
