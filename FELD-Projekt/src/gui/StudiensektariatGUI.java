@@ -197,7 +197,7 @@ public class StudiensektariatGUI extends JPanel{
         	}
         	 return button;
         }
-        
+       
         public Object getCellEditorValue() {
             if (isPushed) {
                 // Öffne ein neues Fenster, wenn der Button geklickt wird
