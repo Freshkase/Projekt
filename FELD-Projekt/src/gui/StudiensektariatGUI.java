@@ -215,7 +215,6 @@ public class StudiensektariatGUI extends JPanel{
           	      	ArrayList<Professor> ausgabeprof = db2.ausgeben();
                 	int nummer = ausgabe.get(buttonRow).getMatrikelnr();
             		for (int i = 1; i < ausgabeprof.size(); i++) {
-            				System.out.println(1);
             				db.einlesentätigkeitsnachweis(nummer);
             				
             			
