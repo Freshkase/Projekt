@@ -68,7 +68,7 @@ public class StudiensektariatGUI extends JPanel{
 			 data[i][3] =  ausgabe.get(i).getUnternehmen();
 			 data[i][4] = ausgabe.get(i).getTätigkeitsnachweis();
 			 
-		 }
+		 } 
 		
      	 final JTable table = new JTable(data, columnNames);
          table.setPreferredScrollableViewportSize(new Dimension(500, 70));
