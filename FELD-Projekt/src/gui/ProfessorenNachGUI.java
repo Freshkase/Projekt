@@ -231,10 +231,10 @@ public class ProfessorenNachGUI extends JPanel{
             if (isPushed) {
                 // Öffne ein neues Fenster, wenn der Button geklickt wird
             if(buttonColumn == 5) {
-            	 DatenabrufStudent db = new DatenabrufStudent();
-        	     ArrayList<Student> ausgabe = db.ausgeben();
-            	if(ausgabe.get(buttonRow).getBericht().equals("ja")){
-            		
+            	DatenabrufStudent db = new DatenabrufStudent();
+            	ArrayList<Student> ausgabe = db.ausgeben();
+            	if(verkuerzt.get(buttonRow).getBericht().equals("nein"))
+            	{
             	int option = JOptionPane.showOptionDialog(null,
                         "Wollen sie den Status ändern? ",
                         "Bestätigung",
@@ -243,10 +243,9 @@ public class ProfessorenNachGUI extends JPanel{
                         null,
                         new String[]{"Ja", "Zurück"},
                         "Zurück");
-            	
                 
                 if (option == JOptionPane.YES_OPTION) {
-
+                	
                 	db.einlesenbericht(verkuerzt.get(buttonRow).getMatrikelnr());
                 	verkuerzt.clear();
 		            verkuerzt2.clear();
@@ -256,12 +255,11 @@ public class ProfessorenNachGUI extends JPanel{
                     neu.main(null);
                 	
                 }
-            	}
-            	else
+            	}else
             	{
-            		String message="BPS-Bericht status wurde bereits auf ja gesetzt";
-            		JOptionPane.showMessageDialog(null, message, "Informationen zum Unternehmen", JOptionPane.INFORMATION_MESSAGE);
             		
+                   	JOptionPane.showMessageDialog(null, "BPS-Bericht wurde schon auf ja gesetzt", "Informationen zum Unternehmen", JOptionPane.INFORMATION_MESSAGE);
+
             	}
             	
             } if(buttonColumn == 4) {
