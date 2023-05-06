@@ -9,6 +9,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.Collections;
+
 import javax.swing.DefaultCellEditor;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -24,6 +26,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.table.TableCellRenderer;
 import datenbank.DatenabrufStudent;
+import datenbank.MyComparator3;
 import gui.ProfessorenWaehrendGUI.ButtonEditor;
 import gui.ProfessorenWaehrendGUI.ButtonRenderer;
 import objekte.Professor;
@@ -52,7 +55,7 @@ public class PPANachGUI extends JPanel {
         
         DatenabrufStudent db = new DatenabrufStudent();
 	    ArrayList<Student> ausgabe = db.ausgeben();
-	    
+	    Collections.sort(ausgabe, new MyComparator3());
        
         Object [][] data = new Object [ausgabe.size()][8];
         for (int i=0;i< ausgabe.size();i++)
@@ -242,7 +245,7 @@ public class PPANachGUI extends JPanel {
                 	DatenabrufStudent db = new DatenabrufStudent();
                 	db.aendernVortrag(ausgabe.get(buttonRow).getMatrikelnr());
             		frame.dispose();
-            		ProfessorenNachGUI neu = new ProfessorenNachGUI(anmeldename);
+            		PPANachGUI neu = new PPANachGUI(anmeldename);
                     neu.main(null);
                 	
                 }
