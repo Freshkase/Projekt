@@ -189,7 +189,7 @@ public class DatenabrufStudent {
 			conn = DriverManager.getConnection(url2 + dbName, username, password);
 
 			Statement anweisung = conn.createStatement();
-			String uebergabe = "UPDATE STUDENTEN SET Tätigkeitsnachweis = 'ja' WHERE Matrikelnummer = " + nummer;
+			String uebergabe = "UPDATE STUDENTEN SET BPS_Vortrag = 'ja' WHERE Matrikelnummer = " + nummer;
 			anweisung.executeUpdate(uebergabe);
 			
 			 
