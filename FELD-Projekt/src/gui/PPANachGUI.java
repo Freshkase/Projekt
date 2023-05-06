@@ -262,7 +262,7 @@ public class PPANachGUI extends JPanel {
  
     public static void createAndShowGUI() {
         //Create and set up the window.
-        JFrame frame = new JFrame("FELD-PPA");
+        PPANachGUI.frame = new JFrame("FELD-PPA");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
  
         //Create and set up the content pane.
