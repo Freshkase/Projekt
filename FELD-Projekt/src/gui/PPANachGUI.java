@@ -235,12 +235,13 @@ public class PPANachGUI extends JPanel {
                 if (option == JOptionPane.YES_OPTION) {
                 	DatenabrufStudent db = new DatenabrufStudent();
                 	db.aendernVortrag(ausgabe.get(buttonRow).getMatrikelnr());
-                	frame.dispose();
-            		PPANachGUI neu = new PPANachGUI(anmeldename);
-                    neu.main(null);
+                }
+                frame.dispose();
+        		PPANachGUI neu = new PPANachGUI(anmeldename);
+                neu.main(null);
                     
                 	
-                }
+                
             } 
           
             isPushed = false;
