@@ -216,13 +216,17 @@ public class PPANachGUI extends JPanel {
         			 }
         		 }
         	}
-        	 return button;
+        	 return button; 
         }
         
         public Object getCellEditorValue() {
             if (isPushed) {
                 // Öffne ein neues Fenster, wenn der Button geklickt wird
             	
+            	DatenabrufStudent db = new DatenabrufStudent();
+            	ArrayList<Student> ausgabe = db.ausgeben();
+            	if(ausgabe.get(buttonRow).getVortrag().equals("nein"))
+            	{
             	int option = JOptionPane.showOptionDialog(null,
                         "Wollen sie den Status ändern? ",
                         "Bestätigung",
@@ -233,7 +237,7 @@ public class PPANachGUI extends JPanel {
                         "Zurück");
                 
                 if (option == JOptionPane.YES_OPTION) {
-                	DatenabrufStudent db = new DatenabrufStudent();
+                	 
                 	db.aendernVortrag(ausgabe.get(buttonRow).getMatrikelnr());
                 	
                 	ausgabe.clear();
@@ -242,6 +246,14 @@ public class PPANachGUI extends JPanel {
                     neu.main(null);
                         
                 }
+            	}
+            	else 
+            	{
+            	
+                    
+            		JOptionPane.showMessageDialog(null, "BPS-Vortrag wurde schon auf ja gesetzt", "Informationen zum Unternehmen", JOptionPane.INFORMATION_MESSAGE);
+
+            	}
          
                 	
                 
