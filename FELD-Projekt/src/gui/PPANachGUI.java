@@ -229,39 +229,22 @@ public class PPANachGUI extends JPanel {
         public Object getCellEditorValue() {
             if (isPushed) {
                 // Öffne ein neues Fenster, wenn der Button geklickt wird
-            	DatenabrufStudent db = new DatenabrufStudent();
-      	      	ArrayList<Student> ausgabestudent = db.ausgeben();
-      	      	
-      	      	Object[] message = new Object[ausgabestudent.size()-1];
-      	      	for (int i = 1; i < ausgabestudent.size(); i++) {
-      	      		message[1] = new JCheckBox("Ja");
-      	      		message[2] = new JCheckBox("Nein");
-      	      	}
-      	      	
-      	      	
-      	      int option = JOptionPane.showOptionDialog(null,
-                      "Wollen Sie den Status ändern? ",
-                      "Bestätigung",
-                      JOptionPane.YES_NO_OPTION,
-                      JOptionPane.QUESTION_MESSAGE,
-                      null,
-                      new String[]{"Ja", "Zurück"},
-                      "Zurück");
-            	
-            	if (option == JOptionPane.YES_OPTION) {
-                	//Hier kann dann in die Datenbank eingelesen werden
-            		int nummer = ausgabe.get(buttonRow).getMatrikelnr();
-            		
-            		for (int i = 1; i < ausgabestudent.size()-1; i++) {
-                		if (((JCheckBox) message[i]).isSelected()) {
-                			db.aendernVortrag(ausgabestudent.get(i+1).getTätigkeitsnachweis(), nummer);
-                		}
-              
-                	}
-            		
+            	int option = JOptionPane.showOptionDialog(null,
+                        "Wollen sie den Status ändern? ",
+                        "Bestätigung",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE,
+                        null,
+                        new String[]{"Ja", "Zurück"},
+                        "Zurück");
+                
+                if (option == JOptionPane.YES_OPTION) {
+                	DatenabrufStudent db = new DatenabrufStudent();
+                	db.aendernVortrag(ausgabe.get(buttonRow).getMatrikelnr());
             		frame.dispose();
-                    PPANachGUI neu = new PPANachGUI(anmeldename);
+            		ProfessorenNachGUI neu = new ProfessorenNachGUI(anmeldename);
                     neu.main(null);
+                	
                 }
             } 
           
