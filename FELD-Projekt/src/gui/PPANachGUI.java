@@ -166,7 +166,7 @@ public class PPANachGUI extends JPanel {
    	         ArrayList<Student> ausgabe = db.ausgeben();
         
         	 for (int i=0;i< ausgabe.size();i++) {
-        		 if(ausgabe.get(i).getVortrag().equals("nein")) {
+        		 if(ausgabe.get(i).getVortrag().equals("nein") || column==6) {
         			 if (row == i) { 
         				 if (isSelected) {
                         
@@ -211,7 +211,7 @@ public class PPANachGUI extends JPanel {
         	 
         
         	 for (int i=0;i< ausgabe.size();i++) {
-        		 if(ausgabe.get(i).getVortrag().equals("nein")) {
+        		 if(ausgabe.get(i).getVortrag().equals("nein") || column==6) {
         			 buttonRow = row;
         			 buttonColumn = column;
         			 if(row == i || column == 6) {
@@ -232,6 +232,7 @@ public class PPANachGUI extends JPanel {
         public Object getCellEditorValue() {
             if (isPushed) {
                 // Öffne ein neues Fenster, wenn der Button geklickt wird
+            	
             	int option = JOptionPane.showOptionDialog(null,
                         "Wollen sie den Status ändern? ",
                         "Bestätigung",
