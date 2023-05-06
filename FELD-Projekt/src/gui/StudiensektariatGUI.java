@@ -273,7 +273,7 @@ public class StudiensektariatGUI extends JPanel{
 	 
 	 public static void createAndShowGUI() {
 	        //Create and set up the window.
-	        StudiensektariatGUI.frame = new JFrame("FELD-Professoren");
+	        StudiensektariatGUI.frame = new JFrame("FELD-Studiensekteriat");
 	        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	 
 	        //Create and set up the content pane.
