@@ -227,15 +227,15 @@ public class StudiensektariatGUI extends JPanel{
                     neu.main(null);
                 }
             	}
-            	}
+            	
             	else
                 {
                 	
-            		JOptionPane.showMessageDialog(null, "BPS-Bericht wurde schon auf ja gesetzt", "Informationen zum Unternehmen", JOptionPane.INFORMATION_MESSAGE);
+            		JOptionPane.showMessageDialog(null, "Tätigkeitsnachweis wurde schon auf ja gesetzt", "Informationen zum Unternehmen", JOptionPane.INFORMATION_MESSAGE);
 
                 		
                     }
-        
+            }
                 
             	
                 	
