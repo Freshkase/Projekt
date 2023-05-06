@@ -33,6 +33,7 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.UIManager;
 import datenbank.MyComparator2;
+import datenbank.MyComparator3;
 
 public class StudiensektariatGUI extends JPanel{
 	private boolean DEBUG = false;
@@ -59,7 +60,8 @@ public class StudiensektariatGUI extends JPanel{
 		 						};
 		 DatenabrufStudent db = new DatenabrufStudent();
 	     ArrayList<Student> ausgabe = db.ausgeben();
-		
+	     
+	     
 		 Object [][] data = new Object [ausgabe.size()][5];
 		 for (int i=0;i< ausgabe.size();i++)
 		 {	 data[i][0] =  ausgabe.get(i).getMatrikelnr();
@@ -134,7 +136,7 @@ public class StudiensektariatGUI extends JPanel{
    	         ArrayList<Student> ausgabe = db.ausgeben();
         
         	 for (int i=0;i< ausgabe.size();i++) {
-        		 if(ausgabe.get(i).getProf().getNachname()==null ) {
+        		 if(ausgabe.get(i).getTätigkeitsnachweis()=="nein" || column==4) {
         			 if (row == i ) { 
         				 if (isSelected) {
                         
@@ -178,10 +180,10 @@ public class StudiensektariatGUI extends JPanel{
         public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
         	 
         	 for (int i=0;i< ausgabe.size();i++) {
-        		 if(ausgabe.get(i).getProf().getNachname()==null ) {
+        		 if(ausgabe.get(i).getTätigkeitsnachweis()=="nein" || column==4) {
         			 buttonRow = row;
         			 buttonColumn = column;
-        			 if(row == i || column == 2) {
+        			 if(row == i || column == 4) {
         				 if (isSelected) {
         					
         				 } else {
@@ -199,9 +201,7 @@ public class StudiensektariatGUI extends JPanel{
         public Object getCellEditorValue() {
             if (isPushed) {
                 // Öffne ein neues Fenster, wenn der Button geklickt wird
-            if(buttonColumn == 4)  {
-            	if(ausgabe.get(buttonRow).getTätigkeitsnachweis().equals("nein"))
-            	{
+           
                 	   
             	int option = JOptionPane.showOptionDialog(null,
                         "Sind Sie sicher? ",
@@ -257,9 +257,9 @@ public class StudiensektariatGUI extends JPanel{
                 	
                 
                 
-            }
+            
             	
-            }
+            
             isPushed = false;
             return new String(label);
         }
