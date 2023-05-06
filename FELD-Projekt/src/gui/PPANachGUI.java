@@ -237,7 +237,7 @@ public class PPANachGUI extends JPanel {
                         "Zurück");
                 
                 if (option == JOptionPane.YES_OPTION) {
-                	
+                	 
                 	db.aendernVortrag(ausgabe.get(buttonRow).getMatrikelnr());
                 	
                 	ausgabe.clear();
