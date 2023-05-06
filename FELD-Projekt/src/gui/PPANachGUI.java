@@ -70,18 +70,8 @@ public class PPANachGUI extends JPanel {
 			 }else {
 				 data[i][4] = "Ja";
 			 }
-			 if(ausgabe.get(i).getTätigkeitsnachweis().equals("nein"))
-			 {
-				 data[i][5] = "Nein";
-			 }else{
-				 data[i][5] =  ausgabe.get(i).getTätigkeitsnachweis();
-			 }
-        	 if(ausgabe.get(i).getVortrag().equals("nein"))
-			 {
-				 data[i][6] = "Nein";
-			 }else{
-				 data[i][6] =  ausgabe.get(i).getVortrag();
-			 }
+			 data[i][5] =  ausgabe.get(i).getTätigkeitsnachweis();
+			 data[i][6] =  ausgabe.get(i).getVortrag();
         	 data[i][7] =  ausgabe.get(i).getBericht();
 		 }
  
@@ -245,12 +235,13 @@ public class PPANachGUI extends JPanel {
                 if (option == JOptionPane.YES_OPTION) {
                 	DatenabrufStudent db = new DatenabrufStudent();
                 	db.aendernVortrag(ausgabe.get(buttonRow).getMatrikelnr());
-                	frame.dispose();
-            		PPANachGUI neu = new PPANachGUI(anmeldename);
-                    neu.main(null);
+                }
+                frame.dispose();
+        		PPANachGUI neu = new PPANachGUI(anmeldename);
+                neu.main(null);
                     
                 	
-                }
+                
             } 
           
             isPushed = false;
