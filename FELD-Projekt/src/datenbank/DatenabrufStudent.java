@@ -173,7 +173,35 @@ public class DatenabrufStudent {
 		}
 		
 	}
-	
+	public void aendernVortrag (int nummer) {
+
+		Connection conn = null;
+
+		String url2 = "jdbc:mysql://3.69.96.96:3306/";
+		String dbName = "db1";
+		String driver = "com.mysql.cj.jdbc.Driver";
+		String username = "db1";
+		String password = "!db1.wip23?";
+
+		try {
+			Class.forName(driver);
+
+			conn = DriverManager.getConnection(url2 + dbName, username, password);
+
+			Statement anweisung = conn.createStatement();
+			String uebergabe = "UPDATE STUDENTEN SET BPS_Vortrag = 'ja' WHERE Matrikelnummer = " + nummer;
+			anweisung.executeUpdate(uebergabe);
+			
+			 
+			conn.close();
+			
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+
+	}
 	
 	public void einlesentätigkeitsnachweis(int nummer) {
 
