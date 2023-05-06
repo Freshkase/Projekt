@@ -202,7 +202,8 @@ public class StudiensektariatGUI extends JPanel{
             if (isPushed) {
                 // Öffne ein neues Fenster, wenn der Button geklickt wird
            
-                	   
+            	if(ausgabe.get(buttonRow).getTätigkeitsnachweis().equals("nein"))
+            	{	   
             	int option = JOptionPane.showOptionDialog(null,
                         "Sind Sie sicher? ",
                         "Bestätigung",
@@ -225,6 +226,7 @@ public class StudiensektariatGUI extends JPanel{
             		StudiensektariatGUI neu = new StudiensektariatGUI(anmeldename);
                     neu.main(null);
                 }
+            	}
             	}
             	else
                 {
