@@ -227,7 +227,7 @@ public class StudiensektariatGUI extends JPanel{
                   }
                   
                   } else {
-                	  
+                	   
             	int option = JOptionPane.showOptionDialog(null,
                         "Sind Sie sicher? ",
                         "Bestätigung",
