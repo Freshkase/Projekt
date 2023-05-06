@@ -236,6 +236,7 @@ public class PPANachGUI extends JPanel {
                 	DatenabrufStudent db = new DatenabrufStudent();
                 	db.aendernVortrag(ausgabe.get(buttonRow).getMatrikelnr());
                 	
+                	ausgabe.clear();
                     frame.dispose();
             		PPANachGUI neu = new PPANachGUI(anmeldename);
                     neu.main(null);
