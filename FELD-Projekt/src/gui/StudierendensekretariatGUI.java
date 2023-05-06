@@ -24,16 +24,16 @@ import javax.swing.JCheckBox;
 
 import datenbank.DatenabrufProfessor;
 import datenbank.DatenabrufStudent;
-import datenbank.MyComparator;
 import objekte.Professor;
 import objekte.Student;
 import objekte.Unternehmen;
+import sortierung.MyComparator;
+import sortierung.MyComparator2;
+import sortierung.MyComparator3;
 
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.UIManager;
-import datenbank.MyComparator2;
-import datenbank.MyComparator3;
 
 public class StudierendensekretariatGUI extends JPanel{
 	private boolean DEBUG = false;

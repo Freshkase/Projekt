@@ -26,11 +26,11 @@ import javax.swing.ListSelectionModel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.table.TableCellRenderer;
 import datenbank.DatenabrufStudent;
-import datenbank.MyComparator3;
 import gui.ProfessorenWaehrendGUI.ButtonEditor;
 import gui.ProfessorenWaehrendGUI.ButtonRenderer;
 import objekte.Professor;
 import objekte.Student;
+import sortierung.MyComparator3;
 import datenbank.DatenabrufProfessor;
 import datenbank.DatenabrufStatus;
  
@@ -47,10 +47,10 @@ public class PPANachGUI extends JPanel {
 				        		"E-Mail",
 				        		"Unternehmen",
 				        		"Betreuer",
-        						"Besuchsbericht",
-                                "Tätigkeitsnachweis",
+        						"Tätigkeitsnachweis",
+                                "BPS-Bericht",
+                                "Besuchsbericht",
                                 "BPS-Vortrag",
-                                "BPS-Berichte",
                                 };
         
         DatenabrufStudent db = new DatenabrufStudent();
@@ -64,15 +64,16 @@ public class PPANachGUI extends JPanel {
 			 data[i][1] =  ausgabe.get(i).getEmail();
 			 data[i][2] =  ausgabe.get(i).getUnternehmen().getName();
 			 data[i][3] =  ausgabe.get(i).getProf().getNachname() + ", " + ausgabe.get(i).getProf().getVorname();
+			 data[i][4] =  ausgabe.get(i).getTätigkeitsnachweis();
+			 data[i][5] =  ausgabe.get(i).getBericht();
 			 if(ausgabe.get(i).getBesuchsbericht().equals(" "))
 			 {
-				 data[i][4] = "Nein";
+				 data[i][6] = "noch nicht erstellt";
 			 }else {
-				 data[i][4] = "Ja";
+				 data[i][6] = "lesen";
 			 }
-			 data[i][5] =  ausgabe.get(i).getTätigkeitsnachweis();
-			 data[i][6] =  ausgabe.get(i).getVortrag();
-        	 data[i][7] =  ausgabe.get(i).getBericht();
+			 data[i][7] =  ausgabe.get(i).getVortrag();
+        	 
 		 }
  
  
@@ -81,6 +82,8 @@ public class PPANachGUI extends JPanel {
         table.setFillsViewportHeight(true);
         table.getColumnModel().getColumn(6).setCellRenderer(new ButtonRenderer());
         table.getColumnModel().getColumn(6).setCellEditor(new ButtonEditor(new JCheckBox()));
+        table.getColumnModel().getColumn(7).setCellRenderer(new ButtonRenderer());
+        table.getColumnModel().getColumn(7).setCellEditor(new ButtonEditor(new JCheckBox()));
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
  
         if (DEBUG) {
@@ -154,15 +157,11 @@ public class PPANachGUI extends JPanel {
         public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
         	 DatenabrufStudent db = new DatenabrufStudent();
    	         ArrayList<Student> ausgabe = db.ausgeben();
-        
+   	         Collections.sort(ausgabe, new MyComparator3());
+   	      
         	 for (int i=0;i< ausgabe.size();i++) {
-        		 if(ausgabe.get(i).getVortrag().equals("nein") || column==6) {
-        			 if (row == i) { 
-        				 if (isSelected) {
-                        
-        				 } else {
-                         
-                     }
+        		 if((!ausgabe.get(i).getBesuchsbericht().equals(" ")) || column == 7 ) {
+        			 if (row == i || column == 7) { 
                      setText((value == null) ? "" : value.toString());
                      return this;
 			 }
@@ -199,17 +198,13 @@ public class PPANachGUI extends JPanel {
         
         public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
         	 
-        
+        	 Collections.sort(ausgabe, new MyComparator3());
+        	 
         	 for (int i=0;i< ausgabe.size();i++) {
-        		 if(ausgabe.get(i).getVortrag().equals("nein") || column==6) {
-        			 buttonRow = row;
-        			 buttonColumn = column;
-        			 if(row == i || column == 6) {
-        				 if (isSelected) {
-        					
-        				 } else {
-        					
-        				 }
+        		 if((!ausgabe.get(i).getBesuchsbericht().equals(" ")) || column == 7 ) {
+        			 if(row == i || column == 7 ) {
+        				 buttonRow = row;
+            			 buttonColumn = column;
         				 label = (value == null) ? "" : value.toString();
         				 button.setText(label);
         				 isPushed = true;
@@ -226,6 +221,8 @@ public class PPANachGUI extends JPanel {
             	DatenabrufStudent db = new DatenabrufStudent();
             	ArrayList<Student> ausgabe = db.ausgeben();
             	Collections.sort(ausgabe, new MyComparator3());
+            	
+            	if (buttonColumn == 7) {
             	if(ausgabe.get(buttonRow).getVortrag().equals("nein"))
             	{
             	int option = JOptionPane.showOptionDialog(null,
@@ -246,14 +243,25 @@ public class PPANachGUI extends JPanel {
             		PPANachGUI neu = new PPANachGUI(anmeldename);
                     neu.main(null);
                         
-                }
+                
+                
             	}
-            	else 
+            	}else
             	{
-            	
-                    
-            		JOptionPane.showMessageDialog(null, "BPS-Vortrag wurde schon auf ja gesetzt", "Informationen zum Unternehmen", JOptionPane.INFORMATION_MESSAGE);
+            		
+                   	JOptionPane.showMessageDialog(null, "BPS-Bericht wurde schon auf ja gesetzt", "Informationen zum Unternehmen", JOptionPane.INFORMATION_MESSAGE);
 
+            	}
+                
+                
+                
+            	
+            	} else {
+            		String header = "Besuchsbericht";
+            		String message = "Geschrieben von Professor " + ausgabe.get(buttonRow).getProf().getNachname() + " über " 
+            				+ ausgabe.get(buttonRow).getVorname() + " " + ausgabe.get(buttonRow).getNachname() + ":\n" 
+            				+ ausgabe.get(buttonRow).getBesuchsbericht();
+            		JOptionPane.showMessageDialog(null, message, header, JOptionPane.INFORMATION_MESSAGE);
             	}
          
                 	

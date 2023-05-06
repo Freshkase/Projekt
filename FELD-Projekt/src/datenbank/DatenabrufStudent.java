@@ -10,6 +10,7 @@ import java.util.Comparator;
 import objekte.Professor;
 import objekte.Student;
 import objekte.Unternehmen;
+import sortierung.MyComparator2;
 
 
 public class DatenabrufStudent {

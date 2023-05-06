@@ -26,9 +26,10 @@ import datenbank.DatenabrufStudent;
 import objekte.Professor;
 import objekte.Student;
 import objekte.Unternehmen;
+import sortierung.MyComparator2;
+
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
-import datenbank.MyComparator2;
 
 public class ProfessorenWaehrendGUI extends JPanel{
 	private boolean DEBUG = false;

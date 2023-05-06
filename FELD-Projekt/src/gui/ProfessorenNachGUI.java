@@ -23,9 +23,10 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import datenbank.DatenabrufProfessor;
 import datenbank.DatenabrufStudent;
-import datenbank.MyComparator;
 import objekte.Student;
 import objekte.Unternehmen;
+import sortierung.MyComparator;
+
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.ListSelectionModel;
