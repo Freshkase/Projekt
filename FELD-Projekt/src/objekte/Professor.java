@@ -2,7 +2,7 @@ package objekte;
 
 public class Professor extends Person {
 	private int id;
-	
+
 	public Professor(String nachname, String vorname, String email, String kennwort, String anmeldename) {
 		super(nachname, vorname, email, kennwort, anmeldename);
 		// TODO Auto-generated constructor stub
@@ -12,7 +12,7 @@ public class Professor extends Person {
 		super(nachname, vorname, anmeldename);
 		this.id = id;
 	}
-	
+
 	public Professor(int id, String nachname, String vorname, String email, String kennwort, String anmeldename) {
 		super(nachname, vorname, email, kennwort, anmeldename);
 		this.id = id;
@@ -25,8 +25,5 @@ public class Professor extends Person {
 	public int getId() {
 		return id;
 	}
-	
-	
-	
-	
+
 }

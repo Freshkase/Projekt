@@ -3,7 +3,7 @@ package objekte;
 import java.util.Objects;
 
 public class Student extends Person {
-	//Eigenschaften
+	// Eigenschaften
 	private int matrikelnummer;
 	private Unternehmen unternehmen;
 	private String bericht;
@@ -13,12 +13,14 @@ public class Student extends Person {
 	private String ende;
 	private String besuchsbericht;
 	private Professor prof;
-	
+
 	public Student(String email) {
 		super(email);
 	}
 
-	public Student(String anmeldename, String nachname, String vorname, int matrikelnummer, String email, Unternehmen unternehmen, String bericht, String tätigkeitsnachweis, String vortrag, Professor prof, String kennwort, String beginn, String ende,String besuchsbericht) {
+	public Student(String anmeldename, String nachname, String vorname, int matrikelnummer, String email,
+			Unternehmen unternehmen, String bericht, String tätigkeitsnachweis, String vortrag, Professor prof,
+			String kennwort, String beginn, String ende, String besuchsbericht) {
 		super(nachname, vorname, email, kennwort, anmeldename);
 		this.unternehmen = unternehmen;
 		this.matrikelnummer = matrikelnummer;
@@ -26,13 +28,13 @@ public class Student extends Person {
 		this.tätigkeitsnachweis = tätigkeitsnachweis;
 		this.vortrag = vortrag;
 		this.prof = prof;
-		
+
 		String beginnRichtig[] = beginn.split("-");
 		this.beginn = beginnRichtig[2] + "." + beginnRichtig[1] + "." + beginnRichtig[0];
-		
+
 		String endeRichtig[] = ende.split("-");
 		this.ende = endeRichtig[2] + "." + endeRichtig[1] + "." + endeRichtig[0];
-		
+
 		this.besuchsbericht = besuchsbericht;
 	}
 
@@ -88,16 +90,5 @@ public class Student extends Person {
 		Student other = (Student) obj;
 		return matrikelnummer == other.matrikelnummer;
 	}
-	
-	
-	
 
-
-	
-	
-	
-	
-	
-	
-	
 }

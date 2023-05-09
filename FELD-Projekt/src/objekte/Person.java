@@ -6,25 +6,25 @@ public class Person {
 	private String email;
 	private String kennwort;
 	private String anmeldename;
-	
-	public Person (String nachname, String vorname, String email, String kennwort, String anmeldename) {
+
+	public Person(String nachname, String vorname, String email, String kennwort, String anmeldename) {
 		this.nachname = nachname;
 		this.vorname = vorname;
 		this.email = email;
 		this.kennwort = kennwort;
 		this.anmeldename = anmeldename;
 	}
-	
-	public Person (String nachname, String vorname, String anmeldename) {
+
+	public Person(String nachname, String vorname, String anmeldename) {
 		this.nachname = nachname;
 		this.vorname = vorname;
 		this.anmeldename = anmeldename;
 	}
-	
-	public Person (String email) {
+
+	public Person(String email) {
 		this.email = email;
 	}
-	
+
 	public String getVorname() {
 		return vorname;
 	}
@@ -40,10 +40,8 @@ public class Person {
 	public String getKennwort() {
 		return kennwort;
 	}
-	
+
 	public String getNachname() {
 		return nachname;
 	}
 }
-
-
