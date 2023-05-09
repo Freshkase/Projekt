@@ -7,10 +7,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import objekte.Professor;
 
-
 public class DatenabrufProfessor {
 
-		
 	public ArrayList<Professor> ausgeben() {
 
 		Connection conn = null;
@@ -28,26 +26,25 @@ public class DatenabrufProfessor {
 			conn = DriverManager.getConnection(url + dbName, username, password);
 
 			Statement anweisung = conn.createStatement();
-			ResultSet rs = anweisung.executeQuery("SELECT Professoren_ID, Nachname, Vorname, E_Mail, Kennwort, Anmeldename FROM professoren");
+			ResultSet rs = anweisung.executeQuery(
+					"SELECT Professoren_ID, Nachname, Vorname, E_Mail, Kennwort, Anmeldename FROM professoren");
 
 			while (rs.next()) {
-				ausgabe.add(new Professor (Integer.parseInt(rs.getString(1)), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
+				ausgabe.add(new Professor(Integer.parseInt(rs.getString(1)), rs.getString(2), rs.getString(3),
+						rs.getString(4), rs.getString(5), rs.getString(6)));
 			}
-			
-			
+
 			conn.close();
-			
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return ausgabe;
 
 	}
-	
-	
-	public void BesuchsberichtErstellen (String Besuchsbericht, int nummer) {
+
+	public void BesuchsberichtErstellen(String Besuchsbericht, int nummer) {
 
 		Connection conn = null;
 
@@ -63,25 +60,16 @@ public class DatenabrufProfessor {
 			conn = DriverManager.getConnection(url2 + dbName, username, password);
 
 			Statement anweisung = conn.createStatement();
-			String uebergabe = "UPDATE STUDENTEN SET Besuchsbericht = '" + Besuchsbericht + "' WHERE Matrikelnummer = " + nummer;
+			String uebergabe = "UPDATE STUDENTEN SET Besuchsbericht = '" + Besuchsbericht + "' WHERE Matrikelnummer = "
+					+ nummer;
 			anweisung.executeUpdate(uebergabe);
-			
-			
+
 			conn.close();
-			
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 
 	}
-	
-
-
-	
-	
-	
 
 }
-

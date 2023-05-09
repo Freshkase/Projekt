@@ -18,53 +18,54 @@ import datenbank.DatenbankabrufGesamt;
 
 public class Mail {
 
-    private static Message prepareMessage(Session session, String myAccount, ArrayList<Person> empfaenger) throws Exception{
-    		Message message = new MimeMessage(session);
+	private static Message prepareMessage(Session session, String myAccount, ArrayList<Person> empfaenger)
+			throws Exception {
+		Message message = new MimeMessage(session);
 
-            message.setFrom(new InternetAddress(myAccount));
-            
-            for (int i = 0; i < empfaenger.size(); i++) {
-            message.addRecipient(Message.RecipientType.TO, new InternetAddress(empfaenger.get(i).getEmail()));
-            }
-            message.setSubject("FELD");
+		message.setFrom(new InternetAddress(myAccount));
 
-            // Multipart-Message ("Wrapper") erstellen
-            Multipart multipart = new MimeMultipart();
-            // Body-Part setzen:
-            BodyPart messageBodyPart = new MimeBodyPart();
-            // Textteil des Body-Parts
-            messageBodyPart.setText("Sehr geehrte Professoren,\nsehr geehrte Mitarbeiter des Projektprüfungsamts,\nsehr geehrte Studierende,\nsehr geehrte Mitarbeiter des Studierendensekretariats,\n\ndie Zuteilung der Professoren zu den Studierenden ist nun beendet und es wurden neue Funktionen freigeschalten.\nMelden Sie sich im FELD-System an, um die endgültige Zuteilung zu sehen.\n\nMit freundlichen Grüßen\ndas FELD-Team\n\nDiese E-Mail wurde autogeneriert.");
-            // Body-Part dem Multipart-Wrapper hinzufügen
-            multipart.addBodyPart(messageBodyPart);
-            // Message fertigstellen, indem sie mit dem Multipart-Content ausgestattet wird
-            message.setContent(multipart);
+		for (int i = 0; i < empfaenger.size(); i++) {
+			message.addRecipient(Message.RecipientType.TO, new InternetAddress(empfaenger.get(i).getEmail()));
+		}
+		message.setSubject("FELD");
 
-            return message;
-    }
+		// Multipart-Message ("Wrapper") erstellen
+		Multipart multipart = new MimeMultipart();
+		// Body-Part setzen:
+		BodyPart messageBodyPart = new MimeBodyPart();
+		// Textteil des Body-Parts
+		messageBodyPart.setText(
+				"Sehr geehrte Professoren,\nsehr geehrte Mitarbeiter des Projektprüfungsamts,\nsehr geehrte Studierende,\nsehr geehrte Mitarbeiter des Studierendensekretariats,\n\ndie Zuteilung der Professoren zu den Studierenden ist nun beendet und es wurden neue Funktionen freigeschalten.\nMelden Sie sich im FELD-System an, um die endgültige Zuteilung zu sehen.\n\nMit freundlichen Grüßen\ndas FELD-Team\n\nDiese E-Mail wurde autogeneriert.");
+		// Body-Part dem Multipart-Wrapper hinzufügen
+		multipart.addBodyPart(messageBodyPart);
+		// Message fertigstellen, indem sie mit dem Multipart-Content ausgestattet wird
+		message.setContent(multipart);
 
-    public void send () {
+		return message;
+	}
 
-    	
-    	Properties properties = new Properties();
-		properties.put("mail.smtp.auth",  "true");
+	public void send() {
+
+		Properties properties = new Properties();
+		properties.put("mail.smtp.auth", "true");
 		properties.put("mail.smtp.starttls.enable", "true");
 		properties.put("mail.smtp.host", "smtp.web.de");
 		properties.put("mail.smtp.port", "587");
 
 		String myAccount = "feld-projekt@web.de";
 		String myPassword = "feld#0922";
-		
+
 		DatenbankabrufGesamt db = new DatenbankabrufGesamt();
 		ArrayList<Person> empfaenger = db.ausgeben();
-		
-       Session session = Session.getInstance(properties, new Authenticator() {
-           @Override
-           protected PasswordAuthentication getPasswordAuthentication() {
-               return new PasswordAuthentication(myAccount, myPassword);
-           }
-       });
 
-        // Message-Objekt erzeugen und senden!
+		Session session = Session.getInstance(properties, new Authenticator() {
+			@Override
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication(myAccount, myPassword);
+			}
+		});
+
+		// Message-Objekt erzeugen und senden!
 		try {
 			Message message = prepareMessage(session, myAccount, empfaenger);
 			Transport.send(message); // E-Mail senden!
@@ -73,5 +74,5 @@ public class Mail {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-    }
+	}
 }

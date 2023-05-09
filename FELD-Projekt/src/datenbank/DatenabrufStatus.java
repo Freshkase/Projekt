@@ -10,7 +10,6 @@ import objekte.Student;
 
 public class DatenabrufStatus {
 
-		
 	public int ausgeben() {
 
 		Connection conn = null;
@@ -33,20 +32,18 @@ public class DatenabrufStatus {
 			while (rs.next()) {
 				ausgabe = Integer.parseInt(rs.getString(1));
 			}
-			
-			
+
 			conn.close();
-			
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return ausgabe;
 
 	}
-	
-	public void aendern (int wert) {
+
+	public void aendern(int wert) {
 
 		Connection conn = null;
 
@@ -64,18 +61,14 @@ public class DatenabrufStatus {
 			Statement anweisung = conn.createStatement();
 			String uebergabe = "UPDATE STATUS SET Zuteilung = " + wert;
 			anweisung.executeUpdate(uebergabe);
-			
+
 			conn.close();
-			
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-	}	
-	
-	
+	}
 
 }
-
 

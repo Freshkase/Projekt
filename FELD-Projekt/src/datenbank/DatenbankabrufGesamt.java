@@ -10,7 +10,7 @@ import objekte.Student;
 import objekte.Person;
 
 public class DatenbankabrufGesamt {
-	
+
 	public ArrayList<Person> ausgeben() {
 
 		Connection conn = null;
@@ -33,31 +33,30 @@ public class DatenbankabrufGesamt {
 			while (rs.next()) {
 				ausgabe.add(new Student(rs.getString(1)));
 			}
-			
+
 			ResultSet rs2 = anweisung.executeQuery("SELECT E_Mail FROM professoren");
 			while (rs2.next()) {
 				if (rs2.getString(1) != null) {
-				ausgabe.add(new Professor(rs2.getString(1)));
+					ausgabe.add(new Professor(rs2.getString(1)));
 				}
 			}
-			
+
 			ResultSet rs3 = anweisung.executeQuery("SELECT E_Mail FROM ppa");
 			while (rs3.next()) {
 				ausgabe.add(new Professor(rs3.getString(1)));
 			}
-			
+
 			ResultSet rs4 = anweisung.executeQuery("SELECT E_Mail FROM studierendensekretariat");
 			while (rs4.next()) {
 				ausgabe.add(new Professor(rs4.getString(1)));
 			}
-			
+
 			conn.close();
-			
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return ausgabe;
 
 	}
