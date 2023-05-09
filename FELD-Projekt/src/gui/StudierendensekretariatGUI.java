@@ -67,7 +67,7 @@ public class StudierendensekretariatGUI extends JPanel{
 		 {	 data[i][0] =  ausgabe.get(i).getMatrikelnr();
 			 data[i][1] =  ausgabe.get(i).getNachname() + ", " + ausgabe.get(i).getVorname();
 			 data[i][2] =  ausgabe.get(i).getEmail();
-			 data[i][3] =  ausgabe.get(i).getUnternehmen();
+			 data[i][3] =  ausgabe.get(i).getUnternehmen().getName();
 			 data[i][4] = ausgabe.get(i).getTätigkeitsnachweis();
 			 
 		 } 
