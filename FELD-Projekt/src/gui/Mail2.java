@@ -51,7 +51,7 @@ public class Mail2 {
 
 		String myAccount = "feld-projekt@web.de";
 		String myPassword = "feld#0922";
-		String empfaenger = "lea.posselt@web.de";
+		String empfaenger = "22pole1bwi@hft-stuttgart.de";
 		Session session = Session.getInstance(properties, new Authenticator() {
 			@Override
 			protected PasswordAuthentication getPasswordAuthentication() {

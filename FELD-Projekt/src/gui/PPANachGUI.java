@@ -149,12 +149,11 @@ public class PPANachGUI extends JPanel {
 		        	
 			        writer.write(sb.toString());
 			        writer.close();
-			        System.out.println("done!");
 			        Mail2 mail = new Mail2();
 					mail.send();  
-//        		
-//        		DatenabrufStatus db = new DatenabrufStatus();
-//        		db.aendern(1);
+					JOptionPane.showMessageDialog(null, "Die E-Mail wurde erfolgreich an das Prüfungsamt versendet.", "Bestätigung", JOptionPane.INFORMATION_MESSAGE);
+       		
+
 			} catch (FileNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
