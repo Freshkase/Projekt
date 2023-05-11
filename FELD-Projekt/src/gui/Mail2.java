@@ -28,7 +28,7 @@ public class Mail2 {
 		// Body-Part setzen:
 		BodyPart messageBodyPart = new MimeBodyPart();
 		// Textteil des Body-Parts
-		messageBodyPart.setText("Sehr geehrtes Prüfungsamt, \n\nhiermit übersenden wir Ihnen die vollstände Liste aller Praxissemesterabsolventen zur Überprüfung und Eintragung des erfolgreichen Bestehens.\n\nMit freundlichen Grüßen\ndas FELD-Team\n\nDiese E-Mail wurde autogeneriert. ");		
+		messageBodyPart.setText("Sehr geehrtes Prüfungsamt, \n\nhiermit übersenden wir Ihnen die vollständige Liste aller Praxissemesterabsolventen zur Überprüfung und Eintragung des erfolgreichen Bestehens.\n\nMit freundlichen Grüßen\ndas FELD-Team\n\nDiese E-Mail wurde autogeneriert. ");		
 		// Body-Part dem Multipart-Wrapper hinzufügen
 		multipart.addBodyPart(messageBodyPart);
 		// Message fertigstellen, indem sie mit dem Multipart-Content ausgestattet wird
