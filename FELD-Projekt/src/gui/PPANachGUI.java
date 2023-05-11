@@ -154,6 +154,7 @@ public class PPANachGUI extends JPanel {
 			        	sb.append(i.getVortrag());
 			        	sb.append('\n');
 			        }
+		        	
 			        writer.write(sb.toString());
 			        writer.close();
 			        System.out.println("done!");
