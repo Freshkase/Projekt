@@ -118,8 +118,6 @@ public class PPANachGUI extends JPanel {
 		        	sb.append(',');
 		        	sb.append("Professor");
 		        	sb.append(',');
-		        	sb.append("Besuchsbericht");
-		        	sb.append(',');
 		        	sb.append("Tätigkeitsnachweis");
 		        	sb.append(',');
 		        	sb.append("Bericht");
@@ -145,8 +143,6 @@ public class PPANachGUI extends JPanel {
 			        	sb.append(',');
 			        	sb.append(i.getProf().getNachname() + " " + i.getProf().getVorname());
 			        	sb.append(',');
-			        	sb.append(i.getBesuchsbericht());
-			        	sb.append(',');
 			        	sb.append(i.getTätigkeitsnachweis());
 			        	sb.append(',');
 			        	sb.append(i.getBericht());
@@ -158,7 +154,7 @@ public class PPANachGUI extends JPanel {
 			        writer.write(sb.toString());
 			        writer.close();
 			        System.out.println("done!");
-			        Mail mail = new Mail();
+			        Mail2 mail = new Mail2();
 					mail.send();
 
 //        		Mail mail = new Mail();
