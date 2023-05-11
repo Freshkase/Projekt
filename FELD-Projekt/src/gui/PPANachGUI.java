@@ -150,7 +150,6 @@ public class PPANachGUI extends JPanel {
 			        writer.write(sb.toString());
 			        writer.close();
 			        System.out.println("done!");
-
 //			        Mail2 mail = new Mail2();
 //					mail.send();
 			        Mail2 mail = new Mail2();
