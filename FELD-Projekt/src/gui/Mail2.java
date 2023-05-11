@@ -20,7 +20,6 @@ public class Mail2 {
 		Message message = new MimeMessage(session);
 
 		message.setFrom(new InternetAddress(myAccount));
-
 		
 		message.addRecipient(Message.RecipientType.TO, new InternetAddress(empfaenger));
 		message.setSubject("FELD");
