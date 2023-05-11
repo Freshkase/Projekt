@@ -91,7 +91,6 @@ public class PPANachGUI extends JPanel {
 		btnNewButton.setBackground(new Color(0, 128, 255));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("test");
 				try (PrintWriter writer = new PrintWriter(new File("Mails.csv"))) {
 					DatenabrufStudent db = new DatenabrufStudent();
 					ArrayList<Student> ausgabe = db.ausgeben();
@@ -153,10 +152,6 @@ public class PPANachGUI extends JPanel {
 			        System.out.println("done!");
 			        Mail2 mail = new Mail2();
 					mail.send();  
-
-
-//        		Mail mail = new Mail();
-//        		mail.send();
 //        		
 //        		DatenabrufStatus db = new DatenabrufStatus();
 //        		db.aendern(1);
