@@ -95,7 +95,7 @@ public class PPANachGUI extends JPanel {
 		btnNewButton.setBackground(new Color(0, 128, 255));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try (PrintWriter writer = new PrintWriter(new File("src/datenbank/Email.csv"))) {
+				try (PrintWriter writer = new PrintWriter(new File("Mails.csv"))) {
 					DatenabrufStudent db = new DatenabrufStudent();
 					ArrayList<Student> ausgabe = db.ausgeben();
 					
@@ -126,7 +126,7 @@ public class PPANachGUI extends JPanel {
 		        	sb.append(',');
 		        	sb.append("Vortrag");
 		        	sb.append('\n');
-					for(Student i: ausgabe) {
+		        	for(Student i: ausgabe) {
 			        	sb.append(i.getNachname());
 			        	sb.append(',');
 			        	sb.append(i.getVorname());
