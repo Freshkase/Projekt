@@ -179,7 +179,7 @@ public class PPANachGUI extends JPanel {
 		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup().addGap(90)
 						.addComponent(scrollbar, GroupLayout.PREFERRED_SIZE, 600, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED, 111, Short.MAX_VALUE).addComponent(btnNewButton)
+						.addPreferredGap(ComponentPlacement.RELATED, 56, Short.MAX_VALUE).addComponent(btnNewButton)
 						.addGap(25)));
 		setLayout(groupLayout);
 	}
