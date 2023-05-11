@@ -30,9 +30,7 @@ public class Mail2 {
 		// Body-Part setzen:
 		BodyPart messageBodyPart = new MimeBodyPart();
 		// Textteil des Body-Parts
-		messageBodyPart.setText(
-				"Sehr geehrte Professoren,\nsehr geehrte Mitarbeiter des Projektprüfungsamts,\nsehr geehrte Studierende,\nsehr geehrte Mitarbeiter des Studierendensekretariats,\n\ndie Zuteilung der Professoren zu den Studierenden ist nun beendet und es wurden neue Funktionen freigeschalten.\nMelden Sie sich im FELD-System an, um die endgültige Zuteilung zu sehen.\n\nMit freundlichen Grüßen\ndas FELD-Team\n\nDiese E-Mail wurde autogeneriert.");
-		// Body-Part dem Multipart-Wrapper hinzufügen
+		messageBodyPart.setText("Sehr geehrtes Prüfungsamt, \n\nhiermit übersenden wir Ihnen die vollstände Liste aller Praxissemesterabsolventen \n\nzur Überprüfung und Eintragung des erfolgreichen Bestehends.\\n\\nMit freundlichen Grüßen\\ndas FELD-Team\\n\\nDiese E-Mail wurde autogeneriert. ");		// Body-Part dem Multipart-Wrapper hinzufügen
 		multipart.addBodyPart(messageBodyPart);
 		// Message fertigstellen, indem sie mit dem Multipart-Content ausgestattet wird
 		MimeBodyPart attachmentPart = new MimeBodyPart();
