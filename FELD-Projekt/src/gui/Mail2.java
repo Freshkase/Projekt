@@ -12,21 +12,17 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
-import java.util.ArrayList;
-import objekte.Person;
-import datenbank.DatenbankabrufGesamt;
 
 public class Mail2 {
 
-	private static Message prepareMessage(Session session, String myAccount, ArrayList<Person> empfaenger)
+	private static Message prepareMessage(Session session, String myAccount, String empfaenger)
 			throws Exception {
 		Message message = new MimeMessage(session);
 
 		message.setFrom(new InternetAddress(myAccount));
 
-		for (int i = 0; i < empfaenger.size(); i++) {
-			message.addRecipient(Message.RecipientType.TO, new InternetAddress(empfaenger.get(i).getEmail()));
-		}
+		
+		message.addRecipient(Message.RecipientType.TO, new InternetAddress(empfaenger));
 		message.setSubject("FELD");
 
 		// Multipart-Message ("Wrapper") erstellen
@@ -57,10 +53,7 @@ public class Mail2 {
 
 		String myAccount = "feld-projekt@web.de";
 		String myPassword = "feld#0922";
-
-		DatenbankabrufGesamt db = new DatenbankabrufGesamt();
-		ArrayList<Person> empfaenger = db.ausgeben();
-
+		String empfaenger = "lea.posselt@web.de";
 		Session session = Session.getInstance(properties, new Authenticator() {
 			@Override
 			protected PasswordAuthentication getPasswordAuthentication() {
