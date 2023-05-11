@@ -95,23 +95,65 @@ public class PPANachGUI extends JPanel {
 		btnNewButton.setBackground(new Color(0, 128, 255));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try (PrintWriter writer = new PrintWriter(new File("Email.csv"))) {
-
+				try (PrintWriter writer = new PrintWriter(new File("src/datenbank/Email.csv"))) {
+					DatenabrufStudent db = new DatenabrufStudent();
+					ArrayList<Student> ausgabe = db.ausgeben();
+					
 			        StringBuilder sb = new StringBuilder();
-			        sb.append("id");
-			        sb.append(',');
-			        sb.append("Name");
-			        sb.append(',');
-			        sb.append("Address");
-			        sb.append('\n');
-
-			        sb.append("101");
-			        sb.append(',');
-			        sb.append("John Doe");
-			        sb.append(',');
-			        sb.append("Las Vegas");
-			        sb.append('\n');
-
+			    	sb.append("Nachname");
+		        	sb.append(',');
+		        	sb.append("Vorname(");
+		        	sb.append(',');
+		        	sb.append("Anmeldename");
+		        	sb.append(',');
+		        	sb.append("Matrikelnummer");
+		        	sb.append(',');
+		        	sb.append("Email");
+		        	sb.append(',');
+		        	sb.append("Unternehmen");
+		        	sb.append(',');
+		        	sb.append("Beginn");
+		        	sb.append(',');
+		        	sb.append("Ende");
+		        	sb.append(',');
+		        	sb.append("Professor");
+		        	sb.append(',');
+		        	sb.append("Besuchsbericht");
+		        	sb.append(',');
+		        	sb.append("Tätigkeitsnachweis");
+		        	sb.append(',');
+		        	sb.append("Bericht");
+		        	sb.append(',');
+		        	sb.append("Vortrag");
+		        	sb.append('\n');
+					for(Student i: ausgabe) {
+			        	sb.append(i.getNachname());
+			        	sb.append(',');
+			        	sb.append(i.getVorname());
+			        	sb.append(',');
+			        	sb.append(i.getAnmeldename());
+			        	sb.append(',');
+			        	sb.append(i.getMatrikelnr());
+			        	sb.append(',');
+			        	sb.append(i.getEmail());
+			        	sb.append(',');
+			        	sb.append(i.getUnternehmen());
+			        	sb.append(',');
+			        	sb.append(i.getBeginn());
+			        	sb.append(',');
+			        	sb.append(i.getEnde());
+			        	sb.append(',');
+			        	sb.append(i.getProf());
+			        	sb.append(',');
+			        	sb.append(i.getBesuchsbericht());
+			        	sb.append(',');
+			        	sb.append(i.getTätigkeitsnachweis());
+			        	sb.append(',');
+			        	sb.append(i.getBericht());
+			        	sb.append(',');
+			        	sb.append(i.getVortrag());
+			        	sb.append('\n');
+			        }
 			        writer.write(sb.toString());
 			        writer.close();
 			        System.out.println("done!");
