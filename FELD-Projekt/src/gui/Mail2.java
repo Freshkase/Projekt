@@ -36,6 +36,7 @@ public class Mail2 {
 		multipart.addBodyPart(attachmentPart);
 		message.setContent(multipart);
 
+		
 		return message;
 	}
 
