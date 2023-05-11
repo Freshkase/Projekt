@@ -72,4 +72,10 @@ public class Unternehmen {
 		return anmeldenamedesstudenten;
 	}
 
+	@Override
+	public String toString() {
+		return "Unternehmen [name=" + name + "]";
+	}
+	
+
 }
