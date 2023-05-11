@@ -159,7 +159,7 @@ public class PPANachGUI extends JPanel {
 //			        Mail2 mail = new Mail2();
 //					mail.send();
 			        Mail2 mail = new Mail2();
-					mail.send();
+					mail.send();  
 
 
 //        		Mail mail = new Mail();
