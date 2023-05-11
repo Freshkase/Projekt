@@ -102,7 +102,7 @@ public class PPANachGUI extends JPanel {
 			        StringBuilder sb = new StringBuilder();
 			    	sb.append("Nachname");
 		        	sb.append(',');
-		        	sb.append("Vorname(");
+		        	sb.append("Vorname");
 		        	sb.append(',');
 		        	sb.append("Anmeldename");
 		        	sb.append(',');
