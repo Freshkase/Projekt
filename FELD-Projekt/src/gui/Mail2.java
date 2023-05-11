@@ -24,7 +24,6 @@ public class Mail2 {
 		
 		message.addRecipient(Message.RecipientType.TO, new InternetAddress(empfaenger));
 		message.setSubject("FELD");
-
 		// Multipart-Message ("Wrapper") erstellen
 		Multipart multipart = new MimeMultipart();
 		// Body-Part setzen:
