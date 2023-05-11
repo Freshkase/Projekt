@@ -143,7 +143,7 @@ public class PPANachGUI extends JPanel {
 			        	sb.append(',');
 			        	sb.append(i.getEnde());
 			        	sb.append(',');
-			        	sb.append(i.getProf());
+			        	sb.append(i.getProf().getNachname() + ", " + i.getProf().getVorname());
 			        	sb.append(',');
 			        	sb.append(i.getBesuchsbericht());
 			        	sb.append(',');
