@@ -8,6 +8,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -92,11 +95,36 @@ public class PPANachGUI extends JPanel {
 		btnNewButton.setBackground(new Color(0, 128, 255));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try (PrintWriter writer = new PrintWriter(new File("Email.csv"))) {
+
+			        StringBuilder sb = new StringBuilder();
+			        sb.append("id");
+			        sb.append(',');
+			        sb.append("Name");
+			        sb.append(',');
+			        sb.append("Address");
+			        sb.append('\n');
+
+			        sb.append("101");
+			        sb.append(',');
+			        sb.append("John Doe");
+			        sb.append(',');
+			        sb.append("Las Vegas");
+			        sb.append('\n');
+
+			        writer.write(sb.toString());
+			        writer.close();
+			        System.out.println("done!");
+
 //        		Mail mail = new Mail();
 //        		mail.send();
 //        		
 //        		DatenabrufStatus db = new DatenabrufStatus();
 //        		db.aendern(1);
+			} catch (FileNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			}
 		});
 

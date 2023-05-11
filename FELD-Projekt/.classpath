@@ -9,5 +9,6 @@
 	<classpathentry kind="lib" path="src/mysql-connector-java-8.0.19.jar"/>
 	<classpathentry kind="lib" path="javax.mail.jar"/>
 	<classpathentry kind="lib" path="activation-1.1.jar"/>
+	<classpathentry kind="lib" path="src/datenbank/Email.csv"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
