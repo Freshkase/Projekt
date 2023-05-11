@@ -29,14 +29,9 @@ import javax.swing.ListSelectionModel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.table.TableCellRenderer;
 import datenbank.DatenabrufStudent;
-import gui.ProfessorenWaehrendGUI.ButtonEditor;
-import gui.ProfessorenWaehrendGUI.ButtonRenderer;
-import objekte.Professor;
 import objekte.Student;
 import sortierung.MyComparator3;
 import sortierung.MyComparator5;
-import datenbank.DatenabrufProfessor;
-import datenbank.DatenabrufStatus;
 
 public class PPANachGUI extends JPanel {
 	private boolean DEBUG = false;
