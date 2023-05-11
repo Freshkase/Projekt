@@ -34,6 +34,7 @@ import gui.ProfessorenWaehrendGUI.ButtonRenderer;
 import objekte.Professor;
 import objekte.Student;
 import sortierung.MyComparator3;
+import sortierung.MyComparator5;
 import datenbank.DatenabrufProfessor;
 import datenbank.DatenabrufStatus;
 
@@ -98,7 +99,7 @@ public class PPANachGUI extends JPanel {
 				try (PrintWriter writer = new PrintWriter(new File("Mails.csv"))) {
 					DatenabrufStudent db = new DatenabrufStudent();
 					ArrayList<Student> ausgabe = db.ausgeben();
-					
+					Collections.sort(ausgabe,new MyComparator5());
 			        StringBuilder sb = new StringBuilder();
 			    	sb.append("Nachname");
 		        	sb.append(',');
