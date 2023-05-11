@@ -5,7 +5,7 @@ import java.util.Objects;
 public class Student extends Person {
 	// Eigenschaften
 	private int matrikelnummer;
-	private String unternehmen;
+	private Unternehmen unternehmen;
 	private String bericht;
 	private String tätigkeitsnachweis;
 	private String vortrag;

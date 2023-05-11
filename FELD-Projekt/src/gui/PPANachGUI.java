@@ -137,7 +137,7 @@ public class PPANachGUI extends JPanel {
 			        	sb.append(',');
 			        	sb.append(i.getEmail());
 			        	sb.append(',');
-			        	sb.append(i.getUnternehmen());
+			        	sb.append(i.getUnternehmen().getName());
 			        	sb.append(',');
 			        	sb.append(i.getBeginn());
 			        	sb.append(',');
