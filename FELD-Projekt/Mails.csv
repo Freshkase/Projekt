@@ -1,5 +1,5 @@
-Nachname,Vorname(,Anmeldename,Matrikelnummer,Email,Unternehmen,Beginn,Ende,Professor,Besuchsbericht,Tätigkeitsnachweis,Bericht,Vortrag
-Schneider,Daniel,22scda1bwi,4,22scda1bwi@hft-stuttgart.de,objekte.Unternehmen@5acb9975,16.01.2025,26.06.2025,objekte.Professor@f296978, ,nein,ja,ja
-Posselt,Lea,22pole1bwi,2,22pole1bwi@hft-stuttgart.de,objekte.Unternehmen@365b98b2,23.12.2024,23.05.2025,objekte.Professor@42eba680,Testbericht,ja,ja,nein
-Pereira Mendes,Fabio,22pefa1bwi,3,22pefa1bwi@hft-stuttgart.de,objekte.Unternehmen@446d8f99,24.12.2024,24.05.2025,objekte.Professor@cb4cc5,Bitte hier Besuchbericht reinschreiben,ja,ja,ja
-Fech,Eric,22frer1bwi,1,22frer1bwi@hft-stuttgart.de,objekte.Unternehmen@6abfca66,23.12.2024,23.05.2025,objekte.Professor@75ffbe17, ,nein,ja,ja
+Nachname,Vorname,Anmeldename,Matrikelnummer,Email,Unternehmen,Beginn,Ende,Professor,Besuchsbericht,Tätigkeitsnachweis,Bericht,Vortrag
+Schneider,Daniel,22scda1bwi,4,22scda1bwi@hft-stuttgart.de,Bäckerei Katz,16.01.2025,26.06.2025,objekte.Professor@2ca014f8, ,nein,ja,ja
+Posselt,Lea,22pole1bwi,2,22pole1bwi@hft-stuttgart.de,Bosch GmbH,23.12.2024,23.05.2025,objekte.Professor@6d571c08,Testbericht,ja,ja,nein
+Pereira Mendes,Fabio,22pefa1bwi,3,22pefa1bwi@hft-stuttgart.de,Tesla,24.12.2024,24.05.2025,objekte.Professor@21930b04,Bitte hier Besuchbericht reinschreiben,ja,ja,ja
+Fech,Eric,22frer1bwi,1,22frer1bwi@hft-stuttgart.de,Porsche AG,23.12.2024,23.05.2025,objekte.Professor@76e05485, ,nein,ja,ja
