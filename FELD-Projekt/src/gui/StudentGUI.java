@@ -1,5 +1,6 @@
 package gui;
 
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -137,29 +138,20 @@ public class StudentGUI extends JPanel {
 										.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 												.addComponent(unternehmen).addComponent(lblNewLabel_2)
 												.addComponent(name).addComponent(matrikelnummer))
-<<<<<<< HEAD
-										.addContainerGap(330, Short.MAX_VALUE)));
-=======
 										.addContainerGap(330, Short.MAX_VALUE))
 								.addGroup(groupLayout.createSequentialGroup()
 										.addContainerGap(26, Short.MAX_VALUE)
 										.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 											.addComponent(AbmeldeButton))));
 										
->>>>>>> branch 'master' of https://github.com/Freshkase/Projekt
 		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.TRAILING).addGroup(groupLayout
 				.createSequentialGroup().addContainerGap().addComponent(profil).addGap(7)
-<<<<<<< HEAD
-				.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(namefix).addComponent(name))
-				.addGap(5)
-=======
 				.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 				.addComponent(AbmeldeButton)
 				.addGap(10)
 				.addGap(5)
 				.addComponent(namefix).addComponent(name))
 				.addContainerGap()
->>>>>>> branch 'master' of https://github.com/Freshkase/Projekt
 				.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(matrikelnummerfix)
 						.addComponent(matrikelnummer))
 				.addPreferredGap(ComponentPlacement.RELATED)
