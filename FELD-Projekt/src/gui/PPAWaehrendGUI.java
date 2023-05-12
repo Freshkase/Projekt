@@ -109,20 +109,38 @@ public class PPAWaehrendGUI extends JPanel {
 			}
 		});
 
+		JButton AbmeldeButton = new JButton("Abmelden");
+		AbmeldeButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				frame.dispose();
+				AnmeldungGUI neu = new AnmeldungGUI();
+				neu.main(null);
+			}
+		});
+
 		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout
-				.createSequentialGroup().addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-				.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnNewButton, Alignment.TRAILING).addComponent(scrollbar, Alignment.TRAILING,
-								GroupLayout.PREFERRED_SIZE, 930, GroupLayout.PREFERRED_SIZE))
-				.addContainerGap())
-				.addGroup(groupLayout.createSequentialGroup().addContainerGap().addComponent(nichterlaubt)
-						.addContainerGap(869, Short.MAX_VALUE)));
-		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-				.addGroup(groupLayout.createSequentialGroup().addGap(20).addComponent(nichterlaubt).addGap(54)
-						.addComponent(scrollbar, GroupLayout.PREFERRED_SIZE, 600, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED, 56, Short.MAX_VALUE).addComponent(btnNewButton)
-						.addGap(25)));
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap(26, Short.MAX_VALUE)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(btnNewButton, Alignment.TRAILING)
+						.addComponent(scrollbar, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 920, GroupLayout.PREFERRED_SIZE)
+						.addComponent(AbmeldeButton, Alignment.TRAILING))
+					.addContainerGap(26, Short.MAX_VALUE))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(AbmeldeButton)
+					.addGap(10)
+					.addComponent(scrollbar, GroupLayout.PREFERRED_SIZE, 600, GroupLayout.PREFERRED_SIZE)
+					.addGap(10)
+					.addComponent(btnNewButton)
+					.addGap(25))
+		);
 		setLayout(groupLayout);
 	}
 
