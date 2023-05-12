@@ -149,7 +149,7 @@ public class StudentGUI extends JPanel {
 				.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 				.addComponent(AbmeldeButton)
 				.addGap(10)
-				.addGap(5)
+				.addGap(5) 
 				.addComponent(namefix).addComponent(name))
 				.addContainerGap()
 				.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(matrikelnummerfix)
