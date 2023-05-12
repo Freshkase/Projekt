@@ -3,6 +3,7 @@ package gui;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -25,6 +26,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.ListSelectionModel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.table.TableCellRenderer;
@@ -292,11 +294,17 @@ public class PPANachGUI extends JPanel {
 					}
 
 				} else {
-					String header = "Besuchsbericht";
+					JPanel panel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
+					JTextArea textArea = new JTextArea(45, 100);
+					textArea.setText(ausgabe.get(buttonRow).getBesuchsbericht());
+					panel.add(new JScrollPane(textArea));
 					String message = "Geschrieben von Professor " + ausgabe.get(buttonRow).getProf().getNachname()
 							+ " über " + ausgabe.get(buttonRow).getVorname() + " "
-							+ ausgabe.get(buttonRow).getNachname() + ":\n" + ausgabe.get(buttonRow).getBesuchsbericht();
-					JOptionPane.showMessageDialog(null, message, header, JOptionPane.INFORMATION_MESSAGE);
+							+ ausgabe.get(buttonRow).getNachname();
+					String header = "Besuchsbericht: " + message;
+					
+					JOptionPane.showMessageDialog(null, panel, header, JOptionPane.INFORMATION_MESSAGE);
+					
 				}
 
 			}
