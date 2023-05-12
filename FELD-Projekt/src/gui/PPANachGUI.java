@@ -286,7 +286,7 @@ public class PPANachGUI extends JPanel {
 						}
 					} else {
 
-						JOptionPane.showMessageDialog(null, "BPS-Bericht wurde schon auf ja gesetzt",
+						JOptionPane.showMessageDialog(null, "BPS-Vortrag wurde schon auf ja gesetzt",
 								"Informationen zum Unternehmen", JOptionPane.INFORMATION_MESSAGE);
 
 					}
