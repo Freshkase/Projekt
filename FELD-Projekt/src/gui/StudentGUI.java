@@ -5,11 +5,14 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import javax.swing.GroupLayout;
+import javax.swing.JButton;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -22,6 +25,8 @@ import java.awt.Font;
 public class StudentGUI extends JPanel {
 	private boolean DEBUG = false;
 	private static String anmeldename;
+	private static JFrame frame;
+
 
 	public StudentGUI(String anmeldename) {
 
@@ -96,6 +101,16 @@ public class StudentGUI extends JPanel {
 
 		JLabel unternehmen = new JLabel(ausgabe.get(tmp).getUnternehmen().getName());
 		unternehmen.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
+		
+		JButton AbmeldeButton = new JButton("Abmelden");
+		AbmeldeButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				AnmeldungGUI neu = new AnmeldungGUI();
+				neu.main(null);
+			
+			}
+		});
 
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout
@@ -122,11 +137,21 @@ public class StudentGUI extends JPanel {
 										.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 												.addComponent(unternehmen).addComponent(lblNewLabel_2)
 												.addComponent(name).addComponent(matrikelnummer))
-										.addContainerGap(330, Short.MAX_VALUE)));
+										.addContainerGap(330, Short.MAX_VALUE))
+								.addGroup(groupLayout.createSequentialGroup()
+										.addContainerGap(26, Short.MAX_VALUE)
+										.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+											.addComponent(AbmeldeButton)
+											.addComponent(scrollbar, GroupLayout.PREFERRED_SIZE, 930, GroupLayout.PREFERRED_SIZE))
+										.addContainerGap(26, Short.MAX_VALUE)));
 		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.TRAILING).addGroup(groupLayout
 				.createSequentialGroup().addContainerGap().addComponent(profil).addGap(7)
-				.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(namefix).addComponent(name))
+				.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+				.addComponent(AbmeldeButton)
+				.addGap(10)
 				.addGap(5)
+				.addComponent(namefix).addComponent(name))
+				.addContainerGap()
 				.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(matrikelnummerfix)
 						.addComponent(matrikelnummer))
 				.addPreferredGap(ComponentPlacement.RELATED)
