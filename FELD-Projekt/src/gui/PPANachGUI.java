@@ -87,6 +87,8 @@ public class PPANachGUI extends JPanel {
 
 		// Create the scroll pane and add the table to it.
 		JScrollPane scrollbar = new JScrollPane(table);
+		
+		
 
 		JButton btnNewButton = new JButton("Senden");
 		btnNewButton.setFont(new Font("Dialog", Font.PLAIN, 13));
@@ -180,18 +182,18 @@ public class PPANachGUI extends JPanel {
 					.addContainerGap(26, Short.MAX_VALUE)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addComponent(btnNewButton, Alignment.TRAILING)
-						.addComponent(scrollbar, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 930, GroupLayout.PREFERRED_SIZE)
+						.addComponent(scrollbar, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 920, GroupLayout.PREFERRED_SIZE)
 						.addComponent(AbmeldeButton, Alignment.TRAILING))
-					.addContainerGap())
+					.addContainerGap(26, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
 					.addComponent(AbmeldeButton)
-					.addGap(56)
+					.addGap(10)
 					.addComponent(scrollbar, GroupLayout.PREFERRED_SIZE, 600, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+					.addGap(10)
 					.addComponent(btnNewButton)
 					.addGap(25))
 		);
