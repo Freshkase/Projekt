@@ -141,15 +141,14 @@ public class StudentGUI extends JPanel {
 								.addGroup(groupLayout.createSequentialGroup()
 										.addContainerGap(26, Short.MAX_VALUE)
 										.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-											.addComponent(AbmeldeButton)
-											.addComponent(scrollbar, GroupLayout.PREFERRED_SIZE, 930, GroupLayout.PREFERRED_SIZE))
-										.addContainerGap(26, Short.MAX_VALUE)));
+											.addComponent(AbmeldeButton))));
+										
 		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.TRAILING).addGroup(groupLayout
 				.createSequentialGroup().addContainerGap().addComponent(profil).addGap(7)
 				.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 				.addComponent(AbmeldeButton)
 				.addGap(10)
-				.addGap(5) 
+				.addGap(5)
 				.addComponent(namefix).addComponent(name))
 				.addContainerGap()
 				.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(matrikelnummerfix)
