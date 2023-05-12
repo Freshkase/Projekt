@@ -111,7 +111,7 @@ public class StudentGUI extends JPanel {
 			
 			}
 		});
-
+ 
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout
 				.setHorizontalGroup(
