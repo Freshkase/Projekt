@@ -99,16 +99,36 @@ public class StudierendensekretariatGUI extends JPanel {
 			});
 		}
 		JScrollPane scrollbar = new JScrollPane(table);
+		
+		JButton Abmeldebutton = new JButton("Abmelden");
+		Abmeldebutton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				frame.dispose();
+				AnmeldungGUI neu = new AnmeldungGUI();
+				neu.main(null);
+			}
+		});
 
 		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup().addContainerGap()
-						.addComponent(scrollbar, GroupLayout.PREFERRED_SIZE, 930, GroupLayout.PREFERRED_SIZE)
-						.addContainerGap(56, Short.MAX_VALUE)));
-		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.TRAILING).addGroup(Alignment.LEADING,
-				groupLayout.createSequentialGroup().addGap(110)
-						.addComponent(scrollbar, GroupLayout.PREFERRED_SIZE, 600, GroupLayout.PREFERRED_SIZE)
-						.addContainerGap(447, Short.MAX_VALUE)));
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addComponent(Abmeldebutton)
+						.addComponent(scrollbar, GroupLayout.PREFERRED_SIZE, 930, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(Abmeldebutton)
+					.addGap(76)
+					.addComponent(scrollbar, GroupLayout.PREFERRED_SIZE, 600, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+		);
 		setLayout(groupLayout);
 
 	}
