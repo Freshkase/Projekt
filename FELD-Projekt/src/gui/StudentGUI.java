@@ -109,7 +109,6 @@ public class StudentGUI extends JPanel {
 				frame.dispose();
 				AnmeldungGUI neu = new AnmeldungGUI();
 				neu.main(null);
-			
 			}
 		});
  
@@ -145,7 +144,10 @@ public class StudentGUI extends JPanel {
 											.addComponent(AbmeldeButton))));
 										
 		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.TRAILING).addGroup(groupLayout
-				.createSequentialGroup().addContainerGap().addComponent(profil).addGap(7)
+				.createSequentialGroup()
+				.addContainerGap()
+				.addComponent(profil)
+				.addGap(7)
 				.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 				.addComponent(AbmeldeButton)
 				.addGap(10)
@@ -189,7 +191,7 @@ public class StudentGUI extends JPanel {
 	 */
 	public static void createAndShowGUI() {
 		// Create and set up the window.
-		JFrame frame = new JFrame("FELD-Student");
+		StudentGUI.frame = new JFrame("FELD-Student");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		// Create and set up the content pane.
