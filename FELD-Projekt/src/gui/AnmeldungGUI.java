@@ -22,13 +22,8 @@ import objekte.Student;
 
 import javax.swing.JButton;
 import java.awt.Color;
-
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
@@ -68,16 +63,10 @@ public class AnmeldungGUI {
 	 */
 	private void initialize() {
 		frame = new JFrame("FELD");
-		
-		try {
-            InputStream inputStream = AnmeldungGUI.class.getResourceAsStream("/gui/Logo.png");
-            BufferedImage logoImage = ImageIO.read(inputStream);
-            frame.setIconImage(logoImage);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(AnmeldungGUI.class.getResource("/gui/Logo.png")));
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 		JPanel panel_1 = new JPanel();
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
