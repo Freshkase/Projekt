@@ -22,6 +22,7 @@ import datenbank.DatenabrufStudent;
 import objekte.Student;
 
 import java.awt.Font;
+import java.awt.Toolkit;
 
 public class StudentGUI extends JPanel {
 	private boolean DEBUG = false;
@@ -193,6 +194,7 @@ public class StudentGUI extends JPanel {
 		// Create and set up the window.
 		StudentGUI.frame = new JFrame("FELD-Student");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(StudentGUI.class.getResource("/gui/Logo.png")));
 
 		// Create and set up the content pane.
 		StudentGUI newContentPane = new StudentGUI(anmeldename);

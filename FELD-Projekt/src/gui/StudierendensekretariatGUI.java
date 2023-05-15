@@ -2,6 +2,7 @@ package gui;
 
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -245,7 +246,8 @@ public class StudierendensekretariatGUI extends JPanel {
 		// Create and set up the window.
 		StudierendensekretariatGUI.frame = new JFrame("FELD-Studiensekteriat");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(StudierendensekretariatGUI.class.getResource("/gui/Logo.png")));
+		
 		// Create and set up the content pane.
 		StudierendensekretariatGUI newContentPane = new StudierendensekretariatGUI(anmeldename);
 		newContentPane.setOpaque(true); // content panes must be opaque

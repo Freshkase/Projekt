@@ -3,6 +3,7 @@ package gui;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -325,6 +326,7 @@ public class ProfessorenNachGUI extends JPanel {
 		// Create and set up the window.
 		ProfessorenNachGUI.frame = new JFrame("FELD-Professoren");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(ProfessorenNachGUI.class.getResource("/gui/Logo.png")));
 
 		// Create and set up the content pane.
 		ProfessorenNachGUI newContentPane = new ProfessorenNachGUI(anmeldename);

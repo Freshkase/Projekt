@@ -26,6 +26,7 @@ import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 
 
 public class AnmeldungGUI {
@@ -62,6 +63,7 @@ public class AnmeldungGUI {
 	 */
 	private void initialize() {
 		frame = new JFrame("FELD");
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(AnmeldungGUI.class.getResource("/gui/Logo.png")));
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 

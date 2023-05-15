@@ -30,6 +30,7 @@ public class RegistrierungGUI extends JFrame {
 	private JPasswordField kennwort;
 
 	public RegistrierungGUI() throws HeadlessException {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(RegistrierungGUI.class.getResource("/gui/Logo.png")));
 		setTitle("FELD");
 		final JPanel panel = new JPanel();
 		panel.setBackground(new Color(254, 255, 255));
