@@ -122,7 +122,7 @@ public class StudentGUI extends JPanel {
 								.addGroup(groupLayout.createSequentialGroup().addContainerGap(17, Short.MAX_VALUE)
 										.addComponent(scrollbar, GroupLayout.PREFERRED_SIZE, 470,
 												GroupLayout.PREFERRED_SIZE)
-										.addContainerGap())
+										.addContainerGap(0,900))
 								.addGroup(groupLayout.createSequentialGroup().addContainerGap().addComponent(status)
 										.addContainerGap(444, Short.MAX_VALUE))
 								.addGroup(groupLayout.createSequentialGroup().addContainerGap().addComponent(emailfix)
@@ -142,17 +142,16 @@ public class StudentGUI extends JPanel {
 								.addGroup(groupLayout.createSequentialGroup()
 										.addContainerGap(26, Short.MAX_VALUE)
 										.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-											.addComponent(AbmeldeButton))));
+											.addComponent(AbmeldeButton))
+											.addContainerGap(0, 10)));
+		
 										
 		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.TRAILING).addGroup(groupLayout
 				.createSequentialGroup()
 				.addContainerGap()
 				.addComponent(profil)
-				.addGap(7)
 				.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 				.addComponent(AbmeldeButton)
-				.addGap(10)
-				.addGap(5)
 				.addComponent(namefix).addComponent(name))
 				.addContainerGap()
 				.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(matrikelnummerfix)
@@ -163,7 +162,7 @@ public class StudentGUI extends JPanel {
 				.addPreferredGap(ComponentPlacement.RELATED)
 				.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(unternehmenfix)
 						.addComponent(unternehmen))
-				.addPreferredGap(ComponentPlacement.RELATED, 46, Short.MAX_VALUE).addComponent(emailfix)
+				.addPreferredGap(ComponentPlacement.RELATED).addComponent(emailfix)
 				.addPreferredGap(ComponentPlacement.RELATED).addComponent(lblNewLabel).addGap(23).addComponent(status)
 				.addPreferredGap(ComponentPlacement.RELATED)
 				.addComponent(scrollbar, GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE).addGap(20)));
