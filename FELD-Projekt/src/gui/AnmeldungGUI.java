@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import java.awt.Font;
+
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import datenbank.DatenabrufPPA;
@@ -27,7 +28,6 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
-
 
 public class AnmeldungGUI {
 
