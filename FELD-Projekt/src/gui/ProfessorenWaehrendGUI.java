@@ -122,6 +122,7 @@ public class ProfessorenWaehrendGUI extends JPanel {
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(10)
 					.addComponent(AbmeldeButton)
 					.addGap(10)
 					.addComponent(scrollbar, GroupLayout.PREFERRED_SIZE, 600, GroupLayout.PREFERRED_SIZE)
