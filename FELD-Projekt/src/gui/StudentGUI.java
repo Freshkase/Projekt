@@ -38,7 +38,7 @@ public class StudentGUI extends JPanel {
 		DatenabrufStudent db = new DatenabrufStudent();
 		ArrayList<Student> ausgabe = db.ausgeben();
 
-		/**
+		/*
 		 * von dem Studenten die jeweiligen Informationen anzeigen, der sich auch
 		 * angemeldet hat (daher Variable tmp) diese Variable wird im Verlauf dann immer
 		 * genutzt, um die Informationen des angemeldeten Studenten auszugeben

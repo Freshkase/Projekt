@@ -47,7 +47,7 @@ public class ProfessorenNachGUI extends JPanel {
 
 		this.anmeldename = anmeldename;
 
-		/**
+		/*
 		 * die in der Datenbank (Tabelle Studenten) befindlichen Daten werden ausgelesen
 		 * und in Form einer Tabelle eingelesen es werden nur die Studenten angezeigt,
 		 * die dem Professor zugeteilt sind, der gerade angemeldet ist!
@@ -164,7 +164,7 @@ public class ProfessorenNachGUI extends JPanel {
 		public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
 				int row, int column) {
 			for (int i = 0; i < verkuerzt.size(); i++) {
-				/**
+				/*
 				 * Renderer bei noch nicht geschriebenem Besuchsbericht und der gesamten Spalte
 				 * 2 und 5
 				 */
@@ -205,7 +205,7 @@ public class ProfessorenNachGUI extends JPanel {
 		public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row,
 				int column) {
 			for (int i = 0; i < verkuerzt.size(); i++) {
-				/**
+				/*
 				 * Button bei noch nicht geschriebenem Besuchsbericht und der gesamten Spalte 2
 				 * und 5
 				 */
@@ -224,7 +224,7 @@ public class ProfessorenNachGUI extends JPanel {
 
 		public Object getCellEditorValue() {
 			if (isPushed) {
-				/**
+				/*
 				 * Öffne ein neues Fenster, wenn der Button geklickt wird Button ist in Spalte
 				 * 5: Wenn der Bericht in der Datenbank auf "nein" gesetzt ist, gibt es die
 				 * Möglichkeit ihn auf "ja" zu setzen ist der Bericht bereits auf "ja" gesetzt
@@ -239,7 +239,7 @@ public class ProfessorenNachGUI extends JPanel {
 								JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null,
 								new String[] { "Ja", "Zurück" }, "Zurück");
 
-						/**
+						/*
 						 * Bericht wird beim jeweiligen Studenten in der Datenbank auf "ja" gesetzt
 						 */
 						if (option == JOptionPane.YES_OPTION) {
@@ -258,7 +258,7 @@ public class ProfessorenNachGUI extends JPanel {
 					}
 
 				}
-				/**
+				/*
 				 * Button ist in Spalte 4: wenn der Besuchsbericht noch nicht erstellt wurde,
 				 * gibt es die Möglichkeit einen Besuchsbericht zu verfassen
 				 */
@@ -275,7 +275,7 @@ public class ProfessorenNachGUI extends JPanel {
 									+ verkuerzt.get(buttonRow).getNachname(),
 							JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 
-					/**
+					/*
 					 * mit Klick auf OK wird der Besuchsbericht in der Tabelle Studenten in der
 					 * Datenbank gespeichert
 					 */
@@ -295,7 +295,7 @@ public class ProfessorenNachGUI extends JPanel {
 					}
 
 				}
-				/**
+				/*
 				 * wenn der Button in Spalte 2 ist werden alle Unternehmensdaten von dem
 				 * jeweiligen Studenten angezeigt, auf das geklickt wurde
 				 */

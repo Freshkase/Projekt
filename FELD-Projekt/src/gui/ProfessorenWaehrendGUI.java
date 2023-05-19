@@ -44,7 +44,7 @@ public class ProfessorenWaehrendGUI extends JPanel {
 
 		this.anmeldename = anmeldename;
 
-		/**
+		/*
 		 * die in der Datenbank (Tabelle Studenten) befindlichen Daten werden ausgelesen
 		 * und in Form einer Tabelle eingelesen
 		 */
@@ -137,7 +137,7 @@ public class ProfessorenWaehrendGUI extends JPanel {
 			ArrayList<Student> ausgabe = db.ausgeben();
 
 			for (int i = 0; i < ausgabe.size(); i++) {
-				/**
+				/*
 				 * Renderer bei Professor = null und der gesamten Spalte 2
 				 */
 				if (ausgabe.get(i).getProf().getNachname() == null || column == 2) {
@@ -180,7 +180,7 @@ public class ProfessorenWaehrendGUI extends JPanel {
 				int column) {
 
 			for (int i = 0; i < ausgabe.size(); i++) {
-				/**
+				/*
 				 * Button bei Professor = null und der gesamten Spalte 2
 				 */
 				if (ausgabe.get(i).getProf().getNachname() == null || column == 2) {
@@ -198,7 +198,7 @@ public class ProfessorenWaehrendGUI extends JPanel {
 
 		public Object getCellEditorValue() {
 			if (isPushed) {
-				/**
+				/*
 				 * Öffne ein neues Fenster, wenn der Button geklickt wird wenn der Button in
 				 * Spalte 2 ist werden alle Unternehmensdaten von dem jeweiligen Studenten
 				 * angezeigt, auf das geklickt wurde
@@ -230,7 +230,7 @@ public class ProfessorenWaehrendGUI extends JPanel {
 									JOptionPane.INFORMATION_MESSAGE);
 						}
 					}
-					/**
+					/*
 					 * andernfalls: der Professor = null
 					 */
 				} else {
@@ -238,7 +238,7 @@ public class ProfessorenWaehrendGUI extends JPanel {
 							JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null,
 							new String[] { "Ja", "Zurück" }, "Zurück");
 
-					/**
+					/*
 					 * wenn auf "Ja" geklickt wird wird bei jeweiligem Studenten derjenige Professor
 					 * in der Datenbank eingetragen, der gerade angemeldet ist
 					 */

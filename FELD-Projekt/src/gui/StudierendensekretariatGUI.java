@@ -49,7 +49,7 @@ public class StudierendensekretariatGUI extends JPanel {
 
 		this.anmeldename = anmeldename;
 
-		/**
+		/*
 		 * die in der Datenbank (Tabelle Studenten) befindlichen Daten werden ausgelesen
 		 * und in Form einer Tabelle eingelesen
 		 */
@@ -141,7 +141,7 @@ public class StudierendensekretariatGUI extends JPanel {
 			Collections.sort(ausgabe, new MyComparator4());
 
 			for (int i = 0; i < ausgabe.size(); i++) {
-				/**
+				/*
 				 * Renderer bei Tätigkeitsnachweis "nein"
 				 */
 				if (ausgabe.get(i).getTätigkeitsnachweis().equals("nein")) {
@@ -187,7 +187,7 @@ public class StudierendensekretariatGUI extends JPanel {
 			Collections.sort(ausgabe, new MyComparator4());
 
 			for (int i = 0; i < ausgabe.size(); i++) {
-				/**
+				/*
 				 * Button bei Tätigkeitsnachweis "nein"
 				 */
 				if (ausgabe.get(i).getTätigkeitsnachweis().equals("nein")) {
@@ -206,7 +206,7 @@ public class StudierendensekretariatGUI extends JPanel {
 		public Object getCellEditorValue() {
 			if (isPushed) {
 
-				/**
+				/*
 				 * Öffne ein neues Fenster, wenn der Button geklickt wird
 				 */
 
@@ -215,7 +215,7 @@ public class StudierendensekretariatGUI extends JPanel {
 							JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null,
 							new String[] { "Ja", "Zurück" }, "Zurück");
 
-					/**
+					/*
 					 * wenn auf "Ja" geklickt wird wird bei jeweiligem Studenten den
 					 * Tätigkeitsnachweis in der Datenbank auf "ja" setzen
 					 */
@@ -255,7 +255,7 @@ public class StudierendensekretariatGUI extends JPanel {
 		StudierendensekretariatGUI.frame = new JFrame("FELD-Studiensekteriat");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		/**
+		/*
 		 * Logo einfügen und Logo als Icon
 		 */
 		frame.setIconImage(

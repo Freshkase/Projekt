@@ -34,7 +34,7 @@ public class RegistrierungGUI extends JFrame {
 
 	public RegistrierungGUI() throws HeadlessException {
 
-		/**
+		/*
 		 * Logo einfügen und Logo als Icon
 		 */
 		setIconImage(Toolkit.getDefaultToolkit().getImage(RegistrierungGUI.class.getResource("/gui/Logo.png")));
@@ -118,7 +118,7 @@ public class RegistrierungGUI extends JFrame {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DatenabrufStudent db = new DatenabrufStudent();
-				/**
+				/*
 				 * alle eingegebenen Daten werden in die Datenbank (Tabelle Student) eingelesen
 				 */
 				String email = mail.getText() + "@hft-stuttgart.de";

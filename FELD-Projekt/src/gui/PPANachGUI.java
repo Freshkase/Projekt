@@ -49,7 +49,7 @@ public class PPANachGUI extends JPanel {
 
 		this.anmeldename = anmeldename;
 
-		/**
+		/*
 		 * die in der Datenbank (Tabelle Studenten) befindlichen Daten werden ausgelesen
 		 * und in Form einer Tabelle eingelesen
 		 */
@@ -102,7 +102,7 @@ public class PPANachGUI extends JPanel {
 		senden.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				/**
+				/*
 				 * zuerst werden die Daten in die .csv Datei aus der Datenbank eingelesen im
 				 * Anschluss wird eine E-Mail an das Prüfungsamt versendet mit der .csv Datei
 				 * als Anhang
@@ -233,7 +233,7 @@ public class PPANachGUI extends JPanel {
 			Collections.sort(ausgabe, new MyComparator3());
 
 			for (int i = 0; i < ausgabe.size(); i++) {
-				/**
+				/*
 				 * Renderer, wenn Besuchsbericht verfasst wurde und in Spalte 7
 				 */
 				if ((!ausgabe.get(i).getBesuchsbericht().equals(" ")) || column == 7) {
@@ -280,7 +280,7 @@ public class PPANachGUI extends JPanel {
 			Collections.sort(ausgabe, new MyComparator3());
 
 			for (int i = 0; i < ausgabe.size(); i++) {
-				/**
+				/*
 				 * Button, wenn Besuchsbericht verfasst wurde und in Spalte 7
 				 */
 				if ((!ausgabe.get(i).getBesuchsbericht().equals(" ")) || column == 7) {
@@ -298,7 +298,7 @@ public class PPANachGUI extends JPanel {
 
 		public Object getCellEditorValue() {
 			if (isPushed) {
-				/**
+				/*
 				 * Öffne ein neues Fenster, wenn der Button geklickt wird
 				 */
 
@@ -306,7 +306,7 @@ public class PPANachGUI extends JPanel {
 				ArrayList<Student> ausgabe = db.ausgeben();
 				Collections.sort(ausgabe, new MyComparator3());
 
-				/**
+				/*
 				 * Button ist in Spalte 7: Wenn der Vortrag in der Datenbank auf "nein" gesetzt
 				 * ist, gibt es die Möglichkeit ihn auf "ja" zu setzen ist der Bericht bereits
 				 * auf "ja" gesetzt wird dies in einer Meldung mitgeteilt
@@ -329,7 +329,7 @@ public class PPANachGUI extends JPanel {
 								"Informationen zum Unternehmen", JOptionPane.INFORMATION_MESSAGE);
 					}
 
-					/**
+					/*
 					 * anderenfalls ist der Besuchsbericht schon geschrieben es wird eine Scrollbar
 					 * mit dem vom Professor geschriebenen Besuchsbericht geöffnet, damit das PPA
 					 * ihn lesen kann

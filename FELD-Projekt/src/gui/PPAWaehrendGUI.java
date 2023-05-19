@@ -46,7 +46,7 @@ public class PPAWaehrendGUI extends JPanel {
 
 		this.anmeldename = anmeldename;
 
-		/**
+		/*
 		 * die in der Datenbank (Tabelle Studenten) befindlichen Daten werden ausgelesen
 		 * und in Form einer Tabelle eingelesen
 		 */
@@ -92,7 +92,7 @@ public class PPAWaehrendGUI extends JPanel {
 		beenden.setBackground(new Color(255, 0, 0));
 		beenden.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				/**
+				/*
 				 * alle Studenten müssen einem Professor zugeordnet sein erst dann kann die
 				 * Zuteilung beendet werden
 				 */
@@ -104,7 +104,7 @@ public class PPAWaehrendGUI extends JPanel {
 					}
 				}
 
-				/**
+				/*
 				 * ist jedem Studenten ein Professor zugeteilt wird eine Mail an alle Personen
 				 * in der Datenbank versendet der Status der Zuteilung in der Datenbank wird nun
 				 * von 0 auf 1 gesetzt (damit werden neue andere Masken freigeschalten
@@ -120,7 +120,7 @@ public class PPAWaehrendGUI extends JPanel {
 					PPANachGUI ppa = new PPANachGUI(anmeldename);
 					ppa.main(null);
 
-					/**
+					/*
 					 * es gibt noch Studenten, die keinem Professor zugeteilt sind (Zuteiungsprozess
 					 * kann noch nicht abgeschlossen werden)
 					 */
@@ -185,7 +185,7 @@ public class PPAWaehrendGUI extends JPanel {
 			ArrayList<Student> ausgabe = db.ausgeben();
 
 			for (int i = 0; i < ausgabe.size(); i++) {
-				/**
+				/*
 				 * Renderer, wenn Student noch keinem Professor zugeteilt ist
 				 */
 				if (ausgabe.get(i).getProf().getNachname() == null) {
@@ -228,7 +228,7 @@ public class PPAWaehrendGUI extends JPanel {
 				int column) {
 
 			for (int i = 0; i < ausgabe.size(); i++) {
-				/**
+				/*
 				 * Button, wenn Student noch keinem Professor zugeteilt ist
 				 */
 				if (ausgabe.get(i).getProf().getNachname() == null) {
@@ -246,13 +246,13 @@ public class PPAWaehrendGUI extends JPanel {
 
 		public Object getCellEditorValue() {
 			if (isPushed) {
-				/**
+				/*
 				 * Öffne ein neues Fenster, wenn der Button geklickt wird
 				 */
 				DatenabrufProfessor db2 = new DatenabrufProfessor();
 				ArrayList<Professor> ausgabeprof = db2.ausgeben();
 
-				/**
+				/*
 				 * alle Professoren, die sich in der Datenbank befinden werden ausgelesen, damit
 				 * diese ausgewählt werden können es kann maximal ein Professor ausgewählt
 				 * werden (ButtonGroup)
@@ -272,7 +272,7 @@ public class PPAWaehrendGUI extends JPanel {
 						JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null,
 						new String[] { "Auswählen", "Zurück" }, "Zurück");
 
-				/**
+				/*
 				 * ausgewählter Professor wird beim jeweiligen Studenten in der Datenbank
 				 * (Tabelle Student) eingetragen
 				 */
