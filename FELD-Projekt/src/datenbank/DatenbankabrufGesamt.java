@@ -11,9 +11,13 @@ import objekte.Person;
 
 public class DatenbankabrufGesamt {
 	
-	//Methode, um alle E-Mail Adressen aus den Tabellen (Studenten, Professoren, PPA, Studierendensekretariat)
-	//aus der Datenbank auszulesen
-	//diese Informationen werden für den Versand der autogenerierten E-Mail benötigt, wenn der Button "Zuteilung beenden" gedrückt wird
+	/**
+	 * Methode, um alle E-Mail Adressen aus den Tabellen (Studenten, Professoren, PPA, Studierendensekretariat)
+	 * aus der Datenbank auszulesen
+	 * diese Informationen werden für den Versand der autogenerierten E-Mail benötigt, wenn der Button "Zuteilung beenden" gedrückt wird
+	 * 
+	 * @return ArrayList vom Typ Person
+	 */
 	public ArrayList<Person> ausgeben() {
 
 		Connection conn = null;

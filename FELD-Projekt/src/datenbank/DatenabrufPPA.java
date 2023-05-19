@@ -9,7 +9,9 @@ import objekte.Professor;
 
 public class DatenabrufPPA {
 	
-	//Methode, um Informationen aus der Tabelle "PPA" aus der Datenbank auszulesen
+	/**
+	 * Methode, um Informationen aus der Tabelle "PPA" aus der Datenbank auszulesen
+	 */
 	public ArrayList<Professor> ausgeben() {
 
 		Connection conn = null;

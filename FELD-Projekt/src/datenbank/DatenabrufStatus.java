@@ -10,8 +10,11 @@ import objekte.Student;
 
 public class DatenabrufStatus {
 	
-	//Methode, um den Status der Zuteilung aus der Datenbank auszulesen (Während Zuteilung = 0, Nach Zuteilung = 1)
-	//je nach Status der Zuteilung werden auf unterschiedliche GUI's zugegriffen ("...WaehrendGUI" oder "...NachGUI")
+	/**
+	 * Methode, um den Status der Zuteilung aus der Datenbank auszulesen (Während Zuteilung = 0, Nach Zuteilung = 1)
+	 * je nach Status der Zuteilung werden auf unterschiedliche GUI's zugegriffen ("...WaehrendGUI" oder "...NachGUI")
+	 * @return int
+	 */
 	public int ausgeben() {
 
 		Connection conn = null;
@@ -45,8 +48,11 @@ public class DatenabrufStatus {
 
 	}
 
-	//Methode, um den Status in der Tabelle "Zuteilung" in der Datenbank zu ändern
-	//diese Methode wird ausgeführt, wenn in "PPAWaehrendGUI" der "Zuteilung beenden" Button gedrückt wird
+	/**
+	 * Methode, um den Status in der Tabelle "Zuteilung" in der Datenbank zu ändern
+	 * diese Methode wird ausgeführt, wenn in "PPAWaehrendGUI" der "Zuteilung beenden" Button gedrückt wird
+	 * @param wert (Status der Zuteilung 0 oder 1)
+	 */
 	public void aendern(int wert) {
 
 		Connection conn = null;

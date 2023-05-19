@@ -114,6 +114,7 @@ public class AnmeldungGUI {
 				RegistrierungGUI registrieren = new RegistrierungGUI();
 				registrieren.setVisible(true);
 				frame.dispose();
+				
 				//ist der Zuteilungsprozess beendet, ist keine nachträgliche Registrierung mehr möglich
 				} else {
 					textField.setText(null);

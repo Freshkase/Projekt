@@ -11,7 +11,11 @@ import objekte.Sekretaerin;
 
 public class DatenabrufStudierendensekretariat {
 	
-	//Methode, um Informationen aus der Tabelle "Studierendensekretariat" aus der Datenbank auszulesen
+	/**
+	 * Methode, um Informationen aus der Tabelle "Studierendensekretariat" aus der Datenbank auszulesen
+	 * 
+	 * @return ArrayList vom Typ Sekretaerin
+	 */
 	public ArrayList<Sekretaerin> ausgeben() {
 
 		Connection conn = null;
