@@ -2,7 +2,9 @@ package objekte;
 
 import java.util.Objects;
 
-//Kind-Klasse
+/**
+ * Kind-Klasse
+ */
 public class Student extends Person {
 	private int matrikelnummer;
 	private Unternehmen unternehmen;

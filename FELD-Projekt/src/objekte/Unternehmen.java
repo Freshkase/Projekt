@@ -1,6 +1,8 @@
 package objekte;
 
-//jegliche Informationen über das einem Student zugeordnete Unternehmen
+/**
+ * jegliche Informationen über das einem Student zugeordnete Unternehmen
+ */
 public class Unternehmen {
 	private String name;
 	private String anschrift;

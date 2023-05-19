@@ -16,8 +16,11 @@ import java.util.ArrayList;
 import objekte.Person;
 import datenbank.DatenbankabrufGesamt;
 
-//diese Klasse Mail erstellt und versendet eine E-Mail an alle Personen aus der Datenbank,
-//wenn der Zuteilungsprozess durch das PPA beendet wurde 
+/**
+ * diese Klasse Mail erstellt und versendet eine E-Mail an alle Personen aus der Datenbank,
+ * wenn der Zuteilungsprozess durch das PPA beendet wurde 
+ *
+ */
 public class Mail {
 	
 	private static Message prepareMessage(Session session, String myAccount, ArrayList<Person> empfaenger)

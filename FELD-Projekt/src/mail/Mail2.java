@@ -13,8 +13,10 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
-//diese Klasse Mail2 erstellt und versendet eine E-Mail an das Prüfungsamt,
-//wenn das BPS abgeschlossen ist (ausgelöst durch das PPA)
+/**
+ * diese Klasse Mail2 erstellt und versendet eine E-Mail an das Prüfungsamt,
+ * wenn das BPS abgeschlossen ist (ausgelöst durch das PPA)
+ */
 public class Mail2 {
 
 	private static Message prepareMessage(Session session, String myAccount, String empfaenger)

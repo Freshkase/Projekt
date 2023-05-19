@@ -1,6 +1,8 @@
 package objekte;
 
-//Eltern-Klasse
+/**
+ * Eltern-Klasse
+ */
 public class Person {
 	private String nachname;
 	private String vorname;

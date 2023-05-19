@@ -1,6 +1,8 @@
 package objekte;
 
-//Kind-Klasse
+/**
+ * Kind-Klasse
+ */
 public class Professor extends Person {
 	private int id;
 	
