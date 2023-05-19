@@ -21,19 +21,20 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.table.TableCellRenderer;
 import datenbank.DatenabrufStudent;
-import gui.ProfessorenWaehrendGUI.ButtonEditor;
-import gui.ProfessorenWaehrendGUI.ButtonRenderer;
 import mail.Mail;
 import objekte.Professor;
 import objekte.Student;
 import datenbank.DatenabrufStatus;
 import datenbank.DatenabrufProfessor;
 
+import javax.swing.ButtonGroup;
+
+//PPA-Maske während der Zuteilung
 public class PPAWaehrendGUI extends JPanel {
 	private boolean DEBUG = false;
 	private static String anmeldename;
@@ -43,6 +44,7 @@ public class PPAWaehrendGUI extends JPanel {
 
 		this.anmeldename = anmeldename;
 
+		//die in der Datenbank (Tabelle Studenten) befindlichen Daten werden ausgelesen und in Form einer Tabelle eingelesen
 		String[] columnNames = { "Name", "E-Mail", "Unternehmen", "Betreuer", };
 
 		DatenabrufStudent db = new DatenabrufStudent();
@@ -78,14 +80,15 @@ public class PPAWaehrendGUI extends JPanel {
 		JLabel nichterlaubt = new JLabel("");
 		nichterlaubt.setForeground(new Color(255, 38, 0));
 
-		// Create the scroll pane and add the table to it.
 		JScrollPane scrollbar = new JScrollPane(table);
 
-		JButton btnNewButton = new JButton("Zuteilung beenden");
-		btnNewButton.setFont(new Font("Dialog", Font.PLAIN, 13));
-		btnNewButton.setBackground(new Color(255, 0, 0));
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton beenden = new JButton("Zuteilung beenden");
+		beenden.setFont(new Font("Dialog", Font.PLAIN, 13));
+		beenden.setBackground(new Color(255, 0, 0));
+		beenden.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//alle Studenten müssen einem Professor zugeordnet sein
+				//erst dann kann die Zuteilung beendet werden
 				boolean erlaubt = true;
 				for (int i = 0; i < ausgabe.size(); i++) {
 					if (ausgabe.get(i).getProf().getId() == 0) {
@@ -93,6 +96,9 @@ public class PPAWaehrendGUI extends JPanel {
 						break;
 					}
 				}
+				
+				//ist jedem Studenten ein Professor zugeteilt wird eine Mail an alle Personen in der Datenbank versendet
+				//der Status der Zuteilung in der Datenbank wird nun von 0 auf 1 gesetzt (damit werden neue andere Masken freigeschalten
 				if (erlaubt) {
 					Mail mail = new Mail();
 					mail.send();
@@ -104,6 +110,7 @@ public class PPAWaehrendGUI extends JPanel {
 					PPANachGUI ppa = new PPANachGUI(anmeldename);
 					ppa.main(null);
 
+				//es gibt noch Studenten, die keinem Professor zugeteilt sind (Zuteiungsprozess kann noch nicht abgeschlossen werden)
 				} else {
 					nichterlaubt.setText(
 							"Bitte teilen Sie zunächst jedem Studierenden einen Professor zu, bevor Sie die Zuteilung beenden.");
@@ -114,7 +121,6 @@ public class PPAWaehrendGUI extends JPanel {
 		JButton AbmeldeButton = new JButton("Abmelden");
 		AbmeldeButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 				frame.dispose();
 				AnmeldungGUI neu = new AnmeldungGUI();
 				neu.main(null);
@@ -127,7 +133,7 @@ public class PPAWaehrendGUI extends JPanel {
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap(26, Short.MAX_VALUE)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnNewButton, Alignment.TRAILING)
+						.addComponent(beenden, Alignment.TRAILING)
 						.addComponent(scrollbar, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 920, GroupLayout.PREFERRED_SIZE)
 						.addComponent(AbmeldeButton, Alignment.TRAILING))
 					.addContainerGap(26, Short.MAX_VALUE))
@@ -140,7 +146,7 @@ public class PPAWaehrendGUI extends JPanel {
 					.addGap(10)
 					.addComponent(scrollbar, GroupLayout.PREFERRED_SIZE, 600, GroupLayout.PREFERRED_SIZE)
 					.addGap(10)
-					.addComponent(btnNewButton)
+					.addComponent(beenden)
 					.addGap(25))
 		);
 		setLayout(groupLayout);
@@ -162,7 +168,7 @@ public class PPAWaehrendGUI extends JPanel {
 		System.out.println("--------------------------");
 	}
 
-	// TableCellRenderer für den JButton-Objekt
+	//TableCellRenderer für das JButton-Objekt (innerhalb der Tabelle)
 	static class ButtonRenderer extends JButton implements TableCellRenderer {
 		public ButtonRenderer() {
 			setOpaque(true);
@@ -174,17 +180,13 @@ public class PPAWaehrendGUI extends JPanel {
 			ArrayList<Student> ausgabe = db.ausgeben();
 
 			for (int i = 0; i < ausgabe.size(); i++) {
+				//Renderer, wenn Student noch keinem Professor zugeteilt ist
 				if (ausgabe.get(i).getProf().getNachname() == null) {
 					if (row == i) {
-						if (isSelected) {
-
-						} else {
-
-						}
 						setText((value == null) ? "" : value.toString());
 						return this;
 					}
-				} else { // alle anderen Zellen
+				} else { // alle anderen Zellen kein Renderer
 					return new JLabel((value == null) ? "" : value.toString());
 				}
 			}
@@ -192,12 +194,10 @@ public class PPAWaehrendGUI extends JPanel {
 		}
 	}
 
-	// TableCellEditor für den JButton-Objekt
+	//TableCellEditor für das JButton-Objekt (innerhalb der Tabelle)
 	static class ButtonEditor extends DefaultCellEditor {
 		protected JButton button;
-
 		private String label;
-
 		private boolean isPushed;
 		private int buttonRow;
 		private int buttonColumn;
@@ -219,15 +219,11 @@ public class PPAWaehrendGUI extends JPanel {
 				int column) {
 
 			for (int i = 0; i < ausgabe.size(); i++) {
+				//Button, wenn Student noch keinem Professor zugeteilt ist
 				if (ausgabe.get(i).getProf().getNachname() == null) {
 					buttonRow = row;
 					buttonColumn = column;
 					if (row == i || column == 2) {
-						if (isSelected) {
-
-						} else {
-
-						}
 						label = (value == null) ? "" : value.toString();
 						button.setText(label);
 						isPushed = true;
@@ -243,22 +239,28 @@ public class PPAWaehrendGUI extends JPanel {
 				DatenabrufProfessor db2 = new DatenabrufProfessor();
 				ArrayList<Professor> ausgabeprof = db2.ausgeben();
 
+				//alle Professoren, die sich in der Datenbank befinden werden ausgelesen, damit diese ausgewählt werden können
+				//es kann maximal ein Professor ausgewählt werden (ButtonGroup)
 				Object[] message = new Object[ausgabeprof.size() - 1];
+				ButtonGroup x = new ButtonGroup();
+				JRadioButton [] tmp = new JRadioButton[ausgabeprof.size() - 1];
+				
 				for (int i = 1; i < ausgabeprof.size(); i++) {
-					message[i - 1] = new JCheckBox(
-							ausgabeprof.get(i).getNachname() + ", " + ausgabeprof.get(i).getVorname());
+					tmp [i-1] = new JRadioButton(ausgabeprof.get(i).getNachname() + ", " + ausgabeprof.get(i).getVorname());
+					x.add(tmp[i-1]);
+					message[i - 1] = tmp[i-1];
 				}
 
 				int option = JOptionPane.showOptionDialog(null, message, "Professoren-Zuteilung",
 						JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null,
 						new String[] { "Auswählen", "Zurück" }, "Zurück");
 
+				//ausgewählter Professor wird beim jeweiligen Studenten in der Datenbank (Tabelle Student) eingetragen
 				if (option == JOptionPane.YES_OPTION) {
-					// Hier kann dann in die Datenbank eingelesen werden
 					int nummer = ausgabe.get(buttonRow).getMatrikelnr();
 
 					for (int i = 0; i < ausgabeprof.size() - 1; i++) {
-						if (((JCheckBox) message[i]).isSelected()) {
+						if (((JRadioButton) message[i]).isSelected()) {
 							db.aendern(ausgabeprof.get(i + 1).getId(), nummer);
 						}
 

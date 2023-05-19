@@ -32,23 +32,17 @@ import sortierung.MyComparator2;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 
+//Professoren-Maske während der Zuteilung
 public class ProfessorenWaehrendGUI extends JPanel {
 	private boolean DEBUG = false;
 	private static String anmeldename;
 	private static JFrame frame;
 
-	/**
-	 * Launch the application.
-	 */
-
-	/**
-	 * Create the application.
-	 */
-
 	public ProfessorenWaehrendGUI(String anmeldename) {
 
 		this.anmeldename = anmeldename;
 
+		//die in der Datenbank (Tabelle Studenten) befindlichen Daten werden ausgelesen und in Form einer Tabelle eingelesen
 		String[] columnNames = { "Student", "E-Mail", "Unternehmen", "Zeitraum", "Betreuer", };
 		DatenabrufStudent db = new DatenabrufStudent();
 		ArrayList<Student> ausgabe = db.ausgeben();
@@ -75,6 +69,7 @@ public class ProfessorenWaehrendGUI extends JPanel {
 		table.getColumnModel().getColumn(2).setCellRenderer(new ButtonRenderer());
 		table.getColumnModel().getColumn(2).setCellEditor(new ButtonEditor(new JCheckBox()));
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		
 		if (DEBUG) {
 			table.addMouseListener(new MouseAdapter() {
 				public void mouseClicked(MouseEvent e) {
@@ -132,7 +127,7 @@ public class ProfessorenWaehrendGUI extends JPanel {
 
 	}
 
-	// TableCellRenderer für den JButton-Objekt
+	//TableCellRenderer für das JButton-Objekt (innerhalb der Tabelle)
 	static class ButtonRenderer extends JButton implements TableCellRenderer {
 		public ButtonRenderer() {
 			setOpaque(true);
@@ -144,17 +139,13 @@ public class ProfessorenWaehrendGUI extends JPanel {
 			ArrayList<Student> ausgabe = db.ausgeben();
 
 			for (int i = 0; i < ausgabe.size(); i++) {
+				//Renderer bei Professor = null und der gesamten Spalte 2
 				if (ausgabe.get(i).getProf().getNachname() == null || column == 2) {
 					if (row == i || column == 2) {
-						if (isSelected) {
-
-						} else {
-
-						}
 						setText((value == null) ? "" : value.toString());
 						return this;
 					}
-				} else { // alle anderen Zellen
+				} else { //alle anderen Zellen kein Renderer
 					return new JLabel((value == null) ? "" : value.toString());
 				}
 			}
@@ -162,12 +153,10 @@ public class ProfessorenWaehrendGUI extends JPanel {
 		}
 	}
 
-	// TableCellEditor für den JButton-Objekt
+	//TableCellEditor für das JButton-Objekt (innerhalb der Tabelle)
 	static class ButtonEditor extends DefaultCellEditor {
 		protected JButton button;
-
 		private String label;
-
 		private boolean isPushed;
 		private int buttonRow;
 		private int buttonColumn;
@@ -189,15 +178,11 @@ public class ProfessorenWaehrendGUI extends JPanel {
 				int column) {
 
 			for (int i = 0; i < ausgabe.size(); i++) {
+				//Button bei Professor = null und der gesamten Spalte 2
 				if (ausgabe.get(i).getProf().getNachname() == null || column == 2) {
 					buttonRow = row;
 					buttonColumn = column;
 					if (row == i || column == 2) {
-						if (isSelected) {
-
-						} else {
-
-						}
 						label = (value == null) ? "" : value.toString();
 						button.setText(label);
 						isPushed = true;
@@ -209,7 +194,9 @@ public class ProfessorenWaehrendGUI extends JPanel {
 
 		public Object getCellEditorValue() {
 			if (isPushed) {
-				// Öffne ein neues Fenster, wenn der Button geklickt wird
+				//Öffne ein neues Fenster, wenn der Button geklickt wird
+				
+				//wenn der Button in Spalte 2 ist werden alle Unternehmensdaten von dem jeweiligen Studenten angezeigt, auf das geklickt wurde
 				if (buttonColumn == 2) {
 					DatenabrufStudent db = new DatenabrufStudent();
 					ArrayList<Unternehmen> unternehmenls = db.ausUnternehmen();
@@ -237,14 +224,15 @@ public class ProfessorenWaehrendGUI extends JPanel {
 									JOptionPane.INFORMATION_MESSAGE);
 						}
 					}
-
+				//andernfalls: der Professor = null
 				} else {
 					int option = JOptionPane.showOptionDialog(null, "Sind Sie sicher? ", "Bestätigung",
 							JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null,
 							new String[] { "Ja", "Zurück" }, "Zurück");
-
+					
+					//wenn auf "Ja" geklickt wird wird bei jeweiligem Studenten derjenige Professor in der Datenbank eingetragen, der gerade
+					//angemeldet ist
 					if (option == JOptionPane.YES_OPTION) {
-
 						DatenabrufProfessor db2 = new DatenabrufProfessor();
 						ArrayList<Professor> ausgabeprof = db2.ausgeben();
 						int nummer = ausgabe.get(buttonRow).getMatrikelnr();

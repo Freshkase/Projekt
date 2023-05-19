@@ -1,6 +1,5 @@
 package gui;
 
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -24,6 +23,7 @@ import objekte.Student;
 import java.awt.Font;
 import java.awt.Toolkit;
 
+//Studenten-Maske
 public class StudentGUI extends JPanel {
 	private boolean DEBUG = false;
 	private static String anmeldename;
@@ -36,6 +36,9 @@ public class StudentGUI extends JPanel {
 
 		DatenabrufStudent db = new DatenabrufStudent();
 		ArrayList<Student> ausgabe = db.ausgeben();
+		
+		//von dem Studenten die jeweiligen Informationen anzeigen, der sich auch angemeldet hat (daher Variable tmp)
+		//diese Variable wird im Verlauf dann immer genutzt, um die Informationen des angemeldeten Studenten auszugeben
 		int tmp = 0;
 		for (int i = 0; i < ausgabe.size(); i++) {
 			if (ausgabe.get(i).getAnmeldename().equals(anmeldename)) {
@@ -54,15 +57,6 @@ public class StudentGUI extends JPanel {
 		table.setPreferredScrollableViewportSize(new Dimension(500, 70));
 		table.setFillsViewportHeight(true);
 
-		if (DEBUG) {
-			table.addMouseListener(new MouseAdapter() {
-				public void mouseClicked(MouseEvent e) {
-					printDebugData(table);
-				}
-			});
-		}
-
-		// Create the scroll pane and add the table to it.
 		JScrollPane scrollbar = new JScrollPane(table);
 
 		JLabel profil = new JLabel("Profil:");
@@ -70,18 +64,18 @@ public class StudentGUI extends JPanel {
 		JLabel name = new JLabel(ausgabe.get(tmp).getNachname() + ", " + ausgabe.get(tmp).getVorname());
 		name.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
 
-		JLabel emailfix = new JLabel("Zugeteilter Professor:");
+		JLabel professorfix = new JLabel("Zugeteilter Professor:");
 
 		JLabel status = new JLabel("Status:");
 
-		JLabel lblNewLabel;
+		JLabel professor;
 		if (ausgabe.get(tmp).getProf().getId() == 0) {
-			lblNewLabel = new JLabel("noch nicht vergeben");
+			professor = new JLabel("noch nicht vergeben");
 		} else {
-			lblNewLabel = new JLabel(
+			professor = new JLabel(
 					ausgabe.get(tmp).getProf().getNachname() + ", " + ausgabe.get(tmp).getProf().getVorname());
 		}
-		lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
+		professor.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
 
 		JLabel matrikelnummerfix = new JLabel("Matrikelnummer:");
 		matrikelnummerfix.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
@@ -92,11 +86,11 @@ public class StudentGUI extends JPanel {
 		JLabel matrikelnummer = new JLabel(Integer.toString(ausgabe.get(tmp).getMatrikelnr()));
 		matrikelnummer.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
 
-		JLabel lblNewLabel_1 = new JLabel("E-Mail:");
-		lblNewLabel_1.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
+		JLabel emailfix = new JLabel("E-Mail:");
+		emailfix.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
 
-		JLabel lblNewLabel_2 = new JLabel(ausgabe.get(tmp).getEmail());
-		lblNewLabel_2.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
+		JLabel email = new JLabel(ausgabe.get(tmp).getEmail());
+		email.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
 
 		JLabel unternehmenfix = new JLabel("Unternehmen:");
 		unternehmenfix.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
@@ -125,18 +119,18 @@ public class StudentGUI extends JPanel {
 										.addContainerGap(0,900))
 								.addGroup(groupLayout.createSequentialGroup().addContainerGap().addComponent(status)
 										.addContainerGap(444, Short.MAX_VALUE))
-								.addGroup(groupLayout.createSequentialGroup().addContainerGap().addComponent(emailfix)
+								.addGroup(groupLayout.createSequentialGroup().addContainerGap().addComponent(professorfix)
 										.addContainerGap(352, Short.MAX_VALUE))
 								.addGroup(groupLayout
-										.createSequentialGroup().addContainerGap().addComponent(lblNewLabel)
+										.createSequentialGroup().addContainerGap().addComponent(professor)
 										.addContainerGap(389, Short.MAX_VALUE))
 								.addGroup(groupLayout.createSequentialGroup().addContainerGap()
 										.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 												.addComponent(matrikelnummerfix).addComponent(namefix)
-												.addComponent(lblNewLabel_1).addComponent(unternehmenfix))
+												.addComponent(emailfix).addComponent(unternehmenfix))
 										.addPreferredGap(ComponentPlacement.UNRELATED)
 										.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-												.addComponent(unternehmen).addComponent(lblNewLabel_2)
+												.addComponent(unternehmen).addComponent(email)
 												.addComponent(name).addComponent(matrikelnummer))
 										.addContainerGap(330, Short.MAX_VALUE))
 								.addGroup(groupLayout.createSequentialGroup()
@@ -157,38 +151,18 @@ public class StudentGUI extends JPanel {
 				.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(matrikelnummerfix)
 						.addComponent(matrikelnummer))
 				.addPreferredGap(ComponentPlacement.RELATED)
-				.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(lblNewLabel_1)
-						.addComponent(lblNewLabel_2))
+				.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(emailfix)
+						.addComponent(email))
 				.addPreferredGap(ComponentPlacement.RELATED)
 				.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(unternehmenfix)
 						.addComponent(unternehmen))
-				.addPreferredGap(ComponentPlacement.RELATED).addComponent(emailfix)
-				.addPreferredGap(ComponentPlacement.RELATED).addComponent(lblNewLabel).addGap(23).addComponent(status)
+				.addPreferredGap(ComponentPlacement.RELATED).addGap(15).addComponent(professorfix)
+				.addPreferredGap(ComponentPlacement.RELATED).addComponent(professor).addGap(23).addComponent(status)
 				.addPreferredGap(ComponentPlacement.RELATED)
 				.addComponent(scrollbar, GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE).addGap(20)));
 		setLayout(groupLayout);
 	}
 
-	private void printDebugData(JTable table) {
-		int numRows = table.getRowCount();
-		int numCols = table.getColumnCount();
-		javax.swing.table.TableModel model = table.getModel();
-
-		System.out.println("Value of data: ");
-		for (int i = 0; i < numRows; i++) {
-			System.out.print("    row " + i + ":");
-			for (int j = 0; j < numCols; j++) {
-				System.out.print("  " + model.getValueAt(i, j));
-			}
-			System.out.println();
-		}
-		System.out.println("--------------------------");
-	}
-
-	/**
-	 * Create the GUI and show it. For thread safety, this method should be invoked
-	 * from the event-dispatching thread.
-	 */
 	public static void createAndShowGUI() {
 		// Create and set up the window.
 		StudentGUI.frame = new JFrame("FELD-Student");

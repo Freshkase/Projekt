@@ -37,6 +37,7 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.UIManager;
 
+//Studierendensekretariat-Maske
 public class StudierendensekretariatGUI extends JPanel {
 	private boolean DEBUG = false;
 	private static String anmeldename;
@@ -53,7 +54,8 @@ public class StudierendensekretariatGUI extends JPanel {
 	public StudierendensekretariatGUI(String anmeldename) {
 
 		this.anmeldename = anmeldename;
-
+		
+		//die in der Datenbank (Tabelle Studenten) befindlichen Daten werden ausgelesen und in Form einer Tabelle eingelesen
 		String[] columnNames = { "Matrikelnummer", "Student", "E-Mail", "Unternehmen", "Tätigkeitsnachweis" };
 		DatenabrufStudent db = new DatenabrufStudent();
 		ArrayList<Student> ausgabe = db.ausgeben();
@@ -76,6 +78,7 @@ public class StudierendensekretariatGUI extends JPanel {
 		table.getColumnModel().getColumn(4).setCellRenderer(new ButtonRenderer());
 		table.getColumnModel().getColumn(4).setCellEditor(new ButtonEditor(new JCheckBox()));
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		
 		if (DEBUG) {
 			table.addMouseListener(new MouseAdapter() {
 				public void mouseClicked(MouseEvent e) {
@@ -99,6 +102,7 @@ public class StudierendensekretariatGUI extends JPanel {
 				}
 			});
 		}
+		
 		JScrollPane scrollbar = new JScrollPane(table);
 		
 		JButton Abmeldebutton = new JButton("Abmelden");
@@ -119,14 +123,14 @@ public class StudierendensekretariatGUI extends JPanel {
 					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 						.addComponent(Abmeldebutton)
 						.addComponent(scrollbar, GroupLayout.PREFERRED_SIZE, 930, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+					.addContainerGap(26, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
+					.addGap(10)
 					.addComponent(Abmeldebutton)
-					.addGap(76)
+					.addGap(10)
 					.addComponent(scrollbar, GroupLayout.PREFERRED_SIZE, 600, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
@@ -134,7 +138,7 @@ public class StudierendensekretariatGUI extends JPanel {
 
 	}
 
-	// TableCellRenderer für den JButton-Objekt
+	//TableCellRenderer für das JButton-Objekt (innerhalb der Tabelle)
 	static class ButtonRenderer extends JButton implements TableCellRenderer {
 		public ButtonRenderer() {
 			setOpaque(true);
@@ -147,12 +151,13 @@ public class StudierendensekretariatGUI extends JPanel {
 			Collections.sort(ausgabe, new MyComparator4());
 
 			for (int i = 0; i < ausgabe.size(); i++) {
+				//Renderer bei Tätigkeitsnachweis "nein"
 				if (ausgabe.get(i).getTätigkeitsnachweis().equals("nein")) {
 					if (row == i) {
 						setText((value == null) ? "" : value.toString());
 						return this;
 					}
-				} else { // alle anderen Zellen
+				} else { //alle anderen Zellen kein Renderer
 					return new JLabel((value == null) ? "" : value.toString());
 				}
 			}
@@ -160,7 +165,7 @@ public class StudierendensekretariatGUI extends JPanel {
 		}
 	}
 
-	// TableCellEditor für den JButton-Objekt
+	//TableCellEditor für das JButton-Objekt (innerhalb der Tabelle)
 	static class ButtonEditor extends DefaultCellEditor {
 		protected JButton button;
 
@@ -188,12 +193,11 @@ public class StudierendensekretariatGUI extends JPanel {
 			Collections.sort(ausgabe, new MyComparator4());
 
 			for (int i = 0; i < ausgabe.size(); i++) {
+				//Button bei Tätigkeitsnachweis "nein"
 				if (ausgabe.get(i).getTätigkeitsnachweis().equals("nein")) {
 					buttonRow = row;
 					buttonColumn = column;
 					if (row == i) {
-						buttonRow = row;
-						buttonColumn = column;
 						label = (value == null) ? "" : value.toString();
 						button.setText(label);
 						isPushed = true;
@@ -206,13 +210,12 @@ public class StudierendensekretariatGUI extends JPanel {
 		public Object getCellEditorValue() {
 			if (isPushed) {
 				// Öffne ein neues Fenster, wenn der Button geklickt wird
-
 				if (ausgabe.get(buttonRow).getTätigkeitsnachweis().equals("nein")) {
 					int option = JOptionPane.showOptionDialog(null, "Sind Sie sicher? ", "Bestätigung",
 							JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null,
 							new String[] { "Ja", "Zurück" }, "Zurück");
+					//wenn auf "Ja" geklickt wird wird bei jeweiligem Studenten den Tätigkeitsnachweis in der Datenbank auf "ja" setzen
 					if (option == JOptionPane.YES_OPTION) {
-
 						DatenabrufProfessor db2 = new DatenabrufProfessor();
 						ArrayList<Professor> ausgabeprof = db2.ausgeben();
 						int nummer = ausgabe.get(buttonRow).getMatrikelnr();
@@ -246,6 +249,7 @@ public class StudierendensekretariatGUI extends JPanel {
 		// Create and set up the window.
 		StudierendensekretariatGUI.frame = new JFrame("FELD-Studiensekteriat");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//Logo einfügen und auch als Icon
 		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(StudierendensekretariatGUI.class.getResource("/gui/Logo.png")));
 		
 		// Create and set up the content pane.

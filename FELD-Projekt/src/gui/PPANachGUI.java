@@ -37,6 +37,7 @@ import objekte.Student;
 import sortierung.MyComparator3;
 import sortierung.MyComparator5;
 
+//PPA-Maske nach Zuteilung
 public class PPANachGUI extends JPanel {
 	private boolean DEBUG = false;
 	private static String anmeldename;
@@ -46,6 +47,7 @@ public class PPANachGUI extends JPanel {
 
 		this.anmeldename = anmeldename;
 
+		//die in der Datenbank (Tabelle Studenten) befindlichen Daten werden ausgelesen und in Form einer Tabelle eingelesen
 		String[] columnNames = { "Name", "E-Mail", "Unternehmen", "Betreuer", "Tätigkeitsnachweis", "BPS-Bericht",
 				"Besuchsbericht", "BPS-Vortrag", };
 
@@ -87,16 +89,16 @@ public class PPANachGUI extends JPanel {
 			});
 		}
 
-		// Create the scroll pane and add the table to it.
 		JScrollPane scrollbar = new JScrollPane(table);
 		
-		
-
-		JButton btnNewButton = new JButton("Senden");
-		btnNewButton.setFont(new Font("Dialog", Font.PLAIN, 13));
-		btnNewButton.setBackground(new Color(0, 128, 255));
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton senden = new JButton("Senden");
+		senden.setFont(new Font("Dialog", Font.PLAIN, 13));
+		senden.setBackground(new Color(0, 128, 255));
+		senden.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				//zuerst werden die Daten in die .csv Datei aus der Datenbank eingelesen
+				//im Anschluss wird eine E-Mail an das Prüfungsamt versendet mit der .csv Datei als Anhang
 				try (PrintWriter writer = new PrintWriter(new File("Ergebnisse_BPS.csv"))) {
 					DatenabrufStudent db = new DatenabrufStudent();
 					ArrayList<Student> ausgabe = db.ausgeben();
@@ -183,7 +185,7 @@ public class PPANachGUI extends JPanel {
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap(26, Short.MAX_VALUE)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnNewButton, Alignment.TRAILING)
+						.addComponent(senden, Alignment.TRAILING)
 						.addComponent(scrollbar, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 920, GroupLayout.PREFERRED_SIZE)
 						.addComponent(AbmeldeButton, Alignment.TRAILING))
 					.addContainerGap(26, Short.MAX_VALUE))
@@ -196,7 +198,7 @@ public class PPANachGUI extends JPanel {
 					.addGap(10)
 					.addComponent(scrollbar, GroupLayout.PREFERRED_SIZE, 600, GroupLayout.PREFERRED_SIZE)
 					.addGap(10)
-					.addComponent(btnNewButton)
+					.addComponent(senden)
 					.addGap(25))
 		);
 		setLayout(groupLayout);
@@ -218,7 +220,7 @@ public class PPANachGUI extends JPanel {
 		System.out.println("--------------------------");
 	}
 
-	// TableCellRenderer für den JButton-Objekt
+	//TableCellRenderer für das JButton-Objekt (innerhalb der Tabelle)
 	static class ButtonRenderer extends JButton implements TableCellRenderer {
 		public ButtonRenderer() {
 			setOpaque(true);
@@ -231,12 +233,13 @@ public class PPANachGUI extends JPanel {
 			Collections.sort(ausgabe, new MyComparator3());
 
 			for (int i = 0; i < ausgabe.size(); i++) {
+				//Renderer, wenn Besuchsbericht verfasst wurde und in Spalte 7
 				if ((!ausgabe.get(i).getBesuchsbericht().equals(" ")) || column == 7) {
 					if (row == i || column == 7) {
 						setText((value == null) ? "" : value.toString());
 						return this;
 					}
-				} else { // alle anderen Zellen
+				} else { // alle anderen Zellen kein Renderer
 					return new JLabel((value == null) ? "" : value.toString());
 				}
 			}
@@ -244,7 +247,7 @@ public class PPANachGUI extends JPanel {
 		}
 	}
 
-	// TableCellEditor für den JButton-Objekt
+	//TableCellEditor für das JButton-Objekt (innerhalb der Tabelle)
 	static class ButtonEditor extends DefaultCellEditor {
 		protected JButton button;
 
@@ -273,6 +276,7 @@ public class PPANachGUI extends JPanel {
 			Collections.sort(ausgabe, new MyComparator3());
 
 			for (int i = 0; i < ausgabe.size(); i++) {
+				//Button, wenn Besuchsbericht verfasst wurde und in Spalte 7
 				if ((!ausgabe.get(i).getBesuchsbericht().equals(" ")) || column == 7) {
 					if (row == i || column == 7) {
 						buttonRow = row;
@@ -294,6 +298,8 @@ public class PPANachGUI extends JPanel {
 				ArrayList<Student> ausgabe = db.ausgeben();
 				Collections.sort(ausgabe, new MyComparator3());
 
+				//Button ist in Spalte 7: Wenn der Vortrag in der Datenbank auf "nein" gesetzt ist, gibt es die Möglichkeit ihn auf "ja" zu setzen
+				//ist der Bericht bereits auf "ja" gesetzt wird dies in einer Meldung mitgeteilt
 				if (buttonColumn == 7) {
 					if (ausgabe.get(buttonRow).getVortrag().equals("nein")) {
 						int option = JOptionPane.showOptionDialog(null, "Wollen sie den Status ändern? ", "Bestätigung",
@@ -301,22 +307,19 @@ public class PPANachGUI extends JPanel {
 								new String[] { "Ja", "Zurück" }, "Zurück");
 
 						if (option == JOptionPane.YES_OPTION) {
-
 							db.aendernVortrag(ausgabe.get(buttonRow).getMatrikelnr());
-
 							ausgabe.clear();
 							frame.dispose();
 							PPANachGUI neu = new PPANachGUI(anmeldename);
 							neu.main(null);
-
 						}
 					} else {
-
 						JOptionPane.showMessageDialog(null, "BPS-Vortrag wurde schon auf ja gesetzt",
 								"Informationen zum Unternehmen", JOptionPane.INFORMATION_MESSAGE);
-
 					}
 
+				//anderenfalls ist der Besuchsbericht schon geschrieben
+				//es wird eine Scrollbar mit dem vom Professor geschriebenen Besuchsbericht geöffnet, damit das PPA ihn lesen kann
 				} else {
 					JPanel panel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
 					JTextArea textArea = new JTextArea(45, 100);
