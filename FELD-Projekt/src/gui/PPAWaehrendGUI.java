@@ -28,6 +28,7 @@ import javax.swing.table.TableCellRenderer;
 import datenbank.DatenabrufStudent;
 import gui.ProfessorenWaehrendGUI.ButtonEditor;
 import gui.ProfessorenWaehrendGUI.ButtonRenderer;
+import mail.Mail;
 import objekte.Professor;
 import objekte.Student;
 import datenbank.DatenabrufStatus;

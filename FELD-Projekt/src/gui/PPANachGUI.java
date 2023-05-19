@@ -32,6 +32,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.table.TableCellRenderer;
 import datenbank.DatenabrufStudent;
+import mail.Mail2;
 import objekte.Student;
 import sortierung.MyComparator3;
 import sortierung.MyComparator5;
