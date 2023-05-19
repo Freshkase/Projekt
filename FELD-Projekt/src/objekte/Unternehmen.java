@@ -15,7 +15,7 @@ public class Unternehmen {
 	private String beschreibung;
 	private String anmeldenamedesstudenten;
 
-	//verschiedene Konstruktoren je nach Bedarf
+	// verschiedene Konstruktoren je nach Bedarf
 	public Unternehmen(String name) {
 		this.name = name;
 	}
@@ -80,6 +80,5 @@ public class Unternehmen {
 	public String toString() {
 		return "Unternehmen [name=" + name + "]";
 	}
-	
 
 }

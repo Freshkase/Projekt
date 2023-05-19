@@ -19,37 +19,36 @@ import javax.mail.internet.MimeMultipart;
  */
 public class Mail2 {
 
-	private static Message prepareMessage(Session session, String myAccount, String empfaenger)
-			throws Exception {
+	private static Message prepareMessage(Session session, String myAccount, String empfaenger) throws Exception {
 		Message message = new MimeMessage(session);
 
 		message.setFrom(new InternetAddress(myAccount));
-		
-		//Empfänger der Mail festlegen
+
+		// Empfänger der Mail festlegen
 		message.addRecipient(Message.RecipientType.TO, new InternetAddress(empfaenger));
 		message.setSubject("FELD");
-		
+
 		// Multipart-Message ("Wrapper") erstellen
 		Multipart multipart = new MimeMultipart();
-		
+
 		// Body-Part setzen:
 		BodyPart messageBodyPart = new MimeBodyPart();
-		
+
 		// Textteil des Body-Parts
-		messageBodyPart.setText("Sehr geehrtes Prüfungsamt, \n\nhiermit übersenden wir Ihnen die vollständige Liste aller Praxissemesterabsolventen zur Überprüfung und Eintragung des erfolgreichen Bestehens.\n\nMit freundlichen Grüßen\ndas FELD-Team\n\nDiese E-Mail wurde autogeneriert. ");		
-		
+		messageBodyPart.setText(
+				"Sehr geehrtes Prüfungsamt, \n\nhiermit übersenden wir Ihnen die vollständige Liste aller Praxissemesterabsolventen zur Überprüfung und Eintragung des erfolgreichen Bestehens.\n\nMit freundlichen Grüßen\ndas FELD-Team\n\nDiese E-Mail wurde autogeneriert. ");
+
 		// Body-Part dem Multipart-Wrapper hinzufügen
 		multipart.addBodyPart(messageBodyPart);
-		
-		//Anhang einfügen
+
+		// Anhang einfügen
 		MimeBodyPart attachmentPart = new MimeBodyPart();
 		attachmentPart.attachFile("Ergebnisse_BPS.csv");
 		multipart.addBodyPart(attachmentPart);
-		
+
 		// Message fertigstellen, indem sie mit dem Multipart-Content ausgestattet wird
 		message.setContent(multipart);
 
-		
 		return message;
 	}
 
@@ -63,17 +62,17 @@ public class Mail2 {
 
 		String myAccount = "feld-projekt@web.de";
 		String myPassword = "feld#0922";
-		
-		//hier wird die Mail-Adresse des Prüfungsamts eingetragen
+
+		// hier wird die Mail-Adresse des Prüfungsamts eingetragen
 		String empfaenger = "22pole1bwi@hft-stuttgart.de";
-		
+
 		Session session = Session.getInstance(properties, new Authenticator() {
 			@Override
 			protected PasswordAuthentication getPasswordAuthentication() {
 				return new PasswordAuthentication(myAccount, myPassword);
 			}
 		});
-		
+
 		// Message-Objekt erzeugen und senden!
 		try {
 			Message message = prepareMessage(session, myAccount, empfaenger);

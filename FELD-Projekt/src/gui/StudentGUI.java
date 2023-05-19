@@ -23,12 +23,13 @@ import objekte.Student;
 import java.awt.Font;
 import java.awt.Toolkit;
 
-//Studenten-Maske
+/**
+ * Studenten-Maske
+ */
 public class StudentGUI extends JPanel {
 	private boolean DEBUG = false;
 	private static String anmeldename;
 	private static JFrame frame;
-
 
 	public StudentGUI(String anmeldename) {
 
@@ -36,9 +37,12 @@ public class StudentGUI extends JPanel {
 
 		DatenabrufStudent db = new DatenabrufStudent();
 		ArrayList<Student> ausgabe = db.ausgeben();
-		
-		//von dem Studenten die jeweiligen Informationen anzeigen, der sich auch angemeldet hat (daher Variable tmp)
-		//diese Variable wird im Verlauf dann immer genutzt, um die Informationen des angemeldeten Studenten auszugeben
+
+		/**
+		 * von dem Studenten die jeweiligen Informationen anzeigen, der sich auch
+		 * angemeldet hat (daher Variable tmp) diese Variable wird im Verlauf dann immer
+		 * genutzt, um die Informationen des angemeldeten Studenten auszugeben
+		 */
 		int tmp = 0;
 		for (int i = 0; i < ausgabe.size(); i++) {
 			if (ausgabe.get(i).getAnmeldename().equals(anmeldename)) {
@@ -97,7 +101,7 @@ public class StudentGUI extends JPanel {
 
 		JLabel unternehmen = new JLabel(ausgabe.get(tmp).getUnternehmen().getName());
 		unternehmen.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
-		
+
 		JButton AbmeldeButton = new JButton("Abmelden");
 		AbmeldeButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -106,7 +110,7 @@ public class StudentGUI extends JPanel {
 				neu.main(null);
 			}
 		});
- 
+
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout
 				.setHorizontalGroup(
@@ -116,11 +120,11 @@ public class StudentGUI extends JPanel {
 								.addGroup(groupLayout.createSequentialGroup().addContainerGap(17, Short.MAX_VALUE)
 										.addComponent(scrollbar, GroupLayout.PREFERRED_SIZE, 470,
 												GroupLayout.PREFERRED_SIZE)
-										.addContainerGap(0,900))
+										.addContainerGap(0, 900))
 								.addGroup(groupLayout.createSequentialGroup().addContainerGap().addComponent(status)
 										.addContainerGap(444, Short.MAX_VALUE))
-								.addGroup(groupLayout.createSequentialGroup().addContainerGap().addComponent(professorfix)
-										.addContainerGap(352, Short.MAX_VALUE))
+								.addGroup(groupLayout.createSequentialGroup().addContainerGap()
+										.addComponent(professorfix).addContainerGap(352, Short.MAX_VALUE))
 								.addGroup(groupLayout
 										.createSequentialGroup().addContainerGap().addComponent(professor)
 										.addContainerGap(389, Short.MAX_VALUE))
@@ -130,36 +134,35 @@ public class StudentGUI extends JPanel {
 												.addComponent(emailfix).addComponent(unternehmenfix))
 										.addPreferredGap(ComponentPlacement.UNRELATED)
 										.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-												.addComponent(unternehmen).addComponent(email)
-												.addComponent(name).addComponent(matrikelnummer))
+												.addComponent(unternehmen).addComponent(email).addComponent(name)
+												.addComponent(matrikelnummer))
 										.addContainerGap(330, Short.MAX_VALUE))
-								.addGroup(groupLayout.createSequentialGroup()
-										.addContainerGap(26, Short.MAX_VALUE)
+								.addGroup(groupLayout.createSequentialGroup().addContainerGap(26, Short.MAX_VALUE)
 										.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-											.addComponent(AbmeldeButton))
-											.addContainerGap(0, 10)));
-		
-										
-		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.TRAILING).addGroup(groupLayout
-				.createSequentialGroup()
-				.addContainerGap()
-				.addComponent(profil)
-				.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-				.addComponent(AbmeldeButton)
-				.addComponent(namefix).addComponent(name))
-				.addContainerGap()
-				.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(matrikelnummerfix)
-						.addComponent(matrikelnummer))
-				.addPreferredGap(ComponentPlacement.RELATED)
-				.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(emailfix)
-						.addComponent(email))
-				.addPreferredGap(ComponentPlacement.RELATED)
-				.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(unternehmenfix)
-						.addComponent(unternehmen))
-				.addPreferredGap(ComponentPlacement.RELATED).addGap(15).addComponent(professorfix)
-				.addPreferredGap(ComponentPlacement.RELATED).addComponent(professor).addGap(23).addComponent(status)
-				.addPreferredGap(ComponentPlacement.RELATED)
-				.addComponent(scrollbar, GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE).addGap(20)));
+												.addComponent(AbmeldeButton))
+										.addContainerGap(0, 10)));
+
+		groupLayout
+				.setVerticalGroup(
+						groupLayout.createParallelGroup(Alignment.TRAILING)
+								.addGroup(groupLayout.createSequentialGroup().addContainerGap().addComponent(profil)
+										.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+												.addComponent(AbmeldeButton).addComponent(namefix).addComponent(name))
+										.addContainerGap()
+										.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+												.addComponent(matrikelnummerfix).addComponent(matrikelnummer))
+										.addPreferredGap(ComponentPlacement.RELATED)
+										.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+												.addComponent(emailfix).addComponent(email))
+										.addPreferredGap(ComponentPlacement.RELATED)
+										.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+												.addComponent(unternehmenfix).addComponent(unternehmen))
+										.addPreferredGap(ComponentPlacement.RELATED).addGap(15)
+										.addComponent(professorfix).addPreferredGap(ComponentPlacement.RELATED)
+										.addComponent(professor).addGap(23).addComponent(status)
+										.addPreferredGap(ComponentPlacement.RELATED).addComponent(scrollbar,
+												GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE)
+										.addGap(20)));
 		setLayout(groupLayout);
 	}
 

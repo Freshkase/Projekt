@@ -5,8 +5,8 @@ import java.util.Comparator;
 import objekte.Student;
 
 /**
- * Sortierung aufsteigend nach ProfessorenID
- * Generell: Comparatoren werden benötigt aufgrund der Darstellung der Buttons innerhalb der Tabelle
+ * Sortierung aufsteigend nach ProfessorenID Generell: Comparatoren werden
+ * benötigt aufgrund der Darstellung der Buttons innerhalb der Tabelle
  */
 
 public class MyComparator2 implements Comparator<Student> {

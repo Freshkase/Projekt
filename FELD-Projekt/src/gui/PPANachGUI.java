@@ -37,7 +37,9 @@ import objekte.Student;
 import sortierung.MyComparator3;
 import sortierung.MyComparator5;
 
-//PPA-Maske nach Zuteilung
+/**
+ * PPA-Maske nach Zuteilung
+ */
 public class PPANachGUI extends JPanel {
 	private boolean DEBUG = false;
 	private static String anmeldename;
@@ -47,7 +49,10 @@ public class PPANachGUI extends JPanel {
 
 		this.anmeldename = anmeldename;
 
-		//die in der Datenbank (Tabelle Studenten) befindlichen Daten werden ausgelesen und in Form einer Tabelle eingelesen
+		/**
+		 * die in der Datenbank (Tabelle Studenten) befindlichen Daten werden ausgelesen
+		 * und in Form einer Tabelle eingelesen
+		 */
 		String[] columnNames = { "Name", "E-Mail", "Unternehmen", "Betreuer", "Tätigkeitsnachweis", "BPS-Bericht",
 				"Besuchsbericht", "BPS-Vortrag", };
 
@@ -90,89 +95,92 @@ public class PPANachGUI extends JPanel {
 		}
 
 		JScrollPane scrollbar = new JScrollPane(table);
-		
+
 		JButton senden = new JButton("Senden");
 		senden.setFont(new Font("Dialog", Font.PLAIN, 13));
 		senden.setBackground(new Color(0, 128, 255));
 		senden.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				//zuerst werden die Daten in die .csv Datei aus der Datenbank eingelesen
-				//im Anschluss wird eine E-Mail an das Prüfungsamt versendet mit der .csv Datei als Anhang
+
+				/**
+				 * zuerst werden die Daten in die .csv Datei aus der Datenbank eingelesen im
+				 * Anschluss wird eine E-Mail an das Prüfungsamt versendet mit der .csv Datei
+				 * als Anhang
+				 */
 				try (PrintWriter writer = new PrintWriter(new File("Ergebnisse_BPS.csv"))) {
 					DatenabrufStudent db = new DatenabrufStudent();
 					ArrayList<Student> ausgabe = db.ausgeben();
-					Collections.sort(ausgabe,new MyComparator5());
-			        StringBuilder sb = new StringBuilder();
-			    	sb.append("Nachname");
-		        	sb.append(',');
-		        	sb.append("Vorname");
-		        	sb.append(',');
-		        	sb.append("Anmeldename");
-		        	sb.append(',');
-		        	sb.append("Matrikelnummer");
-		        	sb.append(',');
-		        	sb.append("Email");
-		        	sb.append(',');
-		        	sb.append("Unternehmen");
-		        	sb.append(',');
-		        	sb.append("Beginn");
-		        	sb.append(',');
-		        	sb.append("Ende");
-		        	sb.append(',');
-		        	sb.append("Professor");
-		        	sb.append(',');
-		        	sb.append("Tätigkeitsnachweis");
-		        	sb.append(',');
-		        	sb.append("Bericht");
-		        	sb.append(',');
-		        	sb.append("Vortrag");
-		        	sb.append('\n');
-		        	for(Student i: ausgabe) {
-			        	sb.append(i.getNachname());
-			        	sb.append(',');
-			        	sb.append(i.getVorname());
-			        	sb.append(',');
-			        	sb.append(i.getAnmeldename());
-			        	sb.append(',');
-			        	sb.append(i.getMatrikelnr());
-			        	sb.append(',');
-			        	sb.append(i.getEmail());
-			        	sb.append(',');
-			        	sb.append(i.getUnternehmen().getName());
-			        	sb.append(',');
-			        	sb.append(i.getBeginn());
-			        	sb.append(',');
-			        	sb.append(i.getEnde());
-			        	sb.append(',');
-			        	sb.append(i.getProf().getVorname()+ " " + i.getProf().getNachname());
-			        	sb.append(',');
-			        	sb.append(i.getTätigkeitsnachweis());
-			        	sb.append(',');
-			        	sb.append(i.getBericht());
-			        	sb.append(',');
-			        	sb.append(i.getVortrag());
-			        	sb.append('\n');
-			        }
-		        	
-			        writer.write(sb.toString());
-			        writer.close();
-			        Mail2 mail = new Mail2();
-					mail.send();  
-					JOptionPane.showMessageDialog(null, "Die E-Mail wurde erfolgreich an das Prüfungsamt versendet.", "Bestätigung", JOptionPane.INFORMATION_MESSAGE);
-       		
+					Collections.sort(ausgabe, new MyComparator5());
+					StringBuilder sb = new StringBuilder();
+					sb.append("Nachname");
+					sb.append(',');
+					sb.append("Vorname");
+					sb.append(',');
+					sb.append("Anmeldename");
+					sb.append(',');
+					sb.append("Matrikelnummer");
+					sb.append(',');
+					sb.append("Email");
+					sb.append(',');
+					sb.append("Unternehmen");
+					sb.append(',');
+					sb.append("Beginn");
+					sb.append(',');
+					sb.append("Ende");
+					sb.append(',');
+					sb.append("Professor");
+					sb.append(',');
+					sb.append("Tätigkeitsnachweis");
+					sb.append(',');
+					sb.append("Bericht");
+					sb.append(',');
+					sb.append("Vortrag");
+					sb.append('\n');
+					for (Student i : ausgabe) {
+						sb.append(i.getNachname());
+						sb.append(',');
+						sb.append(i.getVorname());
+						sb.append(',');
+						sb.append(i.getAnmeldename());
+						sb.append(',');
+						sb.append(i.getMatrikelnr());
+						sb.append(',');
+						sb.append(i.getEmail());
+						sb.append(',');
+						sb.append(i.getUnternehmen().getName());
+						sb.append(',');
+						sb.append(i.getBeginn());
+						sb.append(',');
+						sb.append(i.getEnde());
+						sb.append(',');
+						sb.append(i.getProf().getVorname() + " " + i.getProf().getNachname());
+						sb.append(',');
+						sb.append(i.getTätigkeitsnachweis());
+						sb.append(',');
+						sb.append(i.getBericht());
+						sb.append(',');
+						sb.append(i.getVortrag());
+						sb.append('\n');
+					}
 
-			} catch (FileNotFoundException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+					writer.write(sb.toString());
+					writer.close();
+					Mail2 mail = new Mail2();
+					mail.send();
+					JOptionPane.showMessageDialog(null, "Die E-Mail wurde erfolgreich an das Prüfungsamt versendet.",
+							"Bestätigung", JOptionPane.INFORMATION_MESSAGE);
+
+				} catch (FileNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
-		
+
 		JButton AbmeldeButton = new JButton("Abmelden");
 		AbmeldeButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				frame.dispose();
 				AnmeldungGUI neu = new AnmeldungGUI();
 				neu.main(null);
@@ -180,27 +188,17 @@ public class PPANachGUI extends JPanel {
 		});
 
 		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap(26, Short.MAX_VALUE)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(senden, Alignment.TRAILING)
-						.addComponent(scrollbar, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 920, GroupLayout.PREFERRED_SIZE)
+		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout
+				.createSequentialGroup().addContainerGap(26, Short.MAX_VALUE)
+				.addGroup(groupLayout.createParallelGroup(Alignment.LEADING).addComponent(senden, Alignment.TRAILING)
+						.addComponent(scrollbar, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 920,
+								GroupLayout.PREFERRED_SIZE)
 						.addComponent(AbmeldeButton, Alignment.TRAILING))
-					.addContainerGap(26, Short.MAX_VALUE))
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.TRAILING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(AbmeldeButton)
-					.addGap(10)
-					.addComponent(scrollbar, GroupLayout.PREFERRED_SIZE, 600, GroupLayout.PREFERRED_SIZE)
-					.addGap(10)
-					.addComponent(senden)
-					.addGap(25))
-		);
+				.addContainerGap(26, Short.MAX_VALUE)));
+		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(groupLayout.createSequentialGroup().addContainerGap().addComponent(AbmeldeButton).addGap(10)
+						.addComponent(scrollbar, GroupLayout.PREFERRED_SIZE, 600, GroupLayout.PREFERRED_SIZE).addGap(10)
+						.addComponent(senden).addGap(25)));
 		setLayout(groupLayout);
 	}
 
@@ -220,7 +218,9 @@ public class PPANachGUI extends JPanel {
 		System.out.println("--------------------------");
 	}
 
-	//TableCellRenderer für das JButton-Objekt (innerhalb der Tabelle)
+	/**
+	 * TableCellRenderer für das JButton-Objekt (innerhalb der Tabelle)
+	 */
 	static class ButtonRenderer extends JButton implements TableCellRenderer {
 		public ButtonRenderer() {
 			setOpaque(true);
@@ -233,7 +233,9 @@ public class PPANachGUI extends JPanel {
 			Collections.sort(ausgabe, new MyComparator3());
 
 			for (int i = 0; i < ausgabe.size(); i++) {
-				//Renderer, wenn Besuchsbericht verfasst wurde und in Spalte 7
+				/**
+				 * Renderer, wenn Besuchsbericht verfasst wurde und in Spalte 7
+				 */
 				if ((!ausgabe.get(i).getBesuchsbericht().equals(" ")) || column == 7) {
 					if (row == i || column == 7) {
 						setText((value == null) ? "" : value.toString());
@@ -247,7 +249,9 @@ public class PPANachGUI extends JPanel {
 		}
 	}
 
-	//TableCellEditor für das JButton-Objekt (innerhalb der Tabelle)
+	/**
+	 * TableCellEditor für das JButton-Objekt (innerhalb der Tabelle)
+	 */
 	static class ButtonEditor extends DefaultCellEditor {
 		protected JButton button;
 
@@ -276,7 +280,9 @@ public class PPANachGUI extends JPanel {
 			Collections.sort(ausgabe, new MyComparator3());
 
 			for (int i = 0; i < ausgabe.size(); i++) {
-				//Button, wenn Besuchsbericht verfasst wurde und in Spalte 7
+				/**
+				 * Button, wenn Besuchsbericht verfasst wurde und in Spalte 7
+				 */
 				if ((!ausgabe.get(i).getBesuchsbericht().equals(" ")) || column == 7) {
 					if (row == i || column == 7) {
 						buttonRow = row;
@@ -292,14 +298,19 @@ public class PPANachGUI extends JPanel {
 
 		public Object getCellEditorValue() {
 			if (isPushed) {
-				// Öffne ein neues Fenster, wenn der Button geklickt wird
+				/**
+				 * Öffne ein neues Fenster, wenn der Button geklickt wird
+				 */
 
 				DatenabrufStudent db = new DatenabrufStudent();
 				ArrayList<Student> ausgabe = db.ausgeben();
 				Collections.sort(ausgabe, new MyComparator3());
 
-				//Button ist in Spalte 7: Wenn der Vortrag in der Datenbank auf "nein" gesetzt ist, gibt es die Möglichkeit ihn auf "ja" zu setzen
-				//ist der Bericht bereits auf "ja" gesetzt wird dies in einer Meldung mitgeteilt
+				/**
+				 * Button ist in Spalte 7: Wenn der Vortrag in der Datenbank auf "nein" gesetzt
+				 * ist, gibt es die Möglichkeit ihn auf "ja" zu setzen ist der Bericht bereits
+				 * auf "ja" gesetzt wird dies in einer Meldung mitgeteilt
+				 */
 				if (buttonColumn == 7) {
 					if (ausgabe.get(buttonRow).getVortrag().equals("nein")) {
 						int option = JOptionPane.showOptionDialog(null, "Wollen sie den Status ändern? ", "Bestätigung",
@@ -318,8 +329,11 @@ public class PPANachGUI extends JPanel {
 								"Informationen zum Unternehmen", JOptionPane.INFORMATION_MESSAGE);
 					}
 
-				//anderenfalls ist der Besuchsbericht schon geschrieben
-				//es wird eine Scrollbar mit dem vom Professor geschriebenen Besuchsbericht geöffnet, damit das PPA ihn lesen kann
+					/**
+					 * anderenfalls ist der Besuchsbericht schon geschrieben es wird eine Scrollbar
+					 * mit dem vom Professor geschriebenen Besuchsbericht geöffnet, damit das PPA
+					 * ihn lesen kann
+					 */
 				} else {
 					JPanel panel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
 					JTextArea textArea = new JTextArea(45, 100);
@@ -329,9 +343,9 @@ public class PPANachGUI extends JPanel {
 							+ " über " + ausgabe.get(buttonRow).getVorname() + " "
 							+ ausgabe.get(buttonRow).getNachname();
 					String header = "Besuchsbericht: " + message;
-					
+
 					JOptionPane.showMessageDialog(null, panel, header, JOptionPane.INFORMATION_MESSAGE);
-					
+
 				}
 
 			}

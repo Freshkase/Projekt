@@ -8,9 +8,11 @@ import java.util.ArrayList;
 import objekte.Professor;
 
 public class DatenabrufProfessor {
-	
+
 	/**
-	 * Methode, um Informationen aus der Tabelle "Professoren" aus der Datenbank auszulesen
+	 * Methode, um Informationen aus der Tabelle "Professoren" aus der Datenbank
+	 * auszulesen
+	 * 
 	 * @return eine ArrayList vom Typ Professor
 	 */
 	public ArrayList<Professor> ausgeben() {
@@ -47,11 +49,13 @@ public class DatenabrufProfessor {
 		return ausgabe;
 
 	}
-	
+
 	/**
-	 * Methode, um den Besuchsbericht in die Tabelle "Studenten" in die Datenbank einzulesen
+	 * Methode, um den Besuchsbericht in die Tabelle "Studenten" in die Datenbank
+	 * einzulesen
+	 * 
 	 * @param Besuchsbericht
-	 * @param nummer ist die Matrikelnummer des Studenten
+	 * @param nummer         ist die Matrikelnummer des Studenten
 	 */
 	public void BesuchsberichtErstellen(String Besuchsbericht, int nummer) {
 

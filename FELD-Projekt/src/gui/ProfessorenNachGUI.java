@@ -32,7 +32,9 @@ import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.ListSelectionModel;
 
-//Professoren-Maske nach der Zuteilung
+/**
+ * Professoren-Maske nach der Zuteilung
+ */
 public class ProfessorenNachGUI extends JPanel {
 	private boolean DEBUG = false;
 	private static String anmeldename;
@@ -45,8 +47,11 @@ public class ProfessorenNachGUI extends JPanel {
 
 		this.anmeldename = anmeldename;
 
-		//die in der Datenbank (Tabelle Studenten) befindlichen Daten werden ausgelesen und in Form einer Tabelle eingelesen
-		//es werden nur die Studenten angezeigt, die dem Professor zugeteilt sind, der gerade angemeldet ist!
+		/**
+		 * die in der Datenbank (Tabelle Studenten) befindlichen Daten werden ausgelesen
+		 * und in Form einer Tabelle eingelesen es werden nur die Studenten angezeigt,
+		 * die dem Professor zugeteilt sind, der gerade angemeldet ist!
+		 */
 		String[] columnNames = { "Student", "E-Mail", "Unternehmen", "Zeitraum", "Besuchsbericht", "BPS-Bericht", };
 		DatenabrufStudent db = new DatenabrufStudent();
 		ArrayList<Student> ausgabe = db.ausgeben();
@@ -97,7 +102,7 @@ public class ProfessorenNachGUI extends JPanel {
 		table.getColumnModel().getColumn(5).setCellRenderer(new ButtonRenderer());
 		table.getColumnModel().getColumn(5).setCellEditor(new ButtonEditor(new JCheckBox()));
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		
+
 		if (DEBUG) {
 			table.addMouseListener(new MouseAdapter() {
 				public void mouseClicked(MouseEvent e) {
@@ -121,43 +126,36 @@ public class ProfessorenNachGUI extends JPanel {
 				}
 			});
 		}
-		
+
 		JScrollPane scrollbar = new JScrollPane(table);
-		
+
 		JButton AbmeldeButton = new JButton("Abmelden");
 		AbmeldeButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
 				AnmeldungGUI neu = new AnmeldungGUI();
 				neu.main(null);
-			
+
 			}
 		});
 
 		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap(26, Short.MAX_VALUE)
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addComponent(AbmeldeButton)
-						.addComponent(scrollbar, GroupLayout.PREFERRED_SIZE, 930, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(26, Short.MAX_VALUE))
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(AbmeldeButton)
-					.addGap(10)
-					.addComponent(scrollbar, GroupLayout.PREFERRED_SIZE, 600, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-		);
+		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup().addContainerGap(26, Short.MAX_VALUE)
+						.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING).addComponent(AbmeldeButton)
+								.addComponent(scrollbar, GroupLayout.PREFERRED_SIZE, 930, GroupLayout.PREFERRED_SIZE))
+						.addContainerGap(26, Short.MAX_VALUE)));
+		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup().addContainerGap().addComponent(AbmeldeButton).addGap(10)
+						.addComponent(scrollbar, GroupLayout.PREFERRED_SIZE, 600, GroupLayout.PREFERRED_SIZE)
+						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 		setLayout(groupLayout);
 
 	}
 
-	//TableCellRenderer für das JButton-Objekt (innerhalb der Tabelle)
+	/**
+	 * TableCellRenderer für das JButton-Objekt (innerhalb der Tabelle)
+	 */
 	static class ButtonRenderer extends JButton implements TableCellRenderer {
 		public ButtonRenderer() {
 			setOpaque(true);
@@ -166,13 +164,16 @@ public class ProfessorenNachGUI extends JPanel {
 		public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
 				int row, int column) {
 			for (int i = 0; i < verkuerzt.size(); i++) {
-				//Renderer bei noch nicht geschriebenem Besuchsbericht und der gesamten Spalte 2 und 5
+				/**
+				 * Renderer bei noch nicht geschriebenem Besuchsbericht und der gesamten Spalte
+				 * 2 und 5
+				 */
 				if (verkuerzt.get(i).getBesuchsbericht().equals(" ") || column == 5 || column == 2) {
 					if (row == i || column == 5) {
 						setText((value == null) ? "" : value.toString());
 						return this;
 					}
-				} else { //alle anderen Zellen kein Renderer
+				} else { // alle anderen Zellen kein Renderer
 					return new JLabel((value == null) ? "" : value.toString());
 				}
 			}
@@ -180,7 +181,9 @@ public class ProfessorenNachGUI extends JPanel {
 		}
 	}
 
-	//TableCellEditor für das JButton-Objekt (innerhalb der Tabelle)
+	/**
+	 * TableCellEditor für das JButton-Objekt (innerhalb der Tabelle)
+	 */
 	static class ButtonEditor extends DefaultCellEditor {
 		protected JButton button;
 		private String label;
@@ -202,7 +205,10 @@ public class ProfessorenNachGUI extends JPanel {
 		public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row,
 				int column) {
 			for (int i = 0; i < verkuerzt.size(); i++) {
-				//Button bei noch nicht geschriebenem Besuchsbericht und der gesamten Spalte 2 und 5
+				/**
+				 * Button bei noch nicht geschriebenem Besuchsbericht und der gesamten Spalte 2
+				 * und 5
+				 */
 				if (verkuerzt.get(i).getBesuchsbericht().equals(" ") || column == 5 || column == 2) {
 					buttonRow = row;
 					buttonColumn = column;
@@ -218,10 +224,12 @@ public class ProfessorenNachGUI extends JPanel {
 
 		public Object getCellEditorValue() {
 			if (isPushed) {
-				// Öffne ein neues Fenster, wenn der Button geklickt wird
-				
-				//Button ist in Spalte 5: Wenn der Bericht in der Datenbank auf "nein" gesetzt ist, gibt es die Möglichkeit ihn auf "ja" zu setzen
-				//ist der Bericht bereits auf "ja" gesetzt wird dies in einer Meldung mitgeteilt
+				/**
+				 * Öffne ein neues Fenster, wenn der Button geklickt wird Button ist in Spalte
+				 * 5: Wenn der Bericht in der Datenbank auf "nein" gesetzt ist, gibt es die
+				 * Möglichkeit ihn auf "ja" zu setzen ist der Bericht bereits auf "ja" gesetzt
+				 * wird dies in einer Meldung mitgeteilt
+				 */
 				if (buttonColumn == 5) {
 					DatenabrufStudent db = new DatenabrufStudent();
 					ArrayList<Student> ausgabe = db.ausgeben();
@@ -230,8 +238,10 @@ public class ProfessorenNachGUI extends JPanel {
 						int option = JOptionPane.showOptionDialog(null, "Wollen sie den Status ändern? ", "Bestätigung",
 								JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null,
 								new String[] { "Ja", "Zurück" }, "Zurück");
-						
-						//Bericht wird beim jeweiligen Studenten in der Datenbank auf "ja" gesetzt
+
+						/**
+						 * Bericht wird beim jeweiligen Studenten in der Datenbank auf "ja" gesetzt
+						 */
 						if (option == JOptionPane.YES_OPTION) {
 							db.einlesenbericht(verkuerzt.get(buttonRow).getMatrikelnr());
 							verkuerzt.clear();
@@ -248,8 +258,10 @@ public class ProfessorenNachGUI extends JPanel {
 					}
 
 				}
-				//Button ist in Spalte 4: wenn der Besuchsbericht noch nicht erstellt wurde, gibt es die Möglichkeit
-				//einen Besuchsbericht zu verfassen
+				/**
+				 * Button ist in Spalte 4: wenn der Besuchsbericht noch nicht erstellt wurde,
+				 * gibt es die Möglichkeit einen Besuchsbericht zu verfassen
+				 */
 				if (buttonColumn == 4) {
 					JPanel panel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
 					JTextArea textArea = new JTextArea(45, 100);
@@ -262,8 +274,11 @@ public class ProfessorenNachGUI extends JPanel {
 							"Besuchsbericht " + verkuerzt.get(buttonRow).getVorname() + " "
 									+ verkuerzt.get(buttonRow).getNachname(),
 							JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
-					
-					//mit Klick auf OK wird der Besuchsbericht in der Tabelle Studenten in der Datenbank gespeichert
+
+					/**
+					 * mit Klick auf OK wird der Besuchsbericht in der Tabelle Studenten in der
+					 * Datenbank gespeichert
+					 */
 					if (result == JOptionPane.OK_OPTION) {
 						String input = textArea.getText();
 						DatenabrufProfessor db = new DatenabrufProfessor();
@@ -280,7 +295,10 @@ public class ProfessorenNachGUI extends JPanel {
 					}
 
 				}
-				//wenn der Button in Spalte 2 ist werden alle Unternehmensdaten von dem jeweiligen Studenten angezeigt, auf das geklickt wurde
+				/**
+				 * wenn der Button in Spalte 2 ist werden alle Unternehmensdaten von dem
+				 * jeweiligen Studenten angezeigt, auf das geklickt wurde
+				 */
 				if (buttonColumn == 2) {
 					DatenabrufStudent db = new DatenabrufStudent();
 					ArrayList<Unternehmen> unternehmenls = db.ausUnternehmen();

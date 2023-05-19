@@ -11,7 +11,9 @@ import datenbank.DatenabrufStudent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-//Registrierungsmaske
+/**
+ * Registrierungsmaske
+ */
 public class RegistrierungGUI extends JFrame {
 	private JTextField nachname;
 	private JTextField vorname;
@@ -31,8 +33,10 @@ public class RegistrierungGUI extends JFrame {
 	private JPasswordField kennwort;
 
 	public RegistrierungGUI() throws HeadlessException {
-		
-		//Logo einfügen und auch als Icon
+
+		/**
+		 * Logo einfügen und Logo als Icon
+		 */
 		setIconImage(Toolkit.getDefaultToolkit().getImage(RegistrierungGUI.class.getResource("/gui/Logo.png")));
 		setTitle("FELD");
 		final JPanel panel = new JPanel();
@@ -114,7 +118,9 @@ public class RegistrierungGUI extends JFrame {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DatenabrufStudent db = new DatenabrufStudent();
-				//alle eingegebenen Daten werden in die Datenbank (Tabelle Student) eingelesen
+				/**
+				 * alle eingegebenen Daten werden in die Datenbank (Tabelle Student) eingelesen
+				 */
 				String email = mail.getText() + "@hft-stuttgart.de";
 				db.einlesen(nummer.getText(), nachname.getText(), vorname.getText(), email, mail.getText(),
 						kennwort.getText(), unternehmenname.getText(), firmenanschrift.getText(), url.getText(),

@@ -14,10 +14,12 @@ import objekte.Unternehmen;
 import sortierung.MyComparator2;
 
 public class DatenabrufStudent {
-	
+
 	/**
-	 * Methode, um Informationen über aus der Tabelle "Student" aus der Datenbank auszulesen 
-	 * (jegliche Informationen über den Student + Informationen über den zugeteilten Professor mittels Fremdschlüssel)
+	 * Methode, um Informationen über aus der Tabelle "Student" aus der Datenbank
+	 * auszulesen (jegliche Informationen über den Student + Informationen über den
+	 * zugeteilten Professor mittels Fremdschlüssel)
+	 * 
 	 * @return ArrayList vom Typ Student
 	 */
 	public ArrayList<Student> ausgeben() {
@@ -59,10 +61,11 @@ public class DatenabrufStudent {
 		return ausgabe;
 
 	}
-	
+
 	/**
-	 * Methode, um Informationen über den Studenten in die Datenbank (Tabelle "Student") einzulesen
-	 * dies findet bei der Registrierung statt, da sich der Student selbstständig mit seinem BPS registriert
+	 * Methode, um Informationen über den Studenten in die Datenbank (Tabelle
+	 * "Student") einzulesen dies findet bei der Registrierung statt, da sich der
+	 * Student selbstständig mit seinem BPS registriert
 	 * 
 	 * @param mtrn
 	 * @param nachname
@@ -73,7 +76,7 @@ public class DatenabrufStudent {
 	 * @param unternehmen
 	 * @param firmenanschrift
 	 * @param url
-	 * @param emailu (Email des Unternehmens)
+	 * @param emailu          (Email des Unternehmens)
 	 * @param betreuer
 	 * @param telefon
 	 * @param abteilung
@@ -120,10 +123,11 @@ public class DatenabrufStudent {
 	}
 
 	/**
-	 * Methode, um einem Studenten einen Professor zuzuordnen
-	 * dies geschieht während des Zuteilungsprozesses entweder durch den Professor selbst oder durch das PPA
+	 * Methode, um einem Studenten einen Professor zuzuordnen dies geschieht während
+	 * des Zuteilungsprozesses entweder durch den Professor selbst oder durch das
+	 * PPA
 	 * 
-	 * @param id (ID des Professors)
+	 * @param id     (ID des Professors)
 	 * @param nummer (Matrikelnummer)
 	 */
 	public void aendern(int id, int nummer) {
@@ -152,9 +156,11 @@ public class DatenabrufStudent {
 		}
 
 	}
-	
+
 	/**
-	 * Methode, um Informationen über das Unternehmen und das BPS aus der Tabelle "Student" aus der Datenbank auszulesen
+	 * Methode, um Informationen über das Unternehmen und das BPS aus der Tabelle
+	 * "Student" aus der Datenbank auszulesen
+	 * 
 	 * @return ArrayList vom Typ Unternehmen
 	 */
 	public ArrayList<Unternehmen> ausUnternehmen() {
@@ -190,10 +196,11 @@ public class DatenabrufStudent {
 
 		return ausgaben;
 	}
-	
+
 	/**
-	 * Methode, um den Status des Berichts, den der Student über sein BPS schreiben muss, in der Datenbank zu ändern
-	 * diese Funktion (den Status zu ändern) besitzt der Professor
+	 * Methode, um den Status des Berichts, den der Student über sein BPS schreiben
+	 * muss, in der Datenbank zu ändern diese Funktion (den Status zu ändern)
+	 * besitzt der Professor
 	 * 
 	 * @param nummer (Matrikelnummer)
 	 */
@@ -225,8 +232,8 @@ public class DatenabrufStudent {
 	}
 
 	/**
-	 * Methode, um den Status des Vortrags, den der Student halten muss, in der Datenbank zu ändern
-	 * diese Funktion (den Status zu ändern) besitzt das PPA
+	 * Methode, um den Status des Vortrags, den der Student halten muss, in der
+	 * Datenbank zu ändern diese Funktion (den Status zu ändern) besitzt das PPA
 	 * 
 	 * @param nummer (Matrikelnummer)
 	 */
@@ -258,8 +265,9 @@ public class DatenabrufStudent {
 	}
 
 	/**
-	 * Methode, um den Status der Abgabe des Tätigkeitsnachweises in der Datenbank zu ändern
-	 * diese Funktion (den Status zu ändern) besitzt das Studierendensekretariat
+	 * Methode, um den Status der Abgabe des Tätigkeitsnachweises in der Datenbank
+	 * zu ändern diese Funktion (den Status zu ändern) besitzt das
+	 * Studierendensekretariat
 	 * 
 	 * @param nummer (Matrikelnummer)
 	 */

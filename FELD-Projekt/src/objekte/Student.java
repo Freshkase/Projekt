@@ -16,7 +16,7 @@ public class Student extends Person {
 	private String besuchsbericht;
 	private Professor prof;
 
-	//verschiedene Konstruktoren je nach Bedarf
+	// verschiedene Konstruktoren je nach Bedarf
 	public Student(String email) {
 		super(email);
 	}
@@ -33,7 +33,8 @@ public class Student extends Person {
 		this.prof = prof;
 		this.besuchsbericht = besuchsbericht;
 
-		//Formatierung vom Datum Beginn BPS und Ende BPS (in Datenbank amerikanisch formatiert)
+		// Formatierung vom Datum Beginn BPS und Ende BPS (in Datenbank amerikanisch
+		// formatiert)
 		String beginnRichtig[] = beginn.split("-");
 		this.beginn = beginnRichtig[2] + "." + beginnRichtig[1] + "." + beginnRichtig[0];
 
@@ -76,8 +77,8 @@ public class Student extends Person {
 	public String getBesuchsbericht() {
 		return besuchsbericht;
 	}
-	
-	//Gleichheit des Objekts Student anhand Matrikelnummer
+
+	// Gleichheit des Objekts Student anhand Matrikelnummer
 	@Override
 	public int hashCode() {
 		return Objects.hash(matrikelnummer);

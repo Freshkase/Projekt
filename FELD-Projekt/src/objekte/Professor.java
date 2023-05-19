@@ -5,8 +5,8 @@ package objekte;
  */
 public class Professor extends Person {
 	private int id;
-	
-	//verschiedene Konstruktoren je nach Bedarf
+
+	// verschiedene Konstruktoren je nach Bedarf
 	public Professor(String nachname, String vorname, String email, String kennwort, String anmeldename) {
 		super(nachname, vorname, email, kennwort, anmeldename);
 		// TODO Auto-generated constructor stub
