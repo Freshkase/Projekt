@@ -4,6 +4,8 @@ import java.util.Comparator;
 
 import objekte.Student;
 
+//Sortierung umgedreht-alphabetisch nach Tätigkeitsnachweis
+//Generell: Comparatoren werden benötigt aufgrund der Darstellung der Buttons innerhalb der Tabelle
 public class MyComparator4 implements Comparator<Student> {
 
 	@Override

@@ -4,6 +4,8 @@ import java.util.Comparator;
 
 import objekte.Student;
 
+//Sortierung alphabetisch nach Besuchsbericht (für "ProfessorenNachGUI")
+//Generell: Comparatoren werden benötigt aufgrund der Darstellung der Buttons innerhalb der Tabelle
 public class MyComparator1 implements Comparator<Student> {
 
 	@Override
