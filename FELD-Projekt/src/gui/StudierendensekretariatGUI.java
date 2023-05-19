@@ -28,7 +28,7 @@ import datenbank.DatenabrufStudent;
 import objekte.Professor;
 import objekte.Student;
 import objekte.Unternehmen;
-import sortierung.MyComparator;
+import sortierung.MyComparator1;
 import sortierung.MyComparator2;
 import sortierung.MyComparator3;
 import sortierung.MyComparator4;

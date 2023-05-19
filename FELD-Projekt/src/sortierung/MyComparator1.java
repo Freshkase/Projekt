@@ -4,7 +4,7 @@ import java.util.Comparator;
 
 import objekte.Student;
 
-public class MyComparator implements Comparator<Student> {
+public class MyComparator1 implements Comparator<Student> {
 
 	@Override
 	public int compare(Student o1, Student o2) {

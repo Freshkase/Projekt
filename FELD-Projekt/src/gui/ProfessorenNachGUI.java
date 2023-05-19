@@ -26,7 +26,7 @@ import datenbank.DatenabrufProfessor;
 import datenbank.DatenabrufStudent;
 import objekte.Student;
 import objekte.Unternehmen;
-import sortierung.MyComparator;
+import sortierung.MyComparator1;
 
 import javax.swing.JTable;
 import javax.swing.JTextArea;
@@ -55,7 +55,7 @@ public class ProfessorenNachGUI extends JPanel {
 		String[] columnNames = { "Student", "E-Mail", "Unternehmen", "Zeitraum", "Besuchsbericht", "BPS-Bericht", };
 		DatenabrufStudent db = new DatenabrufStudent();
 		ArrayList<Student> ausgabe = db.ausgeben();
-		Collections.sort(ausgabe, new MyComparator());
+		Collections.sort(ausgabe, new MyComparator1());
 
 		for (int j = 0; j < ausgabe.size(); j++) {
 			if (ausgabe.get(j).getProf().getAnmeldename() != null) {
@@ -76,7 +76,7 @@ public class ProfessorenNachGUI extends JPanel {
 			}
 		}
 
-		Collections.sort(verkuerzt, new MyComparator());
+		Collections.sort(verkuerzt, new MyComparator1());
 
 		Object[][] data = new Object[verkuerzt.size()][6];
 		for (int i = 0; i < verkuerzt.size(); i++) {
@@ -229,7 +229,7 @@ public class ProfessorenNachGUI extends JPanel {
 				if (buttonColumn == 5) {
 					DatenabrufStudent db = new DatenabrufStudent();
 					ArrayList<Student> ausgabe = db.ausgeben();
-					Collections.sort(ausgabe, new MyComparator());
+					Collections.sort(ausgabe, new MyComparator1());
 					if (verkuerzt.get(buttonRow).getBericht().equals("nein")) {
 						int option = JOptionPane.showOptionDialog(null, "Wollen sie den Status ändern? ", "Bestätigung",
 								JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null,
