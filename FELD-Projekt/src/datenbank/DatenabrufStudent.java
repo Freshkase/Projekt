@@ -14,7 +14,9 @@ import objekte.Unternehmen;
 import sortierung.MyComparator2;
 
 public class DatenabrufStudent {
-
+	
+	//Methode, um Informationen über aus der Tabelle "Student" aus der Datenbank auszulesen 
+	//(jegliche Informationen über den Student + Informationen über den zugeteilten Professor mittels Fremdschlüssel)
 	public ArrayList<Student> ausgeben() {
 
 		Connection conn = null;
@@ -54,7 +56,9 @@ public class DatenabrufStudent {
 		return ausgabe;
 
 	}
-
+	
+	//Methode, um Informationen über den Studenten in die Datenbank (Tabelle "Student") einzulesen
+	//dies findet bei der Registrierung statt, da sich der Student selbstständig mit seinem BPS registriert
 	public ArrayList<Student> einlesen(String mtrn, String nachname, String vorname, String mail, String anmeldename,
 			String kennwort, String unternehmen, String firmenanschrift, String url, String emailu, String betreuer,
 			String telefon, String abteilung, String beginn, String ende, String themenbereich, String stelle) {
@@ -91,6 +95,8 @@ public class DatenabrufStudent {
 
 	}
 
+	//Methode, um einem Studenten einen Professor zuzuordnen
+	//dies geschieht während des Zuteilungsprozesses entweder durch den Professor selbst oder durch das PPA
 	public void aendern(int id, int nummer) {
 
 		Connection conn = null;
@@ -117,7 +123,8 @@ public class DatenabrufStudent {
 		}
 
 	}
-
+	
+	//Methode, um Informationen über das Unternehmen und das BPS aus der Tabelle "Student" aus der Datenbank auszulesen
 	public ArrayList<Unternehmen> ausUnternehmen() {
 		Connection conn = null;
 
@@ -135,7 +142,7 @@ public class DatenabrufStudent {
 
 			Statement anweisung = conn.createStatement();
 			ResultSet rs = anweisung.executeQuery(
-					"SELECT studenten.Name_Unternehmen, studenten.Firmenanschrift, studenten.URL_Unternehmen, studenten.E_Mail_Unternehmen, studenten.Firmenbetreuer, studenten.Telefonnummer_Unternehmen, studenten.Abteilung, studenten.Beginn_BPS, studenten.Ende_BPS, studenten.Themenbereich_BPS, studenten.Stellenbeschreibung, studenten.Anmeldename FROM studenten, professoren WHERE studenten.Professoren_ID=professoren.Professoren_ID");
+					"SELECT studenten.Name_Unternehmen, studenten.Firmenanschrift, studenten.URL_Unternehmen, studenten.E_Mail_Unternehmen, studenten.Firmenbetreuer, studenten.Telefonnummer_Unternehmen, studenten.Abteilung, studenten.Beginn_BPS, studenten.Ende_BPS, studenten.Themenbereich_BPS, studenten.Stellenbeschreibung, studenten.Anmeldename FROM studenten");
 
 			while (rs.next()) {
 				ausgaben.add(new Unternehmen(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
@@ -151,7 +158,9 @@ public class DatenabrufStudent {
 
 		return ausgaben;
 	}
-
+	
+	//Methode, um den Status des Berichts, den der Student über sein BPS schreiben muss, in der Datenbank zu ändern
+	//diese Funktion (den Status zu ändern) besitzt der Professor
 	public void einlesenbericht(int nummer) {
 
 		Connection conn = null;
@@ -179,6 +188,8 @@ public class DatenabrufStudent {
 
 	}
 
+	//Methode, um den Status des Vortrags, den der Student halten muss, in der Datenbank zu ändern
+	//diese Funktion (den Status zu ändern) besitzt das PPA
 	public void aendernVortrag(int nummer) {
 
 		Connection conn = null;
@@ -206,6 +217,8 @@ public class DatenabrufStudent {
 
 	}
 
+	//Methode, um den Status der Abgabe des Tätigkeitsnachweises in der Datenbank zu ändern
+	//diese Funktion (den Status zu ändern) besitzt das Studierendensekretariat
 	public void einlesentätigkeitsnachweis(int nummer) {
 
 		Connection conn = null;

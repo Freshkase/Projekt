@@ -10,7 +10,8 @@ import objekte.Professor;
 import objekte.Sekretaerin;
 
 public class DatenabrufStudierendensekretariat {
-
+	
+	//Methode, um Informationen aus der Tabelle "Studierendensekretariat" aus der Datenbank auszulesen
 	public ArrayList<Sekretaerin> ausgeben() {
 
 		Connection conn = null;

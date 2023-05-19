@@ -9,6 +9,7 @@ import objekte.Professor;
 
 public class DatenabrufProfessor {
 
+	//Methode, um Informationen aus der Tabelle "Professoren" aus der Datenbank auszulesen
 	public ArrayList<Professor> ausgeben() {
 
 		Connection conn = null;
@@ -43,7 +44,8 @@ public class DatenabrufProfessor {
 		return ausgabe;
 
 	}
-
+	
+	//Methode, um den Besuchsbericht in die Tabelle "Studenten" in die Datenbank einzulesen
 	public void BesuchsberichtErstellen(String Besuchsbericht, int nummer) {
 
 		Connection conn = null;

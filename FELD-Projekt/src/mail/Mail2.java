@@ -33,7 +33,7 @@ public class Mail2 {
 		multipart.addBodyPart(messageBodyPart);
 		// Message fertigstellen, indem sie mit dem Multipart-Content ausgestattet wird
 		MimeBodyPart attachmentPart = new MimeBodyPart();
-		attachmentPart.attachFile("Mails.csv");
+		attachmentPart.attachFile("Ergebnisse_BPS.csv");
 		multipart.addBodyPart(attachmentPart);
 		message.setContent(multipart);
 

@@ -97,7 +97,7 @@ public class PPANachGUI extends JPanel {
 		btnNewButton.setBackground(new Color(0, 128, 255));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try (PrintWriter writer = new PrintWriter(new File("Mails.csv"))) {
+				try (PrintWriter writer = new PrintWriter(new File("Ergebnisse_BPS.csv"))) {
 					DatenabrufStudent db = new DatenabrufStudent();
 					ArrayList<Student> ausgabe = db.ausgeben();
 					Collections.sort(ausgabe,new MyComparator5());
