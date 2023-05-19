@@ -29,6 +29,7 @@ import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
 
+//Anmeldungsmaske
 public class AnmeldungGUI {
 
 	private JFrame frame;
@@ -68,6 +69,8 @@ public class AnmeldungGUI {
 	 */
 	private void initialize() {
 		frame = new JFrame("FELD");
+		
+		//Logo einfügen und auch als Icon
 		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(AnmeldungGUI.class.getResource("/gui/Logo.png")));
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -103,9 +106,21 @@ public class AnmeldungGUI {
 		JButton btnNewButton = new JButton("Registrieren");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				DatenabrufStatus dbstatus = new DatenabrufStatus();
+				
+				//wenn der Status "während der Zuteilung" ist, besteht die Möglichkeit der Registrierung für den Studenten
+				//öffnen der Registrierungsmaske + schließen der Anmeldungsmaske
+				if (dbstatus.ausgeben() == 0) {
 				RegistrierungGUI registrieren = new RegistrierungGUI();
 				registrieren.setVisible(true);
 				frame.dispose();
+				//ist der Zuteilungsprozess beendet, ist keine nachträgliche Registrierung mehr möglich
+				} else {
+					textField.setText(null);
+					passwordField.setText(null);
+					lblNewLabel.setText("Der Registrierungsprozess ist leider schon vorbei.");
+					lblNewLabel.setForeground(Color.RED);
+				}
 			}
 		});
 
@@ -126,11 +141,14 @@ public class AnmeldungGUI {
 
 				DatenabrufStatus dbstatus = new DatenabrufStatus();
 
+				//wenn der Status == 0 (während Zuteilung) werden andere Fenster geöffnet als wenn der Status == 1 (nach Zuteilung) ist
 				if (dbstatus.ausgeben() == 0) {
+					//das PPA hat an zweiter Stelle einen Punkt
 					if (name.charAt(1) == '.') {
 						DatenabrufPPA dbppa = new DatenabrufPPA();
 						ArrayList<Professor> ausgabeppa = dbppa.ausgeben();
 
+						//wenn Passwort und Anmeldename mit den Daten in der Tabelle "PPA" übereinstimmt, wird die PPA-Maske geöffnet
 						for (int i = 0; i < ausgabeppa.size(); i++) {
 							if (name.equals(ausgabeppa.get(i).getAnmeldename())) {
 								if (ausgabeppa.get(i).getKennwort().equals(passwort)) {
@@ -138,6 +156,7 @@ public class AnmeldungGUI {
 									ppa.main(null);
 									frame.dispose();
 								}
+							//anderenfalls: Rückmeldung, dass die Eingabe falsch ist
 							} else {
 								textField.setText(null);
 								passwordField.setText(null);
@@ -148,7 +167,7 @@ public class AnmeldungGUI {
 						}
 
 					}
-
+					//die Studenten-Email (Präfix) an der HFT enthalt keinen Punkt und kein Bindestrich
 					boolean studentenpruefung = true;
 					for (int i = 0; i < name.length(); i++) {
 						if (name.charAt(i) == '.' || name.charAt(i) == '-') {
@@ -156,11 +175,13 @@ public class AnmeldungGUI {
 							break;
 						}
 					}
-
+					
+					//
 					if (studentenpruefung == true) {
 						DatenabrufStudent dbstudent = new DatenabrufStudent();
 						ArrayList<Student> ausgabestudent = dbstudent.ausgeben();
-
+						
+						//wenn Passwort und Anmeldename mit den Daten in der Tabelle "Studenten" übereinstimmt, wird die Studenten-Maske geöffnet
 						for (int i = 0; i < ausgabestudent.size(); i++) {
 							if (name.equals(ausgabestudent.get(i).getAnmeldename())) {
 								if (ausgabestudent.get(i).getKennwort().equals(passwort)) {
@@ -168,6 +189,7 @@ public class AnmeldungGUI {
 									student.main(null);
 									frame.dispose();
 								}
+							//anderenfalls: Rückmeldung, dass die Eingabe falsch ist
 							} else {
 								textField.setText(null);
 								passwordField.setText(null);
@@ -175,6 +197,7 @@ public class AnmeldungGUI {
 								lblNewLabel.setForeground(Color.RED);
 							}
 						}
+					//wenn der Anmeldename einen Bindestrich enthält, handelt es sich um das Studierendensekretariat
 					} else {
 						boolean sekretariatpruefung = false;
 						for (int i = 0; i < name.length(); i++) {
@@ -183,16 +206,18 @@ public class AnmeldungGUI {
 								break;
 							}
 						}
-
+						//das Studierendensekretariat hat während der Zuteilung noch keinen Zugriff auf das FELD-System
 						if (sekretariatpruefung) {
 							textField.setText(null);
 							passwordField.setText(null);
 							lblNewLabel.setText("Zuteilungsprozess noch nicht beendet. Daher noch keinen Zugriff.");
 							lblNewLabel.setForeground(Color.RED);
+						//andernfalls handelt es sich um einen Professor (E-Mail Präfix enthält nach dem Vornamen einen Punkt)
 						} else {
 							DatenabrufProfessor dbprofessor = new DatenabrufProfessor();
 							ArrayList<Professor> ausgabeprofessor = dbprofessor.ausgeben();
 
+							//wenn Passwort und Anmeldename mit den Daten in der Tabelle "Professoren" übereinstimmt, wird die Professoren-Maske geöffnet
 							for (int i = 0; i < ausgabeprofessor.size(); i++) {
 								if (name.equals(ausgabeprofessor.get(i).getAnmeldename())) {
 									if (ausgabeprofessor.get(i).getKennwort().equals(passwort)) {
@@ -200,6 +225,7 @@ public class AnmeldungGUI {
 										professor.main(null);
 										frame.dispose();
 									}
+								//anderenfalls: Rückmeldung, dass die Eingabe falsch ist
 								} else {
 									textField.setText(null);
 									passwordField.setText(null);
@@ -211,11 +237,14 @@ public class AnmeldungGUI {
 						}
 					}
 
+				//hier findet man die Fenster für nach der Zuteilung (Status == 1)
 				} else {
+					//das PPA hat an zweiter Stelle einen Punkt
 					if (name.charAt(1) == '.') {
 						DatenabrufPPA dbppa = new DatenabrufPPA();
 						ArrayList<Professor> ausgabeppa = dbppa.ausgeben();
 
+						//wenn Passwort und Anmeldename mit den Daten in der Tabelle "PPA" übereinstimmt, wird die PPA-Maske geöffnet
 						for (int i = 0; i < ausgabeppa.size(); i++) {
 							if (name.equals(ausgabeppa.get(i).getAnmeldename())) {
 								if (ausgabeppa.get(i).getKennwort().equals(passwort)) {
@@ -223,6 +252,7 @@ public class AnmeldungGUI {
 									ppa.main(null);
 									frame.dispose();
 								}
+							//anderenfalls: Rückmeldung, dass die Eingabe falsch ist
 							} else {
 								textField.setText(null);
 								passwordField.setText(null);
@@ -233,7 +263,7 @@ public class AnmeldungGUI {
 						}
 
 					}
-
+					//die Studenten-Email (Präfix) an der HFT enthalt keinen Punkt und kein Bindestrich
 					boolean studentenpruefung = true;
 					for (int i = 0; i < name.length(); i++) {
 						if (name.charAt(i) == '.' || name.charAt(i) == '-') {
@@ -245,7 +275,8 @@ public class AnmeldungGUI {
 					if (studentenpruefung == true) {
 						DatenabrufStudent dbstudent = new DatenabrufStudent();
 						ArrayList<Student> ausgabestudent = dbstudent.ausgeben();
-
+						
+						//wenn Passwort und Anmeldename mit den Daten in der Tabelle "Studenten" übereinstimmt, wird die Studenten-Maske geöffnet
 						for (int i = 0; i < ausgabestudent.size(); i++) {
 							if (name.equals(ausgabestudent.get(i).getAnmeldename())) {
 								if (ausgabestudent.get(i).getKennwort().equals(passwort)) {
@@ -253,6 +284,7 @@ public class AnmeldungGUI {
 									student.main(null);
 									frame.dispose();
 								}
+							//anderenfalls: Rückmeldung, dass die Eingabe falsch ist
 							} else {
 								textField.setText(null);
 								passwordField.setText(null);
@@ -261,6 +293,7 @@ public class AnmeldungGUI {
 							}
 
 						}
+					//wenn der Anmeldename einen Bindestrich enthält, handelt es sich um das Studierendensekretariat
 					} else {
 						boolean sekretariatpruefung = false;
 						for (int i = 0; i < name.length(); i++) {
@@ -273,7 +306,8 @@ public class AnmeldungGUI {
 						if (sekretariatpruefung) {
 							DatenabrufStudierendensekretariat dbstudierendensekretariat = new DatenabrufStudierendensekretariat();
 							ArrayList<Sekretaerin> ausgabesk = dbstudierendensekretariat.ausgeben();
-
+							//nun hat das Studierendensekretariat auch Zugriff (Status == 1)
+							//wenn Passwort und Anmeldename mit den Daten in der Tabelle "Studierendensekretariat" übereinstimmt, wird die Sekretariats-Maske geöffnet
 							for (int i = 0; i < ausgabesk.size(); i++) {
 								if (name.equals(ausgabesk.get(i).getAnmeldename())) {
 									if (ausgabesk.get(i).getKennwort().equals(passwort)) {
@@ -281,6 +315,7 @@ public class AnmeldungGUI {
 										sk.main(null);
 										frame.dispose();
 									}
+								//anderenfalls: Rückmeldung, dass die Eingabe falsch ist
 								} else {
 									textField.setText(null);
 									passwordField.setText(null);
@@ -292,6 +327,7 @@ public class AnmeldungGUI {
 							DatenabrufProfessor dbprofessor = new DatenabrufProfessor();
 							ArrayList<Professor> ausgabeprofessor = dbprofessor.ausgeben();
 
+							//wenn Passwort und Anmeldename mit den Daten in der Tabelle "Professoren" übereinstimmt, wird die Professoren-Maske geöffnet
 							for (int i = 0; i < ausgabeprofessor.size(); i++) {
 								if (name.equals(ausgabeprofessor.get(i).getAnmeldename())) {
 									if (ausgabeprofessor.get(i).getKennwort().equals(passwort)) {
@@ -299,6 +335,7 @@ public class AnmeldungGUI {
 										professor.main(null);
 										frame.dispose();
 									}
+								//anderenfalls: Rückmeldung, dass die Eingabe falsch ist
 								} else {
 									textField.setText(null);
 									passwordField.setText(null);
