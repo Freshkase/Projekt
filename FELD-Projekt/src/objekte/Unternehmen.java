@@ -1,5 +1,6 @@
 package objekte;
 
+//jegliche Informationen über das einem Student zugeordnete Unternehmen
 public class Unternehmen {
 	private String name;
 	private String anschrift;
@@ -12,6 +13,7 @@ public class Unternehmen {
 	private String beschreibung;
 	private String anmeldenamedesstudenten;
 
+	//verschiedene Konstruktoren je nach Bedarf
 	public Unternehmen(String name) {
 		this.name = name;
 	}

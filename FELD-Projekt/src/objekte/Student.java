@@ -2,8 +2,8 @@ package objekte;
 
 import java.util.Objects;
 
+//Kind-Klasse
 public class Student extends Person {
-	// Eigenschaften
 	private int matrikelnummer;
 	private Unternehmen unternehmen;
 	private String bericht;
@@ -14,6 +14,7 @@ public class Student extends Person {
 	private String besuchsbericht;
 	private Professor prof;
 
+	//verschiedene Konstruktoren je nach Bedarf
 	public Student(String email) {
 		super(email);
 	}
@@ -28,14 +29,14 @@ public class Student extends Person {
 		this.tätigkeitsnachweis = tätigkeitsnachweis;
 		this.vortrag = vortrag;
 		this.prof = prof;
+		this.besuchsbericht = besuchsbericht;
 
+		//Formatierung vom Datum Beginn BPS und Ende BPS (in Datenbank amerikanisch formatiert)
 		String beginnRichtig[] = beginn.split("-");
 		this.beginn = beginnRichtig[2] + "." + beginnRichtig[1] + "." + beginnRichtig[0];
 
 		String endeRichtig[] = ende.split("-");
 		this.ende = endeRichtig[2] + "." + endeRichtig[1] + "." + endeRichtig[0];
-
-		this.besuchsbericht = besuchsbericht;
 	}
 
 	public int getMatrikelnr() {
@@ -73,7 +74,8 @@ public class Student extends Person {
 	public String getBesuchsbericht() {
 		return besuchsbericht;
 	}
-
+	
+	//Gleichheit des Objekts Student anhand Matrikelnummer
 	@Override
 	public int hashCode() {
 		return Objects.hash(matrikelnummer);

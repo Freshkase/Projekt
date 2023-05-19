@@ -1,5 +1,6 @@
 package objekte;
 
+//Eltern-Klasse
 public class Person {
 	private String nachname;
 	private String vorname;
@@ -7,6 +8,7 @@ public class Person {
 	private String kennwort;
 	private String anmeldename;
 
+	//verschiedene Konstruktoren je nach Bedarf
 	public Person(String nachname, String vorname, String email, String kennwort, String anmeldename) {
 		this.nachname = nachname;
 		this.vorname = vorname;
@@ -25,6 +27,7 @@ public class Person {
 		this.email = email;
 	}
 
+	
 	public String getVorname() {
 		return vorname;
 	}
