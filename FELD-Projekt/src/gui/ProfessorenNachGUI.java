@@ -264,7 +264,7 @@ public class ProfessorenNachGUI extends JPanel {
 				 */
 				if (buttonColumn == 4) {
 					JPanel panel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
-					JTextArea textArea = new JTextArea(45, 100);
+					JTextArea textArea = new JTextArea(35, 100);
 					if (verkuerzt.get(buttonRow).getBesuchsbericht().equals(" ")) {
 						textArea.setText("Bitte hier Besuchbericht reinschreiben");
 					}

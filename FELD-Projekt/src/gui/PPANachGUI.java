@@ -336,7 +336,7 @@ public class PPANachGUI extends JPanel {
 					 */
 				} else {
 					JPanel panel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
-					JTextArea textArea = new JTextArea(45, 100);
+					JTextArea textArea = new JTextArea(35, 100);
 					textArea.setText(ausgabe.get(buttonRow).getBesuchsbericht());
 					panel.add(new JScrollPane(textArea));
 					String message = "Geschrieben von Professor " + ausgabe.get(buttonRow).getProf().getNachname()
