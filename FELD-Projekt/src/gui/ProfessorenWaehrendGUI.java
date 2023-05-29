@@ -179,21 +179,24 @@ public class ProfessorenWaehrendGUI extends JPanel {
 		public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row,
 				int column) {
 
-			for (int i = 0; i < ausgabe.size(); i++) {
+		
 				/*
 				 * Button bei Professor = null und der gesamten Spalte 2
 				 */
-				if (ausgabe.get(i).getProf().getNachname() == null || column == 2) {
+				if (ausgabe.get(row).getProf().getNachname() == null || column == 2) {
 					buttonRow = row;
 					buttonColumn = column;
-					if (row == i || column == 2) {
+				
 						label = (value == null) ? "" : value.toString();
 						button.setText(label);
 						isPushed = true;
-					}
+						return button;
+					
+				}else {
+					label = (value == null) ? "" : value.toString();
+					return new JLabel(label);
+					
 				}
-			}
-			return button;
 		}
 
 		public Object getCellEditorValue() {

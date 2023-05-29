@@ -186,21 +186,24 @@ public class StudierendensekretariatGUI extends JPanel {
 				int column) {
 			Collections.sort(ausgabe, new MyComparator4());
 
-			for (int i = 0; i < ausgabe.size(); i++) {
 				/*
 				 * Button bei Tätigkeitsnachweis "nein"
 				 */
-				if (ausgabe.get(i).getTätigkeitsnachweis().equals("nein")) {
+				if (ausgabe.get(row).getTätigkeitsnachweis().equals("nein")) {
 					buttonRow = row;
 					buttonColumn = column;
-					if (row == i) {
+					
 						label = (value == null) ? "" : value.toString();
 						button.setText(label);
 						isPushed = true;
-					}
+						return button;
+					
+				}else {
+					label = (value == null) ? "" : value.toString();
+					return new JLabel(label);
+					
 				}
-			}
-			return button;
+			
 		}
 
 		public Object getCellEditorValue() {

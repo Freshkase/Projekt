@@ -279,22 +279,27 @@ public class PPANachGUI extends JPanel {
 
 			Collections.sort(ausgabe, new MyComparator3());
 
-			for (int i = 0; i < ausgabe.size(); i++) {
+		
 				/*
 				 * Button, wenn Besuchsbericht verfasst wurde und in Spalte 7
 				 */
-				if ((!ausgabe.get(i).getBesuchsbericht().equals(" ")) || column == 7) {
-					if (row == i || column == 7) {
+				if ((!ausgabe.get(row).getBesuchsbericht().equals(" ")) || column == 7) {
+				
 						buttonRow = row;
 						buttonColumn = column;
 						label = (value == null) ? "" : value.toString();
 						button.setText(label);
 						isPushed = true;
-					}
+						return button;
+				}else {
+					label = (value == null) ? "" : value.toString();
+					return new JLabel(label);
+					
 				}
 			}
-			return button;
-		}
+	
+			
+		
 
 		public Object getCellEditorValue() {
 			if (isPushed) {

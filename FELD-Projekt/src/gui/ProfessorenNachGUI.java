@@ -204,22 +204,25 @@ public class ProfessorenNachGUI extends JPanel {
 
 		public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row,
 				int column) {
-			for (int i = 0; i < verkuerzt.size(); i++) {
+		
 				/*
 				 * Button bei noch nicht geschriebenem Besuchsbericht und der gesamten Spalte 2
 				 * und 5
 				 */
-				if (verkuerzt.get(i).getBesuchsbericht().equals(" ") || column == 5 || column == 2) {
+				if (verkuerzt.get(row).getBesuchsbericht().equals(" ") || column == 5 || column == 2) {
 					buttonRow = row;
 					buttonColumn = column;
-					if (row == i || column == 5) {
+					
 						label = (value == null) ? "" : value.toString();
 						button.setText(label);
 						isPushed = true;
-					}
+					return button;
+				}else {
+					label = (value == null) ? "" : value.toString();
+					return new JLabel(label);
+					
 				}
-			}
-			return button;
+	
 		}
 
 		public Object getCellEditorValue() {
