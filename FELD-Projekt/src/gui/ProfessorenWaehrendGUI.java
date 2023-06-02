@@ -218,22 +218,23 @@ public class ProfessorenWaehrendGUI extends JPanel {
 								.equals(unternehmenls.get(i).getanmeldesnamedesstudenten())) {
 
 							String message = "<html>"
-					                + "<h2>Informationen zum Unternehmen</h2>"
-					                + "<table>"
-					                + "<tr><td><b>Name:</b></td><td>" + unternehmenls.get(i).getName() + "</td></tr>"
-					                + "<tr><td><b>Anschrift:</b></td><td>" + unternehmenls.get(i).getAnschrift() + "</td></tr>"
-					                + "<tr><td><b>URL:</b></td><td>" + unternehmenls.get(i).getUrl() + "</td></tr>"
-					                + "<tr><td><b>E-Mail:</b></td><td>" + unternehmenls.get(i).getEmail() + "</td></tr>"
-					                + "<tr><td><b>Firmen-Betreuer:</b></td><td>" + unternehmenls.get(i).getBetreuer() + "</td></tr>"
-					                + "<tr><td><b>Telefonnummer:</b></td><td>" + unternehmenls.get(i).getTelefon() + "</td></tr>"
-					                + "<tr><td><b>Abteilung:</b></td><td>" + unternehmenls.get(i).getBereich() + "</td></tr>"
-					                + "<tr><td><b>Zeitraum:</b></td><td>" + ausgabestudent.get(buttonRow).getBeginn() + " - " + ausgabestudent.get(buttonRow).getEnde() + "</td></tr>"
-					                + "<tr><td><b>Themenbereich:</b></td><td>" + unternehmenls.get(i).getThema() + "</td></tr>"
-					                + "<tr><td><b>Beschreibung:</b></td><td>" + unternehmenls.get(i).getBeschreibung() + "</td></tr>"
-					                + "</table>"
-					                + "</html>";
-							JOptionPane.showMessageDialog(null, message, "Informationen zum Unternehmen",
-									JOptionPane.PLAIN_MESSAGE);
+								    + "<h2>Informationen zum Unternehmen</h2>"
+								    + "<table>"
+								    + "<tr><td><b>Name:</b></td><td>" + unternehmenls.get(i).getName() + "</td></tr>"
+								    + "<tr><td><b>Anschrift:</b></td><td>" + unternehmenls.get(i).getAnschrift() + "</td></tr>"
+								    + "<tr><td><b>URL:</b></td><td>" + unternehmenls.get(i).getUrl() + "</td></tr>"
+								    + "<tr><td><b>E-Mail:</b></td><td>" + unternehmenls.get(i).getEmail() + "</td></tr>"
+								    + "<tr><td><b>Firmen-Betreuer:</b></td><td>" + unternehmenls.get(i).getBetreuer() + "</td></tr>"
+								    + "<tr><td><b>Telefonnummer:</b></td><td>" + unternehmenls.get(i).getTelefon() + "</td></tr>"
+								    + "<tr><td><b>Abteilung:</b></td><td>" + unternehmenls.get(i).getBereich() + "</td></tr>"
+								    + "<tr><td><b>Zeitraum:</b></td><td>" + ausgabestudent.get(buttonRow).getBeginn() + " - " + ausgabestudent.get(buttonRow).getEnde() + "</td></tr>"
+								    + "<tr><td><b>Themenbereich:</b></td><td>" + unternehmenls.get(i).getThema() + "</td></tr>"
+								    + "<tr><td><b>Beschreibung:</b></td><td><html><body><div style='width: 200px; word-wrap: break-word; vertical-align: top;'>" + unternehmenls.get(i).getBeschreibung() + "</div></body></html></td></tr>"
+								    + "</table>"
+								    + "</html>";
+
+								JOptionPane.showMessageDialog(null, message, "Informationen zum Unternehmen", JOptionPane.PLAIN_MESSAGE);
+
 						}
 					}
 					/*
