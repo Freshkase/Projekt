@@ -35,7 +35,6 @@ public class DatenabrufStudierendensekretariat {
 			Statement anweisung = conn.createStatement();
 			ResultSet rs = anweisung.executeQuery(
 					"SELECT ID, Nachname, Vorname, E_Mail, Kennwort, Anmeldename FROM studierendensekretariat");
-
 			while (rs.next()) {
 				ausgabe.add(new Sekretaerin(Integer.parseInt(rs.getString(1)), rs.getString(2), rs.getString(3),
 						rs.getString(4), rs.getString(5), rs.getString(6)));
