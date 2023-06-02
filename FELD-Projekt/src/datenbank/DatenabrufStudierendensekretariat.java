@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import objekte.Professor;
 import objekte.Sekretaerin;
 
 public class DatenabrufStudierendensekretariat {
