@@ -64,7 +64,7 @@ public class Mail2 {
 		String myPassword = "feld#0922";
 
 		// hier wird die Mail-Adresse des Prüfungsamts eingetragen
-		String empfaenger = "22pole1bwi@hft-stuttgart.de";
+		String empfaenger = "22scda1bwi@hft-stuttgart.de";
 
 		Session session = Session.getInstance(properties, new Authenticator() {
 			@Override

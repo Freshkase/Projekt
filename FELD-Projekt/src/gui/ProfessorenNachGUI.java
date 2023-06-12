@@ -321,7 +321,7 @@ public class ProfessorenNachGUI extends JPanel {
 								    + "<tr><td><b>Abteilung:</b></td><td>" + unternehmenls.get(i).getBereich() + "</td></tr>"
 								    + "<tr><td><b>Zeitraum:</b></td><td>" + verkuerzt.get(buttonRow).getBeginn() + " - " + verkuerzt.get(buttonRow).getEnde() + "</td></tr>"
 								    + "<tr><td><b>Themenbereich:</b></td><td>" + unternehmenls.get(i).getThema() + "</td></tr>"
-								    + "<tr><td valign='top'><b>Beschreibung:</b><br></br></td><td style='vertical-align: top'><div style='width: 200px; word-wrap: break-word;'>" + unternehmenls.get(i).getBeschreibung() + "</div></td></tr>"
+								    + "<tr><td valign='top'><b>Beschreibung:</b></td><td style='vertical-align: top'><div style='width: 200px; word-wrap: break-word;'>" + unternehmenls.get(i).getBeschreibung() + "</div></td></tr>"
 								    + "</table>"
 								    + "</html>";
 
