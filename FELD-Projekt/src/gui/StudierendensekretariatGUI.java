@@ -223,7 +223,7 @@ public class StudierendensekretariatGUI extends JPanel {
 						for (int i = 1; i < ausgabeprof.size(); i++) {
 							db.einlesentätigkeitsnachweis(nummer);
 
-						}
+						} 
 						frame.dispose();
 						StudierendensekretariatGUI neu = new StudierendensekretariatGUI(anmeldename);
 						neu.main(null);
