@@ -229,7 +229,7 @@ public class ProfessorenWaehrendGUI extends JPanel {
 								    + "<tr><td><b>Abteilung:</b></td><td>" + unternehmenls.get(i).getBereich() + "</td></tr>"
 								    + "<tr><td><b>Zeitraum:</b></td><td>" + ausgabestudent.get(buttonRow).getBeginn() + " - " + ausgabestudent.get(buttonRow).getEnde() + "</td></tr>"
 								    + "<tr><td><b>Themenbereich:</b></td><td>" + unternehmenls.get(i).getThema() + "</td></tr>"
-								    + "<tr><td><b>Beschreibung:</b></td><td><html><body><div style='width: 200px; word-wrap: break-word; vertical-align: top;'>" + unternehmenls.get(i).getBeschreibung() + "</div></body></html></td></tr>"
+								    + "<tr><td valign='top'><b>Beschreibung:</b></td><td><html><body><div style='width: 200px; word-wrap: break-word; vertical-align: top;'>" + unternehmenls.get(i).getBeschreibung() + "</div></body></html></td></tr>"
 								    + "</table>"
 								    + "</html>";
 

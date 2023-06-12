@@ -10,8 +10,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-import java.util.Collections;
 
+import javax.swing.ButtonGroup;
 import javax.swing.DefaultCellEditor;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -25,14 +25,13 @@ import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.TableCellRenderer;
+
+import datenbank.DatenabrufProfessor;
+import datenbank.DatenabrufStatus;
 import datenbank.DatenabrufStudent;
 import mail.Mail;
 import objekte.Professor;
 import objekte.Student;
-import datenbank.DatenabrufStatus;
-import datenbank.DatenabrufProfessor;
-
-import javax.swing.ButtonGroup;
 
 /**
  * PPA-Maske während der Zuteilung
