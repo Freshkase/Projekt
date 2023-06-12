@@ -425,7 +425,6 @@ public class AnmeldungGUI {
 
 		JLabel lblNewLabel_3 = new JLabel("@hft-stuttgart.de");
 		lblNewLabel_3.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
-
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(gl_panel.createParallelGroup(Alignment.LEADING).addGroup(gl_panel
 				.createSequentialGroup().addGap(19)
