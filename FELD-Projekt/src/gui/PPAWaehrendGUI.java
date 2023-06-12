@@ -32,6 +32,8 @@ import datenbank.DatenabrufStudent;
 import mail.Mail;
 import objekte.Professor;
 import objekte.Student;
+import javax.swing.JTextField;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 /**
  * PPA-Maske während der Zuteilung
@@ -40,6 +42,7 @@ public class PPAWaehrendGUI extends JPanel {
 	private boolean DEBUG = false;
 	private static String anmeldename;
 	private static JFrame frame;
+	private JTextField textField;
 
 	public PPAWaehrendGUI(String anmeldename) {
 
@@ -138,19 +141,38 @@ public class PPAWaehrendGUI extends JPanel {
 				neu.main(null);
 			}
 		});
+		
 
 		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout
-				.createSequentialGroup().addContainerGap(26, Short.MAX_VALUE)
-				.addGroup(groupLayout.createParallelGroup(Alignment.LEADING).addComponent(beenden, Alignment.TRAILING)
-						.addComponent(scrollbar, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 920,
-								GroupLayout.PREFERRED_SIZE)
-						.addComponent(AbmeldeButton, Alignment.TRAILING))
-				.addContainerGap(26, Short.MAX_VALUE)));
-		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-				.addGroup(groupLayout.createSequentialGroup().addContainerGap().addComponent(AbmeldeButton).addGap(10)
-						.addComponent(scrollbar, GroupLayout.PREFERRED_SIZE, 600, GroupLayout.PREFERRED_SIZE).addGap(10)
-						.addComponent(beenden).addGap(25)));
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(beenden, Alignment.TRAILING)
+						.addComponent(scrollbar, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 920, GroupLayout.PREFERRED_SIZE)
+						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+							.addComponent(nichterlaubt, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED, 745, Short.MAX_VALUE)
+							.addComponent(AbmeldeButton)))
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(AbmeldeButton)
+							.addGap(10))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(nichterlaubt, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)))
+					.addComponent(scrollbar, GroupLayout.PREFERRED_SIZE, 600, GroupLayout.PREFERRED_SIZE)
+					.addGap(10)
+					.addComponent(beenden)
+					.addGap(25))
+		);
 		setLayout(groupLayout);
 	}
 
